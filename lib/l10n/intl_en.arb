@@ -1,0 +1,31 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The currently selected language"
+  },
+  "appTitle": "Guess The Toilet",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "guestSignIn": "Sign in as guest",
+  "@guestSignIn": {
+    "description": "Sign in as guest user"
+  },
+  "googleSignIn": "Sign in with Google",
+  "@googleSignIn": {
+    "description": "Sign in with Google account"
+  },
+  "appleSignIn": "Sign in with Apple",
+  "@appleSignIn": {
+    "description": "Sign in with Apple ID"
+  },
+  "hello": "Hello {username}",
+  "@hello": {
+    "description": "A greeting message",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  }
+}

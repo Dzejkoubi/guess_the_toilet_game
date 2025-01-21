@@ -1,0 +1,8 @@
+{
+  "language": "Čeština",
+  "appTitle": "Záchodové dilema",
+  "guestSignIn": "Přihlásit se jako host",
+  "googleSignIn": "Přihlásit se přes Google",
+  "appleSignIn": "Přihlásit se přes Apple",
+  "hello": "Ahoj {username}"
+}
