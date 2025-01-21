@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   auto_route_generator: ^9.0.0
   auto_route: ^9.2.2
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_test:
@@ -22,12 +23,11 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon/icon.jpg" # Path to your logo
-  adaptive_icon_foreground: "assets/icon/icon.jpg" # Optional for Android adaptive icons
-  adaptive_icon_background: "#FFFFFF" # Change to match your design
+  remove_alpha_ios: true
+  image_path: "assets/icon/icon.png" # Path to your icon
   # flutter pub run flutter_launcher_icons:main - to use the changes
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/icon/icon.jpg
+    - assets/icon/icon.png

@@ -18,7 +18,9 @@ class WelcomeScreen extends StatelessWidget {
             const Text('Welcome to the app!'),
             ElevatedButton(
               onPressed: () {
-                AutoRouter.of(context).push(RoadmapRoute());
+                AutoRouter.of(context).push(
+                  RoadmapRoute(),
+                );
               },
               child: const Text('Go to Roadmap'),
             ),
