@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class RoadmapScreen extends StatelessWidget {
-  const RoadmapScreen({Key? key}) : super(key: key);
+  const RoadmapScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
