@@ -3,29 +3,24 @@
   "@language": {
     "description": "The currently selected language"
   },
-  "appTitle": "Guess The Toilet",
-  "@appTitle": {
-    "description": "The title of the application"
+  "welcome_text_1": "Toilet",
+  "@welcome_text_1": {
+    "type": "text"
   },
-  "guestSignIn": "Sign in as guest",
-  "@guestSignIn": {
-    "description": "Sign in as guest user"
+  "welcome_text_2": "Guesser",
+  "@welcome_text_2": {
+    "type": "text"
   },
-  "googleSignIn": "Sign in with Google",
-  "@googleSignIn": {
-    "description": "Sign in with Google account"
+  "welcome__continue_as_guest": "Continue as guest",
+  "@welcome__continue_as_guest": {
+    "type": "text"
   },
-  "appleSignIn": "Sign in with Apple",
-  "@appleSignIn": {
-    "description": "Sign in with Apple ID"
+  "welcome__continue_with_google": "Sign up with Google",
+  "@welcome__continue_with_google": {
+    "type": "text"
   },
-  "hello": "Hello {username}",
-  "@hello": {
-    "description": "A greeting message",
-    "placeholders": {
-      "username": {
-        "type": "String"
-      }
-    }
+  "welcome__continue_with_apple": "Sign up with Apple",
+  "@welcome__continue_with_apple": {
+    "type": "text"
   }
 }

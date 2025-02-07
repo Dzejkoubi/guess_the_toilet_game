@@ -1,0 +1,4 @@
+{
+  "cmake.ignoreCMakeListsMissing": true,
+  "extractStringsToArb.arbFolderPath": "/Users/jakubkraus/development/guess_the_toilet/lib/l10n"
+}

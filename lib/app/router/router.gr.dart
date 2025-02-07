@@ -9,7 +9,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:flutter/material.dart' as _i4;
 import 'package:guess_the_toilet/screens/roadmap_screen/roadmap_screen.dart'
     as _i1;
 import 'package:guess_the_toilet/screens/welcome_screen/welcome_screen.dart'
@@ -36,13 +35,10 @@ class RoadmapRoute extends _i3.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.WelcomeScreen]
-class WelcomeRoute extends _i3.PageRouteInfo<WelcomeRouteArgs> {
-  WelcomeRoute({
-    _i4.Key? key,
-    List<_i3.PageRouteInfo>? children,
-  }) : super(
+class WelcomeRoute extends _i3.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i3.PageRouteInfo>? children})
+      : super(
           WelcomeRoute.name,
-          args: WelcomeRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -51,20 +47,7 @@ class WelcomeRoute extends _i3.PageRouteInfo<WelcomeRouteArgs> {
   static _i3.PageInfo page = _i3.PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<WelcomeRouteArgs>(orElse: () => const WelcomeRouteArgs());
-      return _i2.WelcomeScreen(key: args.key);
+      return const _i2.WelcomeScreen();
     },
   );
-}
-
-class WelcomeRouteArgs {
-  const WelcomeRouteArgs({this.key});
-
-  final _i4.Key? key;
-
-  @override
-  String toString() {
-    return 'WelcomeRouteArgs{key: $key}';
-  }
 }

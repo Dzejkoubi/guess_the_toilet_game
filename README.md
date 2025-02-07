@@ -21,3 +21,13 @@ flutter gen-l10n
 - this command will generate the language localizations for the app
 
 A new Flutter project.
+
+// "hello": "Hello {username}",
+// "@hello": {
+// "description": "A greeting message",
+// "placeholders": {
+// "username": {
+// "type": "String"
+// }
+// }
+// },

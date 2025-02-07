@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:guess_the_toilet/l10n/app_localization.dart';
+import 'package:guess_the_toilet/l10n/s.dart';
+import 'package:guess_the_toilet/theme/theme.dart';
 
 void main() {
   runApp(App());
@@ -17,11 +18,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Guess The Toilet',
+      title: 'Toilet Guessser',
       debugShowCheckedModeBanner: false,
       routerConfig: _appRouter.config(),
       localizationsDelegates: const [
-        AppLocalizations.delegate, // Generated file from the l10n.yaml
+        S.delegate, // Generated file from the l10n.yaml
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
@@ -30,6 +31,10 @@ class App extends StatelessWidget {
         Locale('cs'), // Czech
       ],
       locale: const Locale('en'),
+      // Theme
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
     );
   }
 }
