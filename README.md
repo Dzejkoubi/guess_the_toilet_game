@@ -42,7 +42,7 @@ lib/
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/YOUR_USERNAME/guess_the_toilet.git
+git clone https://github.com/Dzejkoubi/guess_the_toilet_game
 cd guess_the_toilet
 
 2️⃣ Install Dependencies
