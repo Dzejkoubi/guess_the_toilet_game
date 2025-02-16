@@ -57,17 +57,46 @@ flutter run
 
 🔧 Dependencies
 
+name: guess_the_toilet
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
 dependencies:
   flutter:
     sdk: flutter
-  flame: ^1.7.0
-  flame_audio: ^2.0.2
+  auto_route_generator: ^9.0.0
+  auto_route: ^9.2.2
+  flutter_native_splash: ^2.4.4
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0
-  firebase_core: ^2.15.0
-  firebase_auth: ^4.7.0
-  shared_preferences: ^2.2.0
+  intl: ^0.19.0
+  flame: ^1.24.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.14
+  flutter_launcher_icons: ^0.14.3
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icon/icon.png" # Path to your icon
+  # flutter pub run flutter_launcher_icons:main - to use the changes
+
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/icon/icon.png
+    - assets/images/
+
 
 (Check pubspec.yaml for the latest versions)
 
