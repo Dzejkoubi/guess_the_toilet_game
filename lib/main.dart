@@ -3,6 +3,7 @@ import 'package:guess_the_toilet/app/router/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:guess_the_toilet/theme/theme.dart';
+import 'package:flame/game.dart';
 
 void main() {
   runApp(App());
