@@ -95,7 +95,7 @@ abstract class S {
     Locale('cs')
   ];
 
-  /// The currently selected language
+  /// No description provided for @language.
   ///
   /// In en, this message translates to:
   /// **'English'**
@@ -118,6 +118,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Continue as guest'**
   String get welcome__continue_as_guest;
+
+  /// No description provided for @welcome__continue_with_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up with email'**
+  String get welcome__continue_with_email;
 
   /// No description provided for @welcome__continue_with_google.
   ///

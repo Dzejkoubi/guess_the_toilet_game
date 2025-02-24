@@ -1,23 +1,9 @@
 {
   "language": "Čeština",
   "welcome_text_1": "Záchodové",
-  "@welcome_text_1": {
-    "type": "text"
-  },
   "welcome_text_2": "Dilema",
-  "@welcome_text_2": {
-    "type": "text"
-  },
   "welcome__continue_as_guest": "Pokračovat bez přihlášení",
-  "@welcome__continue_as_guest": {
-    "type": "text"
-  },
+  "welcome__continue_with_email": "Pokračovat s emailem",
   "welcome__continue_with_google": "Pokračovat s Googlem",
-  "@welcome__continue_with_google": {
-    "type": "text"
-  },
-  "welcome__continue_with_apple": "Pokračovat s Applem",
-  "@welcome__continue_with_apple": {
-    "type": "text"
-  }
+  "welcome__continue_with_apple": "Pokračovat s Applem"
 }

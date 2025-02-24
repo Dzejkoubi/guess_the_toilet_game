@@ -5,7 +5,7 @@ import 'package:guess_the_toilet/app/router/router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: WelcomeRoute.page, initial: true),
+        AutoRoute(page: AccountRoute.page, initial: true),
         AutoRoute(page: RoadmapRoute.page),
       ];
 }

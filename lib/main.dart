@@ -3,18 +3,28 @@ import 'package:guess_the_toilet/app/router/router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:guess_the_toilet/theme/theme.dart';
-import 'package:flame/game.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
-  runApp(App());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+  await Supabase.initialize(
+    url: dotenv.env['SUBABASE_URL'] ?? '',
+    anonKey: dotenv.env['SUBABASE_ANON_KEY'] ?? '',
+  );
+  final supabase = Supabase.instance.client;
+  final session = supabase.auth.currentSession;
+  if (session == null) {
+    await supabase.auth.signInAnonymously();
+  }
+  runApp(MyApp());
 }
 
-class App extends StatelessWidget {
-  // make sure you don't initiate your router
-  // inside of the build function.
+class MyApp extends StatelessWidget {
   final _appRouter = AppRouter();
 
-  App({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

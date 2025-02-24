@@ -1,26 +1,9 @@
 {
   "language": "English",
-  "@language": {
-    "description": "The currently selected language"
-  },
   "welcome_text_1": "Toilet",
-  "@welcome_text_1": {
-    "type": "text"
-  },
   "welcome_text_2": "Guesser",
-  "@welcome_text_2": {
-    "type": "text"
-  },
   "welcome__continue_as_guest": "Continue as guest",
-  "@welcome__continue_as_guest": {
-    "type": "text"
-  },
+  "welcome__continue_with_email": "Sign up with email",
   "welcome__continue_with_google": "Sign up with Google",
-  "@welcome__continue_with_google": {
-    "type": "text"
-  },
-  "welcome__continue_with_apple": "Sign up with Apple",
-  "@welcome__continue_with_apple": {
-    "type": "text"
-  }
+  "welcome__continue_with_apple": "Sign up with Apple"
 }

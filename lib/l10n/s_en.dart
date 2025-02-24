@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 's.dart';
 
 // ignore_for_file: type=lint
@@ -17,6 +19,9 @@ class SEn extends S {
 
   @override
   String get welcome__continue_as_guest => 'Continue as guest';
+
+  @override
+  String get welcome__continue_with_email => 'Sign up with email';
 
   @override
   String get welcome__continue_with_google => 'Sign up with Google';

@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 's.dart';
 
 // ignore_for_file: type=lint
@@ -17,6 +19,9 @@ class SCs extends S {
 
   @override
   String get welcome__continue_as_guest => 'Pokračovat bez přihlášení';
+
+  @override
+  String get welcome__continue_with_email => 'Pokračovat s emailem';
 
   @override
   String get welcome__continue_with_google => 'Pokračovat s Googlem';
