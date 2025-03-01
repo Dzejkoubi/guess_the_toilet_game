@@ -1,9 +1,39 @@
 {
   "language": "Čeština",
-  "welcome_text_1": "Záchodové",
-  "welcome_text_2": "Dilema",
-  "welcome__continue_as_guest": "Pokračovat bez přihlášení",
-  "welcome__continue_with_email": "Pokračovat s emailem",
-  "welcome__continue_with_google": "Pokračovat s Googlem",
-  "welcome__continue_with_apple": "Pokračovat s Applem"
+  "welcome_text_1": "Toilet",
+  "welcome_text_2": "Guesser",
+  "account_settings": "Nastavení účtu",
+  "input_email": "Email",
+  "input_password": "Heslo",
+  "input_confirm_password": "Potvrďte heslo",
+  "input_name": "Přezdívka",
+  "sign_up_with_email": "Zaregistorovat emailem",
+  "continue_with_google": "Pokračovat s Googlem",
+  "continue_with_apple": "Pokračovat s Applem",
+  "login_with_email": "Přihlásit přes email",
+  "registered": "Máte již účet? Přihlásit se",
+  "account__error_email_empty": "Zadejte email",
+  "@account__error_email_empty": {
+    "type": "text"
+  },
+  "account__error_password_empty": "Input the password",
+  "@account__error_password_empty": {
+    "type": "text"
+  },
+  "account__error_passwords_mismatch": "Passwords do not match",
+  "@account__error_passwords_mismatch": {
+    "type": "text"
+  },
+  "account__error_email_invalid": "Invalid email",
+  "@account__error_email_invalid": {
+    "type": "text"
+  },
+  "account__error_password_length": "Password too short (min. 6 chars)",
+  "@account__error_password_length": {
+    "type": "text"
+  },
+  "account__error_username_empty": "Enter your username",
+  "@account__error_username_empty": {
+    "type": "text"
+  }
 }

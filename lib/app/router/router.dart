@@ -5,8 +5,27 @@ import 'package:guess_the_toilet/app/router/router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: AccountRoute.page, initial: true),
-        AutoRoute(page: RoadmapRoute.page),
+        CustomRoute(
+          page: RoadmapRoute.page,
+          initial: true,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: AccountRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: LeaderBoardRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: LoginRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 300,
+        ),
       ];
 }
 

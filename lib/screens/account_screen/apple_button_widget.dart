@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 
-class AppleBtn1 extends StatelessWidget {
+class AppleBtn extends StatelessWidget {
   final Function() onPressed;
-  const AppleBtn1({
+  const AppleBtn({
     required this.onPressed,
     super.key,
   });
@@ -12,7 +12,6 @@ class AppleBtn1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 54,
-        margin: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.white,
@@ -32,7 +31,7 @@ class AppleBtn1 extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              Text(S.of(context).welcome__continue_with_apple,
+              Text(S.of(context).continue_with_apple,
                   style: TextStyle(color: Colors.black, fontSize: 16)),
             ],
           ),

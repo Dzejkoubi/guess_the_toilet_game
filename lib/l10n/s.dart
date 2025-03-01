@@ -113,29 +113,101 @@ abstract class S {
   /// **'Guesser'**
   String get welcome_text_2;
 
-  /// No description provided for @welcome__continue_as_guest.
+  /// No description provided for @account_settings.
   ///
   /// In en, this message translates to:
-  /// **'Continue as guest'**
-  String get welcome__continue_as_guest;
+  /// **'Account settings'**
+  String get account_settings;
 
-  /// No description provided for @welcome__continue_with_email.
+  /// No description provided for @input_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get input_email;
+
+  /// No description provided for @input_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get input_password;
+
+  /// No description provided for @input_confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get input_confirm_password;
+
+  /// No description provided for @input_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get input_name;
+
+  /// No description provided for @sign_up_with_email.
   ///
   /// In en, this message translates to:
   /// **'Sign up with email'**
-  String get welcome__continue_with_email;
+  String get sign_up_with_email;
 
-  /// No description provided for @welcome__continue_with_google.
+  /// No description provided for @continue_with_google.
   ///
   /// In en, this message translates to:
-  /// **'Sign up with Google'**
-  String get welcome__continue_with_google;
+  /// **'Continue with Google'**
+  String get continue_with_google;
 
-  /// No description provided for @welcome__continue_with_apple.
+  /// No description provided for @continue_with_apple.
   ///
   /// In en, this message translates to:
-  /// **'Sign up with Apple'**
-  String get welcome__continue_with_apple;
+  /// **'Continue with Apple'**
+  String get continue_with_apple;
+
+  /// No description provided for @login_with_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in with email'**
+  String get login_with_email;
+
+  /// No description provided for @registered.
+  ///
+  /// In en, this message translates to:
+  /// **'Already registered? Log in'**
+  String get registered;
+
+  /// No description provided for @account__error_email_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Input the email'**
+  String get account__error_email_empty;
+
+  /// No description provided for @account__error_password_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Input the password'**
+  String get account__error_password_empty;
+
+  /// No description provided for @account__error_passwords_mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get account__error_passwords_mismatch;
+
+  /// No description provided for @account__error_email_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email'**
+  String get account__error_email_invalid;
+
+  /// No description provided for @account__error_password_length.
+  ///
+  /// In en, this message translates to:
+  /// **'Password too short (min. 6 chars)'**
+  String get account__error_password_length;
+
+  /// No description provided for @account__error_username_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your username'**
+  String get account__error_username_empty;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {
