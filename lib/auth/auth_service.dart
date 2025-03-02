@@ -29,4 +29,9 @@ class AuthService {
     final user = session?.user;
     return user?.email;
   }
+
+  // Sign up as a guest
+  Future<AuthResponse> signUpAsGuest() async {
+    return await _supabase.auth.signInAnonymously();
+  }
 }

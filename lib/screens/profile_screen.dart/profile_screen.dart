@@ -23,6 +23,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // Log out from your account
   void logout() async {
     await authService.signOut();
+
+    // Check if the widget is still mounted before accessing context
+
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(S.of(context).profile__successfully_logged_out),
     ));
@@ -36,6 +40,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
+        leading: IconButton(
+          onPressed: () {
+            AutoRouter.of(context).popAndPush(
+              RoadmapRoute(),
+            );
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
         actions: [
           // Log out button and confirmation popup
           IconButton(
@@ -62,6 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             onPressed: () {
                               logout();
                               Navigator.of(context).pop(); // Close the dialog
+                              AutoRouter.of(context).popAndPush(AuthGate());
                             },
                             child: Text("Logout"),
                           ),
@@ -83,7 +96,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               // Display the user email
               Text(
-                currentEmail.toString(),
+                currentEmail == null
+                    ? "Anonymous login"
+                    : currentEmail.toString(),
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
 

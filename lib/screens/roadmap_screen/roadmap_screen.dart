@@ -13,7 +13,7 @@ class RoadmapScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              AutoRouter.of(context).push(LeaderBoardRoute());
+              AutoRouter.of(context).popAndPush(LeaderBoardRoute());
             },
             icon: SvgPicture.asset(
               'assets/icons/leader_board_icon.svg',
@@ -24,7 +24,9 @@ class RoadmapScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 4.0),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).popAndPush(ProfileRoute());
+                },
                 icon: SvgPicture.asset(
                   'assets/icons/user_account_icon.svg',
                   height: 24,

@@ -7,7 +7,6 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         CustomRoute(
           page: RoadmapRoute.page,
-          initial: false,
           transitionsBuilder: TransitionsBuilders.fadeIn,
           durationInMilliseconds: 300,
         ),

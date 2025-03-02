@@ -33,6 +33,8 @@ class AuthGate extends StatelessWidget {
         }
         final session = snapshot.hasData ? snapshot.data!.session : null;
 
+        // If the user is authenticated, show the profile page
+        // Otherwise, show the register page
         if (session != null) {
           return const ProfileScreen();
         } else {

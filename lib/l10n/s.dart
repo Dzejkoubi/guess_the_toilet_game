@@ -244,6 +244,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Successfully logged out'**
   String get profile__successfully_logged_out;
+
+  /// No description provided for @register__guest_sign_up.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up as a guest'**
+  String get register__guest_sign_up;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

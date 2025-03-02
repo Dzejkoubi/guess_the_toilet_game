@@ -56,5 +56,9 @@
   "profile__successfully_logged_out": "Successfully logged out",
   "@profile__successfully_logged_out": {
     "type": "text"
+  },
+  "register__guest_sign_up": "Sign up as a guest",
+  "@register__guest_sign_up": {
+    "type": "text"
   }
 }

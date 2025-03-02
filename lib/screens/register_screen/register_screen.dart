@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
+import 'package:guess_the_toilet/screens/register_screen/button_widget.dart';
 import 'package:guess_the_toilet/screens/register_screen/google_button_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -122,12 +123,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return emailRegex.hasMatch(email);
   }
 
+  void signUpAsGuest() async {
+    try {
+      await authService.signUpAsGuest();
+    }
+
+    // Catch any error
+    catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(S.of(context).caught_error(e.toString())),
+        ));
+      }
+      return;
+    }
+    AutoRouter.of(context).popAndPush(AuthGate());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).register__title.toUpperCase(),
             style: Theme.of(context).textTheme.titleLarge),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -164,36 +183,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 autocorrect: false,
               ),
-              Container(
-                  height: 54,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                  ),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      signUp();
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(S.of(context).sign_up_with_email,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                            )),
-                      ],
-                    ),
-                  )),
-              AppleBtn(onPressed: () {}),
-              GoogleBtn(onPressed: () {}),
+              ButtonWidget(
+                S.of(context).sign_up_with_email,
+                signUp,
+              ),
               TextButton(
                 onPressed: () {
                   AutoRouter.of(context).push(LoginRoute());
@@ -202,6 +195,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   S.of(context).registered,
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
+              ),
+              Expanded(child: SizedBox()),
+              ButtonWidget(
+                S.of(context).register__guest_sign_up,
+                signUpAsGuest,
               ),
             ]) ...[
               widget,

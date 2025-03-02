@@ -84,4 +84,7 @@ class SCs extends S {
 
   @override
   String get profile__successfully_logged_out => 'Successfully logged out';
+
+  @override
+  String get register__guest_sign_up => 'Sign up as a guest';
 }
