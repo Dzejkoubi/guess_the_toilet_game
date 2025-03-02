@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text("Profile"),
         leading: IconButton(
           onPressed: () {
-            AutoRouter.of(context).popAndPush(
+            AutoRouter.of(context).navigate(
               RoadmapRoute(),
             );
           },
@@ -74,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             onPressed: () {
                               logout();
                               Navigator.of(context).pop(); // Close the dialog
-                              AutoRouter.of(context).popAndPush(AuthGate());
+                              AutoRouter.of(context).navigate(AuthGate());
                             },
                             child: Text("Logout"),
                           ),

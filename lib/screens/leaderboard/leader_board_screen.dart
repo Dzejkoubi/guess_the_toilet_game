@@ -13,8 +13,8 @@ class LeaderBoardScreen extends StatelessWidget {
         title: Text('Leaderboard'),
         leading: IconButton(
           onPressed: () {
-            AutoRouter.of(context).popAndPush(
-              RoadmapRoute(),
+            AutoRouter.of(context).navigate(
+              const RoadmapRoute(),
             );
           },
           icon: const Icon(Icons.arrow_back),

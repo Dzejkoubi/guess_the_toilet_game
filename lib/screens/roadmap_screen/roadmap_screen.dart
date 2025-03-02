@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
+import 'package:guess_the_toilet/screens/game/levels_roadmap.dart';
 
 @RoutePage()
 class RoadmapScreen extends StatelessWidget {
@@ -11,9 +13,10 @@ class RoadmapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Roadmap'),
         leading: IconButton(
             onPressed: () {
-              AutoRouter.of(context).popAndPush(LeaderBoardRoute());
+              AutoRouter.of(context).push(LeaderBoardRoute());
             },
             icon: SvgPicture.asset(
               'assets/icons/leader_board_icon.svg',
@@ -25,7 +28,7 @@ class RoadmapScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 4.0),
             child: IconButton(
                 onPressed: () {
-                  AutoRouter.of(context).popAndPush(ProfileRoute());
+                  AutoRouter.of(context).push(ProfileRoute());
                 },
                 icon: SvgPicture.asset(
                   'assets/icons/user_account_icon.svg',
@@ -35,9 +38,7 @@ class RoadmapScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text('Welcome to the app!'),
-      ),
+      body: GameWidget(game: RoadmapGame()),
     );
   }
 }
