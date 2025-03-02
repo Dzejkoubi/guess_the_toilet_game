@@ -221,11 +221,29 @@ abstract class S {
   /// **'Login with email'**
   String get login__login_with_email;
 
-  /// No description provided for @catch_error.
+  /// No description provided for @caught_error.
   ///
   /// In en, this message translates to:
   /// **'Error: {error}'**
-  String catch_error(String error);
+  String caught_error(String error);
+
+  /// No description provided for @login__error_invalid_credentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid credentials'**
+  String get login__error_invalid_credentials;
+
+  /// No description provided for @register__error_email_already_registered.
+  ///
+  /// In en, this message translates to:
+  /// **'Email already registered'**
+  String get register__error_email_already_registered;
+
+  /// No description provided for @profile__successfully_logged_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully logged out'**
+  String get profile__successfully_logged_out;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

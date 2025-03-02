@@ -44,12 +44,24 @@
   "@login__login_with_email": {
     "type": "text"
   },
-  "catch_error": "Error: {error}",
-  "@catch_error": {
+  "caught_error": "Error: {error}",
+  "@caught_error": {
     "placeholders": {
       "error": {
         "type": "String"
       }
     }
+  },
+  "login__error_invalid_credentials": "Invalid credentials",
+  "@login__error_invalid_credentials": {
+    "type": "text"
+  },
+  "register__error_email_already_registered": "Email already registered",
+  "@register__error_email_already_registered": {
+    "type": "text"
+  },
+  "profile__successfully_logged_out": "Successfully logged out",
+  "@profile__successfully_logged_out": {
+    "type": "text"
   }
 }

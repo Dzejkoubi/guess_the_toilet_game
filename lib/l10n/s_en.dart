@@ -72,7 +72,16 @@ class SEn extends S {
   String get login__login_with_email => 'Login with email';
 
   @override
-  String catch_error(String error) {
+  String caught_error(String error) {
     return 'Error: $error';
   }
+
+  @override
+  String get login__error_invalid_credentials => 'Invalid credentials';
+
+  @override
+  String get register__error_email_already_registered => 'Email already registered';
+
+  @override
+  String get profile__successfully_logged_out => 'Successfully logged out';
 }

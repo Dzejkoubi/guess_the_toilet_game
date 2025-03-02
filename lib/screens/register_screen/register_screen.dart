@@ -4,6 +4,7 @@ import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:guess_the_toilet/screens/register_screen/google_button_widget.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'apple_button_widget.dart';
 
@@ -84,17 +85,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // A Attempt sign up
     try {
       await authService.signUpWithEmailPassword(email, password);
-
-      AutoRouter.of(context).popAndPush(ProfileRoute());
     }
 
     // Catch any error
     catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(S.of(context).catch_error(e.toString()))));
+        // Getting the error and writing it to the user
+        if (e is AuthException) {
+          // Extract the error message
+          String errorMessage = e.message;
+          if (errorMessage.contains('User already registered')) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content:
+                  Text(S.of(context).register__error_email_already_registered),
+            ));
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(S.of(context).caught_error(errorMessage)),
+            ));
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(S.of(context).caught_error(e.toString())),
+          ));
+        }
       }
+      return;
     }
+    AutoRouter.of(context).popAndPush(ProfileRoute());
   }
 
   // Validate email

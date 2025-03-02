@@ -44,5 +44,17 @@
   "@login__login_with_email": {
     "type": "text"
   },
-  "login__catch_error": "Error: {error}"
+  "login__caught_error": "Error: {error}",
+  "login__error_invalid_credentials": "Invalid credentials",
+  "@login__error_invalid_credentials": {
+    "type": "text"
+  },
+  "register__error_email_already_registered": "Email already registered",
+  "@register__error_email_already_registered": {
+    "type": "text"
+  },
+  "profile__successfully_logged_out": "Successfully logged out",
+  "@profile__successfully_logged_out": {
+    "type": "text"
+  }
 }
