@@ -12,12 +12,12 @@ class AppRouter extends RootStackRouter {
           durationInMilliseconds: 300,
         ),
         CustomRoute(
-          page: AccountRoute.page,
+          page: LeaderBoardRoute.page,
           transitionsBuilder: TransitionsBuilders.fadeIn,
           durationInMilliseconds: 300,
         ),
         CustomRoute(
-          page: LeaderBoardRoute.page,
+          page: RegisterRoute.page,
           transitionsBuilder: TransitionsBuilders.fadeIn,
           durationInMilliseconds: 300,
         ),
@@ -26,6 +26,11 @@ class AppRouter extends RootStackRouter {
           transitionsBuilder: TransitionsBuilders.fadeIn,
           durationInMilliseconds: 300,
         ),
+        CustomRoute(
+          page: ProfileRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          durationInMilliseconds: 300,
+        )
       ];
 }
 

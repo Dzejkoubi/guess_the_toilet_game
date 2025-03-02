@@ -208,6 +208,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Enter your username'**
   String get account__error_username_empty;
+
+  /// No description provided for @login__login_with_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Login with email'**
+  String get login__login_with_email;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

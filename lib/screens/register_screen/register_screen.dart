@@ -2,19 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
-import 'package:guess_the_toilet/screens/account_screen/google_button_widget.dart';
+import 'package:guess_the_toilet/screens/register_screen/google_button_widget.dart';
 
 import 'apple_button_widget.dart';
 
 @RoutePage()
-class AccountScreen extends StatefulWidget {
-  const AccountScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<AccountScreen> createState() => _AccountScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _AccountScreenState extends State<AccountScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
@@ -26,7 +26,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   String? errorMessage;
 
-  void _validateInputs() {
+  /*void _validateInputs() {
     setState(() {
       errorMessage = null;
 
@@ -66,6 +66,7 @@ class _AccountScreenState extends State<AccountScreen> {
     usernameController.dispose();
     super.dispose();
   }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -144,12 +145,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                       ),
                     ),
-                    onPressed: () {
-                      _validateInputs();
-                      print(_emailController.text);
-                      print(_passwordController.text);
-                      print(usernameController.text);
-                    },
+                    onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

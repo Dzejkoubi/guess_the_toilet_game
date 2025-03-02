@@ -64,4 +64,7 @@ class SEn extends S {
 
   @override
   String get account__error_username_empty => 'Enter your username';
+
+  @override
+  String get login__login_with_email => 'Login with email';
 }

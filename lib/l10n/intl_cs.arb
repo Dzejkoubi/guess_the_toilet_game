@@ -35,5 +35,9 @@
   "account__error_username_empty": "Enter your username",
   "@account__error_username_empty": {
     "type": "text"
+  },
+  "login__login_with_email": "Login with email",
+  "@login__login_with_email": {
+    "type": "text"
   }
 }
