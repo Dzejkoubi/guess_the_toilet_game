@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
-import 'package:guess_the_toilet/auth/auth_gate.dart';
 
 @RoutePage()
 class RoadmapScreen extends StatelessWidget {
@@ -10,7 +9,6 @@ class RoadmapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

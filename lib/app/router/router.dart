@@ -7,7 +7,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         CustomRoute(
           page: RoadmapRoute.page,
-          initial: true,
+          initial: false,
           transitionsBuilder: TransitionsBuilders.fadeIn,
           durationInMilliseconds: 300,
         ),
@@ -30,7 +30,8 @@ class AppRouter extends RootStackRouter {
           page: ProfileRoute.page,
           transitionsBuilder: TransitionsBuilders.fadeIn,
           durationInMilliseconds: 300,
-        )
+        ),
+        CustomRoute(page: AuthGate.page, initial: true),
       ];
 }
 

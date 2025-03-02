@@ -6,12 +6,13 @@ authenticated -> profile page
 
 */
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:guess_the_toilet/app/router/router.gr.dart';
-import 'package:guess_the_toilet/screens/register_screen/profile_screen.dart';
+import 'package:guess_the_toilet/screens/profile_screen.dart/profile_screen.dart';
 import 'package:guess_the_toilet/screens/register_screen/register_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+@RoutePage()
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
@@ -33,9 +34,9 @@ class AuthGate extends StatelessWidget {
         final session = snapshot.hasData ? snapshot.data!.session : null;
 
         if (session != null) {
-          return ProfileScreen();
+          return const ProfileScreen();
         } else {
-          return RegisterScreen();
+          return const RegisterScreen();
         }
       },
     );

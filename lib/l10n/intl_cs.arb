@@ -2,42 +2,47 @@
   "language": "Čeština",
   "welcome_text_1": "Toilet",
   "welcome_text_2": "Guesser",
-  "account_settings": "Nastavení účtu",
+  "register__title": "Vytvořit účet",
   "input_email": "Email",
   "input_password": "Heslo",
   "input_confirm_password": "Potvrďte heslo",
   "input_name": "Přezdívka",
   "sign_up_with_email": "Zaregistorovat emailem",
-  "continue_with_google": "Pokračovat s Googlem",
   "continue_with_apple": "Pokračovat s Applem",
+  "continue_with_google": "Pokračovat s Googlem",
   "login_with_email": "Přihlásit přes email",
   "registered": "Máte již účet? Přihlásit se",
-  "account__error_email_empty": "Zadejte email",
-  "@account__error_email_empty": {
+  "register__error_email_empty": "Zadejte email",
+  "@register__error_email_empty": {
     "type": "text"
   },
-  "account__error_password_empty": "Input the password",
-  "@account__error_password_empty": {
+  "register__error_password_empty": "Input the password",
+  "@register__error_password_empty": {
     "type": "text"
   },
-  "account__error_passwords_mismatch": "Passwords do not match",
-  "@account__error_passwords_mismatch": {
+  "register__error_passwords_mismatch": "Passwords do not match",
+  "@register__error_passwords_mismatch": {
     "type": "text"
   },
-  "account__error_email_invalid": "Invalid email",
-  "@account__error_email_invalid": {
+  "register__error_email_invalid": "Invalid email",
+  "@register__error_email_invalid": {
     "type": "text"
   },
-  "account__error_password_length": "Password too short (min. 6 chars)",
-  "@account__error_password_length": {
+  "register__error_password_length": "Password too short (min. 6 chars)",
+  "@register__error_password_length": {
     "type": "text"
   },
-  "account__error_username_empty": "Enter your username",
-  "@account__error_username_empty": {
+  "register__error_username_empty": "Enter your username",
+  "@register__error_username_empty": {
+    "type": "text"
+  },
+  "login__title": "Login page",
+  "@login__title": {
     "type": "text"
   },
   "login__login_with_email": "Login with email",
   "@login__login_with_email": {
     "type": "text"
-  }
+  },
+  "login__catch_error": "Error: {error}"
 }

@@ -31,8 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
       // Catch any errors and show it as a snackBar
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("Error: $e")));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(S.of(context).catch_error(e.toString()))));
       }
     }
   }
@@ -40,52 +40,58 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            S.of(context).login__title,
+          ),
+        ),
         body: ListView(
-      children: [
-        // email
-        TextField(
-          controller: _emailController,
-          decoration: InputDecoration(
-            hintText: S.of(context).input_email,
-          ),
-          autocorrect: false,
-        ),
-        // password
-        TextField(
-          controller: _passwordController,
-          decoration: InputDecoration(
-            hintText: S.of(context).input_password,
-          ),
-          autocorrect: false,
-          obscureText: true,
-        ),
-        Container(
-            height: 54,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.white,
+          children: [
+            // email
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(
+                hintText: S.of(context).input_email,
+              ),
+              autocorrect: false,
             ),
-            child: TextButton(
-              style: ButtonStyle(
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+            // password
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(
+                hintText: S.of(context).input_password,
+              ),
+              autocorrect: false,
+              obscureText: true,
+            ),
+            // Login button
+            Container(
+                height: 54,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
                 ),
-              ),
-              onPressed: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(S.of(context).login__login_with_email,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      )),
-                ],
-              ),
-            )),
-      ],
-    ));
+                child: TextButton(
+                  style: ButtonStyle(
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(S.of(context).login__login_with_email,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          )),
+                    ],
+                  ),
+                )),
+          ],
+        ));
   }
 }

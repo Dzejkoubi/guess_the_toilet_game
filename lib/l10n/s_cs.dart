@@ -18,7 +18,7 @@ class SCs extends S {
   String get welcome_text_2 => 'Guesser';
 
   @override
-  String get account_settings => 'Nastavení účtu';
+  String get register__title => 'Vytvořit účet';
 
   @override
   String get input_email => 'Email';
@@ -36,10 +36,10 @@ class SCs extends S {
   String get sign_up_with_email => 'Zaregistorovat emailem';
 
   @override
-  String get continue_with_google => 'Pokračovat s Googlem';
+  String get continue_with_apple => 'Pokračovat s Applem';
 
   @override
-  String get continue_with_apple => 'Pokračovat s Applem';
+  String get continue_with_google => 'Pokračovat s Googlem';
 
   @override
   String get login_with_email => 'Přihlásit přes email';
@@ -48,23 +48,31 @@ class SCs extends S {
   String get registered => 'Máte již účet? Přihlásit se';
 
   @override
-  String get account__error_email_empty => 'Zadejte email';
+  String get register__error_email_empty => 'Zadejte email';
 
   @override
-  String get account__error_password_empty => 'Input the password';
+  String get register__error_password_empty => 'Input the password';
 
   @override
-  String get account__error_passwords_mismatch => 'Passwords do not match';
+  String get register__error_passwords_mismatch => 'Passwords do not match';
 
   @override
-  String get account__error_email_invalid => 'Invalid email';
+  String get register__error_email_invalid => 'Invalid email';
 
   @override
-  String get account__error_password_length => 'Password too short (min. 6 chars)';
+  String get register__error_password_length => 'Password too short (min. 6 chars)';
 
   @override
-  String get account__error_username_empty => 'Enter your username';
+  String get register__error_username_empty => 'Enter your username';
+
+  @override
+  String get login__title => 'Login page';
 
   @override
   String get login__login_with_email => 'Login with email';
+
+  @override
+  String catch_error(String error) {
+    return 'Error: $error';
+  }
 }

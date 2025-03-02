@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
+import 'package:guess_the_toilet/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:guess_the_toilet/screens/register_screen/google_button_widget.dart';
 
@@ -15,43 +16,88 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // Get auth service
+  final authService = AuthService();
+
+  // Login credentials controllers
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
-
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
-  final TextEditingController usernameController = TextEditingController();
-
+  // Error message saving
   String? errorMessage;
 
-  /*void _validateInputs() {
-    setState(() {
-      errorMessage = null;
+  // *Sign up button*
+  void signUp() async {
+    final email = _emailController.text;
+    final password = _passwordController.text;
+    final confirmPassword = _confirmPasswordController.text;
+    final username = _usernameController.text;
+    // Checks the conditions for the valid credentials
+    if (email.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(S.of(context).register__error_email_empty),
+        ),
+      );
+      return;
+    } else if (!_isValidEmail(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(S.of(context).register__error_email_invalid),
+        ),
+      );
+      return;
+    } else if (password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            S.of(context).register__error_password_empty,
+          ),
+        ),
+      );
+      return;
+    } else if (password.length < 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(S.of(context).register__error_password_length),
+        ),
+      );
+      return;
+    } else if (confirmPassword != password) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(S.of(context).register__error_passwords_mismatch),
+        ),
+      );
+      return;
+    } else if (username.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(S.of(context).register__error_username_empty),
+        ),
+      );
+      return;
+    }
+    // A Attempt sign up
+    try {
+      await authService.signUpWithEmailPassword(email, password);
 
-      String email = _emailController.text.trim();
-      String password = _passwordController.text.trim();
-      String confirmPassword = _confirmPasswordController.text.trim();
-      String username = usernameController.text.trim();
+      AutoRouter.of(context).popAndPush(ProfileRoute());
+    }
 
-      if (email.isEmpty) {
-        errorMessage = S.of(context).account__error_email_empty;
-      } else if (!_isValidEmail(email)) {
-        errorMessage = S.of(context).account__error_email_invalid;
-      } else if (password.isEmpty) {
-        errorMessage = S.of(context).account__error_password_empty;
-      } else if (password.length < 6) {
-        errorMessage = S.of(context).account__error_password_length;
-      } else if (confirmPassword != password) {
-        errorMessage = S.of(context).account__error_passwords_mismatch;
-      } else if (username.isEmpty) {
-        errorMessage = S.of(context).account__error_username_empty;
+    // Catch any error
+    catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(S.of(context).catch_error(e.toString()))));
       }
-    });
-    print(errorMessage);
+    }
   }
 
+  // Validate email
   bool _isValidEmail(String email) {
     final emailRegex =
         RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
@@ -59,20 +105,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    usernameController.dispose();
-    super.dispose();
-  }
-  */
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).account_settings.toUpperCase(),
+        title: Text(S.of(context).register__title.toUpperCase(),
             style: Theme.of(context).textTheme.titleLarge),
       ),
       body: Padding(
@@ -84,12 +120,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: _emailController,
                 decoration: InputDecoration(
                   hintText: S.of(context).input_email,
-                  errorText: errorMessage ==
-                          S.of(context).account__error_email_invalid
-                      ? S.of(context).account__error_email_invalid
-                      : errorMessage == S.of(context).account__error_email_empty
-                          ? S.of(context).account__error_email_empty
-                          : null,
                 ),
                 autocorrect: false,
               ),
@@ -97,13 +127,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: S.of(context).input_password,
-                  errorText: errorMessage ==
-                          S.of(context).account__error_password_empty
-                      ? S.of(context).account__error_password_empty
-                      : errorMessage ==
-                              S.of(context).account__error_password_length
-                          ? S.of(context).account__error_password_length
-                          : null,
                 ),
                 autocorrect: false,
                 obscureText: true,
@@ -112,22 +135,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: _confirmPasswordController,
                 decoration: InputDecoration(
                   hintText: S.of(context).input_confirm_password,
-                  errorText: errorMessage ==
-                          S.of(context).account__error_passwords_mismatch
-                      ? S.of(context).account__error_passwords_mismatch
-                      : null,
                 ),
                 autocorrect: false,
                 obscureText: true,
               ),
               TextField(
-                controller: usernameController,
+                controller: _usernameController,
                 decoration: InputDecoration(
                   hintText: S.of(context).input_name,
-                  errorText: errorMessage ==
-                          S.of(context).account__error_username_empty
-                      ? S.of(context).account__error_username_empty
-                      : null,
                 ),
                 autocorrect: false,
               ),
@@ -145,7 +160,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      signUp();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

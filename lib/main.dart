@@ -8,16 +8,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Connecting to the supabase
   await dotenv.load(fileName: ".env");
   await Supabase.initialize(
     url: dotenv.env['SUBABASE_URL'] ?? '',
     anonKey: dotenv.env['SUBABASE_ANON_KEY'] ?? '',
   );
-  final supabase = Supabase.instance.client;
-  final session = supabase.auth.currentSession;
-  if (session == null) {
-    await supabase.auth.signInAnonymously();
-  }
   runApp(MyApp());
 }
 

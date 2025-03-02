@@ -113,11 +113,11 @@ abstract class S {
   /// **'Guesser'**
   String get welcome_text_2;
 
-  /// No description provided for @account_settings.
+  /// No description provided for @register__title.
   ///
   /// In en, this message translates to:
-  /// **'Account settings'**
-  String get account_settings;
+  /// **'Create an account'**
+  String get register__title;
 
   /// No description provided for @input_email.
   ///
@@ -149,17 +149,17 @@ abstract class S {
   /// **'Sign up with email'**
   String get sign_up_with_email;
 
-  /// No description provided for @continue_with_google.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Google'**
-  String get continue_with_google;
-
   /// No description provided for @continue_with_apple.
   ///
   /// In en, this message translates to:
   /// **'Continue with Apple'**
   String get continue_with_apple;
+
+  /// No description provided for @continue_with_google.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continue_with_google;
 
   /// No description provided for @login_with_email.
   ///
@@ -173,47 +173,59 @@ abstract class S {
   /// **'Already registered? Log in'**
   String get registered;
 
-  /// No description provided for @account__error_email_empty.
+  /// No description provided for @register__error_email_empty.
   ///
   /// In en, this message translates to:
   /// **'Input the email'**
-  String get account__error_email_empty;
+  String get register__error_email_empty;
 
-  /// No description provided for @account__error_password_empty.
+  /// No description provided for @register__error_password_empty.
   ///
   /// In en, this message translates to:
   /// **'Input the password'**
-  String get account__error_password_empty;
+  String get register__error_password_empty;
 
-  /// No description provided for @account__error_passwords_mismatch.
+  /// No description provided for @register__error_passwords_mismatch.
   ///
   /// In en, this message translates to:
   /// **'Passwords do not match'**
-  String get account__error_passwords_mismatch;
+  String get register__error_passwords_mismatch;
 
-  /// No description provided for @account__error_email_invalid.
+  /// No description provided for @register__error_email_invalid.
   ///
   /// In en, this message translates to:
   /// **'Invalid email'**
-  String get account__error_email_invalid;
+  String get register__error_email_invalid;
 
-  /// No description provided for @account__error_password_length.
+  /// No description provided for @register__error_password_length.
   ///
   /// In en, this message translates to:
   /// **'Password too short (min. 6 chars)'**
-  String get account__error_password_length;
+  String get register__error_password_length;
 
-  /// No description provided for @account__error_username_empty.
+  /// No description provided for @register__error_username_empty.
   ///
   /// In en, this message translates to:
   /// **'Enter your username'**
-  String get account__error_username_empty;
+  String get register__error_username_empty;
+
+  /// No description provided for @login__title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login page'**
+  String get login__title;
 
   /// No description provided for @login__login_with_email.
   ///
   /// In en, this message translates to:
   /// **'Login with email'**
   String get login__login_with_email;
+
+  /// No description provided for @catch_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {error}'**
+  String catch_error(String error);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

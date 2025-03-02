@@ -18,7 +18,7 @@ class SEn extends S {
   String get welcome_text_2 => 'Guesser';
 
   @override
-  String get account_settings => 'Account settings';
+  String get register__title => 'Create an account';
 
   @override
   String get input_email => 'Email';
@@ -36,10 +36,10 @@ class SEn extends S {
   String get sign_up_with_email => 'Sign up with email';
 
   @override
-  String get continue_with_google => 'Continue with Google';
+  String get continue_with_apple => 'Continue with Apple';
 
   @override
-  String get continue_with_apple => 'Continue with Apple';
+  String get continue_with_google => 'Continue with Google';
 
   @override
   String get login_with_email => 'Log in with email';
@@ -48,23 +48,31 @@ class SEn extends S {
   String get registered => 'Already registered? Log in';
 
   @override
-  String get account__error_email_empty => 'Input the email';
+  String get register__error_email_empty => 'Input the email';
 
   @override
-  String get account__error_password_empty => 'Input the password';
+  String get register__error_password_empty => 'Input the password';
 
   @override
-  String get account__error_passwords_mismatch => 'Passwords do not match';
+  String get register__error_passwords_mismatch => 'Passwords do not match';
 
   @override
-  String get account__error_email_invalid => 'Invalid email';
+  String get register__error_email_invalid => 'Invalid email';
 
   @override
-  String get account__error_password_length => 'Password too short (min. 6 chars)';
+  String get register__error_password_length => 'Password too short (min. 6 chars)';
 
   @override
-  String get account__error_username_empty => 'Enter your username';
+  String get register__error_username_empty => 'Enter your username';
+
+  @override
+  String get login__title => 'Login page';
 
   @override
   String get login__login_with_email => 'Login with email';
+
+  @override
+  String catch_error(String error) {
+    return 'Error: $error';
+  }
 }
