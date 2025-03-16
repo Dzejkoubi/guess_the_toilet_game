@@ -120,21 +120,20 @@ class Player extends SpriteAnimationGroupComponent
           break;
         default:
           current = PlayerState
-              .idleLeft; // Default to idle left if no direction is set -- this should never happen but is RIGHT NOW ACTIVE BUG
+              .walkRight; // Default to idle left if no direction is set -- this should never happen but is RIGHT NOW ACTIVE BUG
       }
     }
   }
 
   void _loadAllAnimations() {
-    int numberOfFrames = 5;
-    idleUpAnimation = _spriteAnimation("idle_up", numberOfFrames);
-    idleDownAnimation = _spriteAnimation("idle_down", numberOfFrames);
-    idleLeftAnimation = _spriteAnimation("idle_left", numberOfFrames);
-    idleRightAnimation = _spriteAnimation("idle_right", numberOfFrames);
-    walkUpAnimation = _spriteAnimation("walk_up", numberOfFrames);
-    walkDownAnimation = _spriteAnimation("walk_down", numberOfFrames);
-    walkLeftAnimation = _spriteAnimation("walk_left", numberOfFrames);
-    walkRightAnimation = _spriteAnimation("walk_right", numberOfFrames);
+    idleUpAnimation = _spriteAnimation("idle_up", 5);
+    idleDownAnimation = _spriteAnimation("idle_down", 5);
+    idleLeftAnimation = _spriteAnimation("idle_left", 5);
+    idleRightAnimation = _spriteAnimation("idle_right", 5);
+    walkUpAnimation = _spriteAnimation("walk_up", 4);
+    walkDownAnimation = _spriteAnimation("walk_down", 4);
+    walkLeftAnimation = _spriteAnimation("walk_left", 4);
+    walkRightAnimation = _spriteAnimation("walk_right", 4);
 
     animations = {
       PlayerState.idleDown: idleDownAnimation,
