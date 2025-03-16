@@ -39,12 +39,22 @@ flutter_launcher_icons:
 flutter:
   generate: true
   uses-material-design: true
-  assets:
-    - assets/icon/icon.png
-    - assets/images/
-    - .env
-    - assets/icons/
   fonts:
     - family: Lexend
       fonts:
         - asset: assets/fonts/Lexend-VariableFont_wght.ttf
+  assets:
+    - .env
+    - assets/icon/icon.png
+    - assets/icons/
+    # Game assets with explicit paths
+    - assets/images/
+    - assets/images/Background/
+    - assets/images/Characters/
+    - assets/images/Characters/Bob/
+    - assets/images/HUD/
+    - assets/images/Menu/
+    - assets/images/NPC/
+    - assets/images/Objects/
+    # Tiled maps
+    - assets/tiles/

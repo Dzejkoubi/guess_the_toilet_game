@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flame/components.dart';
 
 class Player extends SpriteAnimationGroupComponent {
@@ -8,5 +10,10 @@ class Player extends SpriteAnimationGroupComponent {
           size: Vector2.all(32),
         ) {
     debugMode = true;
+  }
+
+  @override
+  FutureOr<void> onLoad() {
+    return super.onLoad();
   }
 }
