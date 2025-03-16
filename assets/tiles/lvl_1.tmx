@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="5" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="floor.tsx"/>
+ <tileset firstgid="4" source="outer.tsx"/>
+ <tileset firstgid="58" source="orange_wall.tsx"/>
+ <tileset firstgid="60" source="toilets_objects.tsx"/>
+ <tileset firstgid="69" source="orange_wall_half.tsx"/>
+ <tileset firstgid="71" source="Bob.tsx"/>
+ <layer id="1" name="Background" width="5" height="8">
+  <data encoding="csv">
+14,14,14,14,14,
+14,3,3,3,14,
+14,3,3,3,14,
+14,3,3,3,14,
+14,3,3,3,14,
+14,3,3,3,14,
+14,3,3,3,14,
+14,14,14,14,14
+</data>
+ </layer>
+ <layer id="2" name="Walls" width="5" height="8">
+  <data encoding="csv">
+70,3758096453,3758096453,3758096453,2684354630,
+2147483717,0,0,0,69,
+2147483717,0,0,0,69,
+2147483717,0,0,0,69,
+2147483717,0,0,0,69,
+2147483717,0,0,0,69,
+2147483717,0,0,0,69,
+1610612806,536870981,536870981,536870981,3221225542
+</data>
+ </layer>
+ <layer id="4" name="Object visualization" width="5" height="8">
+  <data encoding="csv">
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,0,0,
+0,0,0,72,0,
+0,3221225538,3221225538,3221225539,0,
+0,0,0,0,0
+</data>
+ </layer>
+</map>

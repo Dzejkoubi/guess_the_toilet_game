@@ -8,8 +8,7 @@ authenticated -> profile page
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:guess_the_toilet/screens/game/levels_roadmap.dart';
-import 'package:guess_the_toilet/screens/profile_screen.dart/profile_screen.dart';
+
 import 'package:guess_the_toilet/screens/register_screen/register_screen.dart';
 import 'package:guess_the_toilet/screens/roadmap_screen/roadmap_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flame/game.dart';
+import 'package:flame/game.dart' show GameWidget;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:guess_the_toilet/app/constants/game_constants.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
-import 'package:guess_the_toilet/main.dart';
-import 'package:guess_the_toilet/screens/game/levels_roadmap.dart';
+import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
 @RoutePage()
 class RoadmapScreen extends StatelessWidget {
@@ -66,16 +66,16 @@ class GameWidgetWrap extends StatefulWidget {
 }
 
 class _GameWidgetWrapState extends State<GameWidgetWrap> {
-  late final RoadmapGame game;
+  late final GuessTheToilet game;
 
   @override
   void initState() {
     super.initState();
-    game = RoadmapGame();
+    game = GuessTheToilet();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(game: game);
+    return GameWidget(game: kDebugMode ? GuessTheToilet() : game);
   }
 }

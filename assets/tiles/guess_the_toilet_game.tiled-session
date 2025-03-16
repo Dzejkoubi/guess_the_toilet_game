@@ -1,0 +1,80 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "lvl_1.tmx",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "Bob.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "floor.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lvl_1.tmx": {
+            "scale": 2.942,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 101.46159075458871,
+                "y": 160.6050305914344
+            }
+        },
+        "orange_wall.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "orange_wall_half.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "outer.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "restroom_assets.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "toilets_objects.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "walls.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Background",
+    "map.fixedSize": true,
+    "map.height": 8,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 5,
+    "openFiles": [
+        "lvl_1.tmx",
+        "walls.tsx",
+        "toilets_objects.tsx",
+        "restroom_assets.tsx",
+        "outer.tsx",
+        "floor.tsx",
+        "Bob.tsx",
+        "orange_wall_half.tsx"
+    ],
+    "project": "guess_the_toilet_game.tiled-project",
+    "recentFiles": [
+        "orange_wall_half.tsx",
+        "Bob.tsx",
+        "floor.tsx",
+        "outer.tsx",
+        "restroom_assets.tsx",
+        "toilets_objects.tsx",
+        "walls.tsx",
+        "lvl_1.tmx",
+        "orange_wall.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
