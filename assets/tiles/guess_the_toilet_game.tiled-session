@@ -20,11 +20,22 @@
             "scaleInEditor": 1
         },
         "lvl_1.tmx": {
-            "scale": 2.942,
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 2.94,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 101.46159075458871,
-                "y": 160.6050305914344
+                "x": 83.843537414966,
+                "y": 129.42176870748295
+            }
+        },
+        "lvl_2.tmx": {
+            "scale": 1.6821,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 147.73200166458594,
+                "y": 252.9576125081743
             }
         },
         "orange_wall.tsx": {
@@ -52,11 +63,11 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Background",
+    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Main Characters/Bob",
     "map.fixedSize": true,
-    "map.height": 8,
+    "map.height": 16,
     "map.lastUsedFormat": "tmx",
-    "map.width": 5,
+    "map.width": 10,
     "openFiles": [
         "lvl_1.tmx",
         "walls.tsx",

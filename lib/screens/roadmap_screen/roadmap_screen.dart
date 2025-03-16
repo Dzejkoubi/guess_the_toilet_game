@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:guess_the_toilet/app/constants/game_constants.dart';
+import 'package:guess_the_toilet/app/constants/style_constants.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
@@ -14,6 +15,7 @@ class RoadmapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppConstants.backgroundColor,
       appBar: AppBar(
         title: const Text('Roadmap'),
         leading: IconButton(

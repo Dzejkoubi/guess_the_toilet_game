@@ -50,8 +50,8 @@ flutter:
     # Game assets with explicit paths
     - assets/images/
     - assets/images/Background/
-    - assets/images/Characters/
-    - assets/images/Characters/Bob/
+    - assets/images/Main Characters/
+    - assets/images/Main Characters/Bob/
     - assets/images/HUD/
     - assets/images/Menu/
     - assets/images/NPC/
