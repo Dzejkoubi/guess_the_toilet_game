@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
 
 class Level extends World {
@@ -33,7 +32,7 @@ class Level extends World {
       for (var spawnpoint in spawnpointsLayer.objects) {
         switch (spawnpoint.class_) {
           case "spawnpoint":
-            player.position = Vector2(spawnpoint.x, spawnpoint.y);
+            player.position = Vector2(spawnpoint.x + 16, spawnpoint.y + 16);
             add(player);
             print(
                 "Spawnpoint found, setting player position to ${player.position}");

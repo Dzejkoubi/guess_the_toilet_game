@@ -20,9 +20,7 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
       // Ensure all images are loaded before proceeding
       await images.loadAllImages();
 
-      // Create the player first but don't add it yet
-      // The player will be added by the Level component
-      @override
+      // Create the game world
       final World world = Level(
         levelName: 'lvl_1',
         player: player,
@@ -45,5 +43,18 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
       rethrow;
     }
     return super.onLoad();
+  }
+
+  @override
+  KeyEventResult onKeyEvent(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) {
+    // Forward key events to components with KeyboardHandler mixin
+    // Need to explicitly handle the key event here
+    if (player.onKeyEvent(event, keysPressed)) {
+      return KeyEventResult.handled;
+    }
+    return KeyEventResult.ignored;
   }
 }

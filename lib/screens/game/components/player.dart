@@ -23,6 +23,7 @@ class Player extends SpriteAnimationGroupComponent
   }) : super(
           position: position,
           size: Vector2.all(32),
+          anchor: Anchor.center, // Important for proper centering
         ) {
     debugMode = true;
   }
@@ -37,11 +38,14 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation walkRightAnimation;
   late final SpriteAnimation walkUpAnimation;
   double stepTime = 0.15;
-  double moveSpeed = 100;
 
   // Movement control
   Vector2 movementVector = Vector2.zero();
   PlayerState currentDirection = PlayerState.idleUp;
+  final double moveSpeed = 100;
+
+  // Track active keys
+  final Set<LogicalKeyboardKey> _keysPressed = {};
 
   @override
   Future<void> onLoad() async {
@@ -68,36 +72,40 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    // Store currently pressed keys
+    _keysPressed.clear();
+    _keysPressed.addAll(keysPressed);
+
     // Reset movement vector
     movementVector = Vector2.zero();
 
     // Apply movement based on keys pressed
-    if (keysPressed.contains(LogicalKeyboardKey.keyW) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+    if (_keysPressed.contains(LogicalKeyboardKey.keyW) ||
+        _keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
       movementVector.y = -1;
       currentDirection = PlayerState.walkUp;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyS) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
+    } else if (_keysPressed.contains(LogicalKeyboardKey.keyS) ||
+        _keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
       movementVector.y = 1;
       currentDirection = PlayerState.walkDown;
     }
 
-    if (keysPressed.contains(LogicalKeyboardKey.keyA) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
+    if (_keysPressed.contains(LogicalKeyboardKey.keyA) ||
+        _keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       movementVector.x = -1;
       currentDirection = PlayerState.walkLeft;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyD) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
+    } else if (_keysPressed.contains(LogicalKeyboardKey.keyD) ||
+        _keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
       movementVector.x = 1;
       currentDirection = PlayerState.walkRight;
     }
 
-    // Normalize the movement vector if it's not zero
+    // Normalize the movement vector if it's not zero(If walking up nad left at the same time, the vector would be 1,1 so it would move faster - this normalizes it to 1)
     if (movementVector.length > 0) {
       movementVector.normalize();
     }
 
-    return true;
+    return true; // Always return true to indicate we've handled the input
   }
 
   void _updatePlayerState() {
@@ -120,7 +128,7 @@ class Player extends SpriteAnimationGroupComponent
           break;
         default:
           current = PlayerState
-              .walkRight; // Default to idle left if no direction is set -- this should never happen but is RIGHT NOW ACTIVE BUG
+              .idleDown; // Default to idle left if no direction is set -- this should never happen but is RIGHT NOW ACTIVE BUG
       }
     }
   }
