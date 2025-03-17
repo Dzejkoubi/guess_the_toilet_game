@@ -7,11 +7,9 @@ import 'package:guess_the_toilet/screens/game/components/player.dart';
 class Level extends World {
   final String levelName;
   final Player player;
-  final PlayerState defaultPlayerState;
   Level({
     required this.levelName,
     required this.player,
-    this.defaultPlayerState = PlayerState.idleLeft,
   });
   // Variables to store information used in onLoad
   late TiledComponent level;

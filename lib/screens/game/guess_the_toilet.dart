@@ -12,7 +12,8 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
   Color backgroundColor() => AppConstants.backgroundColor;
 
   late final CameraComponent cam;
-  Player player = Player();
+
+  // Create player with an optional default state
 
   @override
   Future<void> onLoad() async {
@@ -20,7 +21,10 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
       // Ensure all images are loaded before proceeding
       await images.loadAllImages();
 
-      // Create the game world
+      // Create the player with a specific default state
+      final Player player = Player(defaultState: PlayerState.idleLeft);
+
+      // Create the game world with player and specified default state
       final World world = Level(
         levelName: 'lvl_1',
         player: player,
@@ -50,8 +54,10 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
     KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
-    // Forward key events to components with KeyboardHandler mixin
-    // Need to explicitly handle the key event here
+    // Get a reference to the player from the game world
+    final player = children.whereType<Level>().first.player;
+
+    // Forward key events to the player
     if (player.onKeyEvent(event, keysPressed)) {
       return KeyEventResult.handled;
     }

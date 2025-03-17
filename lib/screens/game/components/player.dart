@@ -17,9 +17,11 @@ enum PlayerState {
 
 class Player extends SpriteAnimationGroupComponent
     with HasGameRef<GuessTheToilet>, KeyboardHandler {
+  final PlayerState defaultState;
+
   Player({
-    position,
-    PlayerState defaultState = PlayerState.idleUp,
+    Vector2? position,
+    this.defaultState = PlayerState.idleDown,
   }) : super(
           position: position,
           size: Vector2.all(32),
@@ -41,7 +43,7 @@ class Player extends SpriteAnimationGroupComponent
 
   // Movement control
   Vector2 movementVector = Vector2.zero();
-  PlayerState currentDirection = PlayerState.idleUp;
+  late PlayerState currentDirection;
   final double moveSpeed = 100;
 
   // Track active keys
@@ -50,7 +52,10 @@ class Player extends SpriteAnimationGroupComponent
   @override
   Future<void> onLoad() async {
     try {
-      // Then create animations from loaded images
+      // Set initial direction from default state
+      currentDirection = defaultState;
+
+      // Create animations from loaded images
       _loadAllAnimations();
     } catch (e) {
       print('Error loading player assets: $e');
@@ -127,8 +132,7 @@ class Player extends SpriteAnimationGroupComponent
           current = PlayerState.idleRight;
           break;
         default:
-          current = PlayerState
-              .idleDown; // Default to idle left if no direction is set -- this should never happen but is RIGHT NOW ACTIVE BUG
+          current = defaultState; // Set initial state from default state
       }
     }
   }
@@ -153,8 +157,6 @@ class Player extends SpriteAnimationGroupComponent
       PlayerState.walkRight: walkRightAnimation,
       PlayerState.walkUp: walkUpAnimation,
     };
-
-    current = PlayerState.idleUp;
   }
 
   // Updated to use consistent paths that match the _loadImages method
