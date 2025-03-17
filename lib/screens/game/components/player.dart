@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:ui';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
+import 'package:guess_the_toilet/screens/game/components/collision_block.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
 enum PlayerState {
@@ -19,6 +22,9 @@ class Player extends SpriteAnimationGroupComponent
     with HasGameRef<GuessTheToilet>, KeyboardHandler {
   final PlayerState defaultState;
 
+  // Add reference to collision blocks
+  List<CollisionBlock> collisionBlocks = [];
+
   Player({
     Vector2? position,
     this.defaultState = PlayerState.idleDown,
@@ -27,7 +33,7 @@ class Player extends SpriteAnimationGroupComponent
           size: Vector2.all(32),
           anchor: Anchor.center, // Important for proper centering
         ) {
-    debugMode = true;
+    debugMode = false;
   }
 
   // Animations
@@ -44,10 +50,13 @@ class Player extends SpriteAnimationGroupComponent
   // Movement control
   Vector2 movementVector = Vector2.zero();
   late PlayerState currentDirection;
-  final double moveSpeed = 100;
+  final double moveSpeed = 70;
 
   // Track active keys
   final Set<LogicalKeyboardKey> _keysPressed = {};
+
+  // Set player hitbox size
+  final playerHitboxSize = Vector2(20, 32);
 
   @override
   Future<void> onLoad() async {
@@ -57,6 +66,11 @@ class Player extends SpriteAnimationGroupComponent
 
       // Create animations from loaded images
       _loadAllAnimations();
+
+      // Set the initial animation state
+      current = defaultState;
+
+      // Setup hitbox for collision detection - slightly smaller than the player sprite
     } catch (e) {
       print('Error loading player assets: $e');
       rethrow;
@@ -66,13 +80,82 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   void update(double dt) {
-    // Update the player's position based on movement vector
-    position += movementVector * moveSpeed * dt;
+    // Split movement into horizontal and vertical components
+    if (movementVector.length > 0) {
+      // Try horizontal movement first
+      _moveHorizontally(dt);
 
-    // Update the player's animation state
+      // Then try vertical movement
+      _moveVertically(dt);
+    }
+
+    // Update animation state
     _updatePlayerState();
 
     super.update(dt);
+  }
+
+  void _moveHorizontally(double dt) {
+    if (movementVector.x != 0) {
+      final horizontalMovement = Vector2(movementVector.x, 0);
+      final originalX = position.x;
+
+      position.x += horizontalMovement.x * moveSpeed * dt;
+
+      if (checkCollisions()) {
+        position.x = originalX;
+      }
+    }
+  }
+
+  void _moveVertically(double dt) {
+    if (movementVector.y != 0) {
+      final verticalMovement = Vector2(0, movementVector.y);
+      final originalY = position.y;
+
+      position.y += verticalMovement.y * moveSpeed * dt;
+
+      if (checkCollisions()) {
+        position.y = originalY;
+      }
+    }
+  }
+
+  // Check for collisions with obstacle blocks
+  bool checkCollisions() {
+    for (final block in collisionBlocks) {
+      if (checkCollision(block)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Check collision with a specific block
+  bool checkCollision(CollisionBlock block) {
+    // Calculate player hitbox rectangle centered on player position
+    final playerHitbox = Rect.fromCenter(
+      center: Offset(position.x, position.y),
+      width: playerHitboxSize.x,
+      height: playerHitboxSize.y,
+    );
+
+    // Calculate collision block rectangle
+    final blockRect = Rect.fromLTWH(
+      block.position.x,
+      block.position.y,
+      block.size.x,
+      block.size.y,
+    );
+
+    // Debug visualization if needed
+    // if (debugMode) {
+    //   print("Player hitbox: $playerHitbox");
+    //   print("Block rect: $blockRect");
+    //   print("Collision: ${playerHitbox.overlaps(blockRect)}");
+    // }
+
+    return playerHitbox.overlaps(blockRect);
   }
 
   @override
@@ -132,7 +215,6 @@ class Player extends SpriteAnimationGroupComponent
           current = PlayerState.idleRight;
           break;
         default:
-          current = defaultState; // Set initial state from default state
       }
     }
   }
@@ -157,6 +239,9 @@ class Player extends SpriteAnimationGroupComponent
       PlayerState.walkRight: walkRightAnimation,
       PlayerState.walkUp: walkUpAnimation,
     };
+
+    // Set initial animation based on default state, but in reality does not change anything as it is set in _updatePlayerState
+    current = defaultState;
   }
 
   // Updated to use consistent paths that match the _loadImages method
@@ -171,4 +256,30 @@ class Player extends SpriteAnimationGroupComponent
       ),
     );
   }
+
+  // Optionally add a visual representation of the hitbox for debugging
+  // @override
+  // void render(Canvas canvas) {
+  //   super.render(canvas);
+
+  //   if (debugMode) {
+  //     // Draw the actual collision hitbox
+  //     // Using Offset.zero since we're drawing in the component's local coordinate system
+  //     // The anchor is already set to center in the constructor
+  //     final rect = Rect.fromLTWH(
+  //       Offset.zero.dx + playerHitboxSize.x / 3,
+  //       Offset.zero.dy,
+  //       playerHitboxSize.x,
+  //       playerHitboxSize.y,
+  //     );
+
+  //     canvas.drawRect(
+  //       rect,
+  //       Paint()
+  //         ..color = const Color.fromARGB(150, 255, 0, 0)
+  //         ..style = PaintingStyle.stroke
+  //         ..strokeWidth = 1,
+  //     );
+  //   }
+  // }
 }

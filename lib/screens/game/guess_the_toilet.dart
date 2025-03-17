@@ -22,12 +22,13 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
       await images.loadAllImages();
 
       // Create the player with a specific default state
-      final Player player = Player(defaultState: PlayerState.idleLeft);
 
-      // Create the game world with player and specified default state
+      // Create the game world
       final World world = Level(
         levelName: 'lvl_1',
-        player: player,
+        player: Player(
+            defaultState: PlayerState
+                .idleLeft), // Creates player with default state in level creating method
       );
 
       cam = CameraComponent.withFixedResolution(
@@ -49,6 +50,7 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
     return super.onLoad();
   }
 
+  // Handle key events and forward them to the player to control movement
   @override
   KeyEventResult onKeyEvent(
     KeyEvent event,
