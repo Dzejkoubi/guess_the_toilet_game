@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:guess_the_toilet/screens/game/components/collision_block.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
+import 'package:guess_the_toilet/screens/game/components/toilet_block.dart';
 
 class Level extends World {
   final String levelName;
@@ -11,12 +12,13 @@ class Level extends World {
 
   // List to store collision blocks
   final List<CollisionBlock> collisionBlocks = [];
+  final List<ToiletBlock> toiletBlocks = [];
 
   Level({
     required this.levelName,
     required this.player,
   }) {
-    debugMode = true;
+    debugMode = false;
   }
 
   // Variables to store information used in onLoad
@@ -30,8 +32,8 @@ class Level extends World {
     // Add the level to the game
     add(level);
 
-    // Extract and add collision blocks from the Tiled map
-    _extractCollisionBlocks();
+    // Extract both collision blocks and toilet blocks in a single pass
+    _extractObjectsFromMap();
 
     // Get the spawnpoints layer
     final spawnpointsLayer = level.tileMap.getLayer<ObjectGroup>('Spawnpoint');
@@ -59,33 +61,78 @@ class Level extends World {
     return super.onLoad();
   }
 
-  // Extract collision blocks from the Tiled map
-  void _extractCollisionBlocks() {
-    // Get the Objects layer containing obstacles
+  // Extract both collision blocks and toilet blocks from the Tiled map in a single pass
+  void _extractObjectsFromMap() {
+    // Get the Objects layer containing all interactive objects
     final objectsLayer = level.tileMap.getLayer<ObjectGroup>('Objects');
 
     if (objectsLayer != null) {
       for (final object in objectsLayer.objects) {
-        if (object.class_ == 'obstacle') {
-          // Create a collision block for each obstacle
-          final collisionBlock = CollisionBlock(
-            position: Vector2(object.x, object.y),
-            size: Vector2(object.width, object.height),
-          );
+        switch (object.class_) {
+          case 'obstacle':
+            // Create a collision block
+            final collisionBlock = CollisionBlock(
+              position: Vector2(object.x, object.y),
+              size: Vector2(object.width, object.height),
+            );
+            collisionBlocks.add(collisionBlock);
+            add(collisionBlock);
+            break;
 
-          // Add the collision block to our list and to the game world
-          collisionBlocks.add(collisionBlock);
-          add(collisionBlock);
-          // if (debugMode) {
-          //   print(
-          //       'Added collision block at ${collisionBlock.position} with size ${collisionBlock.size}');
-          // }
+          case 'toilet_correct':
+            // Create a toilet block marked as correct
+            final toiletBlock = ToiletBlock(
+              position: Vector2(object.x, object.y),
+              size: Vector2(object.width, object.height),
+              toiletId: object.name,
+              toiletData: object.properties,
+              onSelectionChanged: (toilet, isSelected) {
+                if (debugMode) {
+                  print(
+                      'Toilet ${toilet.toiletId} selection changed: $isSelected');
+                }
+              },
+            );
+            // Pre-set as correct, but don't visually show it yet
+            toiletBlock.setAnswerState(ToiletAnswerState.correct);
+            toiletBlocks.add(toiletBlock);
+            add(toiletBlock);
+            if (debugMode) {
+              print(
+                  'Added correct toilet at ${toiletBlock.position} with ID: ${toiletBlock.toiletId}');
+            }
+            break;
+
+          case 'toilet_wrong':
+            // Create a toilet block marked as wrong
+            final toiletBlock = ToiletBlock(
+              position: Vector2(object.x, object.y),
+              size: Vector2(object.width, object.height),
+              toiletId: object.name,
+              toiletData: object.properties,
+              onSelectionChanged: (toilet, isSelected) {
+                if (debugMode) {
+                  print(
+                      'Toilet ${toilet.toiletId} selection changed: $isSelected');
+                }
+              },
+            );
+            // Pre-set as wrong, but don't visually show it yet
+            toiletBlock.setAnswerState(ToiletAnswerState.wrong);
+            toiletBlocks.add(toiletBlock);
+            add(toiletBlock);
+            if (debugMode) {
+              print(
+                  'Added wrong toilet at ${toiletBlock.position} with ID: ${toiletBlock.toiletId}');
+            }
+            break;
         }
       }
-      // if (debugMode) {
-      //   print(
-      //       'Extracted ${collisionBlocks.length} collision blocks from the map');
-      // }
+
+      if (debugMode) {
+        print(
+            'Extracted ${collisionBlocks.length} collision blocks and ${toiletBlocks.length} toilet blocks from the map');
+      }
     } else {
       print('Warning: No "Objects" layer found in the Tiled map');
     }

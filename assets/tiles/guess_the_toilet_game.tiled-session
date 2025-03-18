@@ -12,38 +12,70 @@
             "scaleInDock": 1
         },
         "Bob.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "brown_npc.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        },
+        "businessman_npc.tsx": {
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "floor.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 5.5,
+            "scaleInEditor": 1
+        },
+        "green_npc.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        },
+        "julia_npc.tsx": {
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "lvl_1.tmx": {
             "expandedObjectLayers": [
+                6,
                 5
             ],
             "scale": 2.94,
-            "selectedLayer": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 83.843537414966,
-                "y": 129.42176870748295
+                "x": 79.93197278911565,
+                "y": 125.85034013605441
             }
         },
         "lvl_2.tmx": {
-            "scale": 1.6821,
-            "selectedLayer": 3,
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 2.3085,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 147.73200166458594,
-                "y": 252.9576125081743
+                "x": 96.16634178037688,
+                "y": 159.84405458089668
+            }
+        },
+        "lvl_5.tmx": {
+            "expandedObjectLayers": [
+                6,
+                5
+            ],
+            "scale": 2,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 128,
+                "y": 192
             }
         },
         "orange_wall.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 5.5,
             "scaleInEditor": 1
         },
         "orange_wall_half.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 5.5,
             "scaleInEditor": 1
         },
         "outer.tsx": {
@@ -51,19 +83,19 @@
             "scaleInEditor": 1
         },
         "restroom_assets.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "toilets_objects.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 3,
             "scaleInEditor": 1
         },
         "walls.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Main Characters/Bob",
+    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/NPC",
     "map.fixedSize": true,
     "map.height": 16,
     "map.lastUsedFormat": "tmx",
@@ -76,19 +108,28 @@
         "outer.tsx",
         "floor.tsx",
         "Bob.tsx",
-        "orange_wall_half.tsx"
+        "orange_wall_half.tsx",
+        "brown_npc.tsx",
+        "businessman_npc.tsx",
+        "green_npc.tsx",
+        "julia_npc.tsx",
+        "lvl_5.tmx",
+        "lvl_2.tmx"
     ],
     "project": "guess_the_toilet_game.tiled-project",
     "recentFiles": [
+        "lvl_2.tmx",
+        "lvl_5.tmx",
+        "julia_npc.tsx",
+        "green_npc.tsx",
+        "businessman_npc.tsx",
+        "brown_npc.tsx",
         "orange_wall_half.tsx",
         "Bob.tsx",
         "floor.tsx",
         "outer.tsx",
         "restroom_assets.tsx",
-        "toilets_objects.tsx",
-        "walls.tsx",
-        "lvl_1.tmx",
-        "orange_wall.tsx"
+        "toilets_objects.tsx"
     ],
     "tileset.lastUsedFormat": "tsx"
 }

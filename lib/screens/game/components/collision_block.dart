@@ -8,6 +8,6 @@ class CollisionBlock extends PositionComponent {
     super.anchor = Anchor.topLeft,
   }) {
     // Set to true to see collision blocks when debugging
-    debugMode = true;
+    debugMode = false;
   }
 }

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="5" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="16">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="5" height="8" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="22">
  <tileset firstgid="1" source="floor.tsx"/>
  <tileset firstgid="4" source="outer.tsx"/>
  <tileset firstgid="58" source="orange_wall.tsx"/>
  <tileset firstgid="60" source="toilets_objects.tsx"/>
  <tileset firstgid="69" source="orange_wall_half.tsx"/>
  <tileset firstgid="71" source="Bob.tsx"/>
- <tileset firstgid="76" source="restroom_assets.tsx"/>
+ <tileset firstgid="75" source="restroom_assets.tsx"/>
+ <tileset firstgid="79" source="brown_npc.tsx"/>
+ <tileset firstgid="83" source="julia_npc.tsx"/>
+ <tileset firstgid="87" source="green_npc.tsx"/>
  <layer id="1" name="Background" width="5" height="8">
   <data encoding="csv">
 14,14,14,14,14,
@@ -34,11 +37,11 @@
  <layer id="4" name="Object_pictures" width="5" height="8">
   <data encoding="csv">
 0,0,0,0,0,
-0,1610612813,0,78,0,
-0,1610612812,0,0,0,
+0,1610612812,0,77,0,
+0,1610612811,0,0,0,
 0,0,0,0,0,
 0,0,0,0,0,
-0,0,0,72,0,
+0,0,0,82,0,
 0,3221225538,3221225538,3221225539,0,
 0,0,0,0,0
 </data>
@@ -54,6 +57,9 @@
   <object id="9" name="Wrong" type="toilet_wrong" x="96" y="196" width="32" height="28"/>
   <object id="11" name="Bench" type="obstacle" x="32" y="32" width="16.8571" height="36.7891"/>
   <object id="14" name="Sink" type="obstacle" x="102.803" y="32" width="14.6395" height="7.83673"/>
+  <object id="19" name="Toilet" type="obstacle" x="43.2925" y="197.541" width="8.5" height="26.5842"/>
+  <object id="20" name="Toilet" type="obstacle" x="108.75" y="197.208" width="8.5" height="26.5842"/>
+  <object id="21" name="Toilet" type="obstacle" x="75" y="197.458" width="10" height="26.5842"/>
  </objectgroup>
  <objectgroup id="6" name="Spawnpoint">
   <object id="12" name="Spawnpoint" type="spawnpoint" x="75.932" y="100.054" width="20" height="32"/>
