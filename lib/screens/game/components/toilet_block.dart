@@ -11,27 +11,18 @@ enum ToiletAnswerState {
 class ToiletBlock extends PositionComponent {
   // Track if this toilet block is currently selected
   bool _isSelected = false;
-
   // Track answer state
   ToiletAnswerState _answerState = ToiletAnswerState.unanswered;
 
-  // Optional callback for when selection changes
+  // When selection changes
   final void Function(ToiletBlock toilet, bool isSelected)? onSelectionChanged;
-
-  // Store any identifier or data about this toilet option
-  final String? toiletId;
-  final dynamic toiletData;
 
   ToiletBlock({
     required super.position,
     required super.size,
-    super.angle = 0,
     super.anchor = Anchor.topLeft,
     this.onSelectionChanged,
-    this.toiletId,
-    this.toiletData,
   }) {
-    // Enable debug mode for development
     debugMode = true;
   }
 
@@ -41,7 +32,7 @@ class ToiletBlock extends PositionComponent {
   bool get isCorrect => _answerState == ToiletAnswerState.correct;
   bool get isWrong => _answerState == ToiletAnswerState.wrong;
 
-  // Method to select this toilet option
+  // Select the toilet before answering
   void select() {
     if (!_isSelected) {
       _isSelected = true;
@@ -49,7 +40,7 @@ class ToiletBlock extends PositionComponent {
     }
   }
 
-  // Method to deselect this toilet option
+  // Deselect the before answering
   void deselect() {
     if (_isSelected) {
       _isSelected = false;
@@ -63,67 +54,56 @@ class ToiletBlock extends PositionComponent {
     onSelectionChanged?.call(this, _isSelected);
   }
 
-  // Set answer state
-  void setAnswerState(ToiletAnswerState state) {
-    _answerState = state;
-  }
-
-  // Mark as correct answer
+  // In the level.dart file - if toilet is found as correct set _answerState as correct - not an answer of player but value that will be evaluated as the user answers
   void markCorrect() {
     _answerState = ToiletAnswerState.correct;
   }
 
-  // Mark as wrong answer
+  // -||- but wrong == correct
   void markWrong() {
     _answerState = ToiletAnswerState.wrong;
   }
 
-  // Reset to unanswered state
-  void resetAnswerState() {
-    _answerState = ToiletAnswerState.unanswered;
-  }
-
   @override
   void render(Canvas canvas) {
-    super.render(canvas);
-
+    // When debugging see which toilets are correct and which ones wrong
     if (debugMode) {
       final paint = Paint()..style = PaintingStyle.fill;
-
-      // Determine fill color based on selection and answer state
-      if (_answerState == ToiletAnswerState.correct) {
+      if (answerState == ToiletAnswerState.correct) {
         paint.color = Colors.green.withOpacity(0.5);
-      } else if (_answerState == ToiletAnswerState.wrong) {
+      } else if (answerState == ToiletAnswerState.wrong) {
         paint.color = Colors.red.withOpacity(0.5);
       } else {
-        paint.color = _isSelected
-            ? Colors.blue.withOpacity(0.5)
-            : Colors.grey.withOpacity(0.3);
+        paint.color = Colors.grey.withOpacity(0.5);
       }
-
       canvas.drawRect(
         Rect.fromLTWH(0, 0, width, height),
         paint,
       );
+    }
+    // Making the selection visual styling
+    if (_isSelected) {
+      final paint = Paint()..style = PaintingStyle.fill;
+      paint.color = Colors.blue.withOpacity(0.5);
+      canvas.drawRect(
+        Rect.fromLTWH(0, 0, width, height),
+        paint,
+      );
+    }
 
-      // Add border
+    // Draw border for selected toilets
+    if (_isSelected) {
       final borderPaint = Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 2;
-
-      // Determine border color
-      if (_answerState == ToiletAnswerState.correct) {
-        borderPaint.color = Colors.green;
-      } else if (_answerState == ToiletAnswerState.wrong) {
-        borderPaint.color = Colors.red;
-      } else {
-        borderPaint.color = _isSelected ? Colors.blue : Colors.grey;
-      }
+        ..strokeWidth = 2
+        ..color = Colors.white;
 
       canvas.drawRect(
         Rect.fromLTWH(0, 0, width, height),
         borderPaint,
       );
     }
+
+    super.render(canvas);
   }
 }

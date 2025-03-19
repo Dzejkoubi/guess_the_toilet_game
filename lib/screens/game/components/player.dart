@@ -5,6 +5,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/toilet_block.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
 enum PlayerState {
@@ -24,6 +25,15 @@ class Player extends SpriteAnimationGroupComponent
 
   // Add reference to collision blocks
   List<CollisionBlock> collisionBlocks = [];
+
+  // Add reference to toilet blocks
+  List<ToiletBlock> toiletBlocks = [];
+
+  // Track the toilet currently in interaction range
+  ToiletBlock? interactiveToilet;
+
+  // Key for interaction
+  final interactionKey = LogicalKeyboardKey.space;
 
   Player({
     Vector2? position,
@@ -88,6 +98,9 @@ class Player extends SpriteAnimationGroupComponent
       // Then try vertical movement
       _moveVertically(dt);
     }
+
+    // Check for toilets in range
+    _checkToiletInteractions();
 
     // Update animation state
     _updatePlayerState();
@@ -193,7 +206,63 @@ class Player extends SpriteAnimationGroupComponent
       movementVector.normalize();
     }
 
+    // Handle interaction key
+    if (event is KeyDownEvent && event.logicalKey == interactionKey) {
+      _interact();
+    }
+
     return true; // Always return true to indicate we've handled the input
+  }
+
+  // Check if player is in range to interact with toilets
+  void _checkToiletInteractions() {
+    // Reset interactive toilet
+    interactiveToilet = null;
+
+    // Check all toilet blocks
+    for (final toilet in toiletBlocks) {
+      if (_isInInteractionRange(toilet)) {
+        interactiveToilet = toilet;
+        // Show visual indicator that toilet is in range
+        toilet.select();
+        break; // Only interact with one toilet at a time
+      } else if (toilet.isSelected) {
+        // Deselect if not in range anymore
+        toilet.deselect();
+      }
+    }
+  }
+
+  // Check if player is in interaction range with a toilet
+  bool _isInInteractionRange(ToiletBlock toilet) {
+    // Calculate player hitbox rectangle centered on player position
+    final playerHitbox = Rect.fromCenter(
+      center: Offset(position.x, position.y),
+      width: playerHitboxSize.x,
+      height: playerHitboxSize.y,
+    );
+
+    // Calculate toilet block rectangle
+    final toiletRect = Rect.fromLTWH(
+      toilet.position.x,
+      toilet.position.y,
+      toilet.size.x,
+      toilet.size.y,
+    );
+
+    return playerHitbox.overlaps(toiletRect);
+  }
+
+  // Interact with the toilet in range
+  void _interact() {
+    if (interactiveToilet != null) {
+      // Toggle selection (this is just a demonstration - you can implement your game logic here)
+      interactiveToilet!.toggleSelection();
+
+      // Print toilet state for debugging
+      print(
+          'Interacted with toilet. Is correct? ${interactiveToilet!.isCorrect}');
+    }
   }
 
   void _updatePlayerState() {

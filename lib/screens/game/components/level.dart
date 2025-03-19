@@ -48,6 +48,9 @@ class Level extends World {
             // Pass the collision blocks to the player for collision detection
             player.collisionBlocks = collisionBlocks;
 
+            // Pass toilet blocks to player for interaction
+            player.toiletBlocks = toiletBlocks;
+
             add(player);
             break;
           default:
@@ -84,23 +87,18 @@ class Level extends World {
             final toiletBlock = ToiletBlock(
               position: Vector2(object.x, object.y),
               size: Vector2(object.width, object.height),
-              toiletId: object.name,
-              toiletData: object.properties,
-              onSelectionChanged: (toilet, isSelected) {
-                if (debugMode) {
-                  print(
-                      'Toilet ${toilet.toiletId} selection changed: $isSelected');
-                }
-              },
             );
-            // Pre-set as correct, but don't visually show it yet
-            toiletBlock.setAnswerState(ToiletAnswerState.correct);
+            // Callback to print isSelected state when changed
+            onSelectionChanged:
+            (toilet, isSelected) {
+              if (debugMode) {
+                print(
+                    'Toilet ${toilet.toiletId} selection changed: $isSelected');
+              }
+            };
+            toiletBlock.markCorrect(); // Set the answer state to correct
             toiletBlocks.add(toiletBlock);
             add(toiletBlock);
-            if (debugMode) {
-              print(
-                  'Added correct toilet at ${toiletBlock.position} with ID: ${toiletBlock.toiletId}');
-            }
             break;
 
           case 'toilet_wrong':
@@ -108,23 +106,18 @@ class Level extends World {
             final toiletBlock = ToiletBlock(
               position: Vector2(object.x, object.y),
               size: Vector2(object.width, object.height),
-              toiletId: object.name,
-              toiletData: object.properties,
-              onSelectionChanged: (toilet, isSelected) {
-                if (debugMode) {
-                  print(
-                      'Toilet ${toilet.toiletId} selection changed: $isSelected');
-                }
-              },
             );
-            // Pre-set as wrong, but don't visually show it yet
-            toiletBlock.setAnswerState(ToiletAnswerState.wrong);
+            onSelectionChanged:
+            (toilet, isSelected) {
+              if (debugMode) {
+                print(
+                    'Toilet ${toilet.toiletId} selection changed: $isSelected');
+              }
+            };
+
+            toiletBlock.markWrong(); // Set the answer state to wrong
             toiletBlocks.add(toiletBlock);
             add(toiletBlock);
-            if (debugMode) {
-              print(
-                  'Added wrong toilet at ${toiletBlock.position} with ID: ${toiletBlock.toiletId}');
-            }
             break;
         }
       }
