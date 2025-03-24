@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
-import 'package:guess_the_toilet/theme/theme.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 @RoutePage()
 class ProfileScreen extends StatefulWidget {

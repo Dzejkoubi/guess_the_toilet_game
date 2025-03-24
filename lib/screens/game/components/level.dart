@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/components.dart';
-import 'package:flame_camera_tools/flame_camera_tools.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
@@ -23,6 +21,23 @@ class GameLevel extends World {
     debugMode = true; // Turn on debug mode to visualize components
   }
 
+  @override
+  Future<void> onLoad() async {
+    // Load the level with modified path
+    level = await TiledComponent.load('$levelName.tmx', Vector2.all(32));
+
+    // Add the level to the game
+    add(level);
+
+    // Extract both collision blocks and toilet blocks in a single pass
+    _extractObjectsFromMap();
+
+    // Find spawnpoint and adds player to correct position
+    _extractSpawnpointFromMap();
+
+    return super.onLoad();
+  }
+
   // Variables to store information used in onLoad
   late TiledComponent level;
 
@@ -33,44 +48,19 @@ class GameLevel extends World {
     return Vector2(width.toDouble(), height.toDouble());
   }
 
-  @override
-  Future<void> onLoad() async {
-    print('Level.onLoad - Starting to load level: $levelName');
-
-    // Load the level with modified path
-    level = await TiledComponent.load('$levelName.tmx', Vector2.all(32));
-    print('Size of the map is ${mapPixelSize.toString()}');
-    print(
-        'Level TileMap loaded: ${level.tileMap.map.width}x${level.tileMap.map.height}');
-
-    // Add the level to the game
-    add(level);
-
-    // Extract both collision blocks and toilet blocks in a single pass
-    _extractObjectsFromMap();
-
-    // Get the spawnpoints layer
+  void _extractSpawnpointFromMap() {
     final spawnpointsLayer = level.tileMap.getLayer<ObjectGroup>('Spawnpoint');
 
-    // Based on the position of the spawnpoint tile in Tiled, set the player's position
     if (spawnpointsLayer != null) {
       for (var spawnpoint in spawnpointsLayer.objects) {
         switch (spawnpoint.class_) {
           case "spawnpoint":
-            print('Found spawnpoint at: ${spawnpoint.x}, ${spawnpoint.y}');
 
-            // Set explicit position for player
+            // Set explicit position for player based on spawnpoint location
             player.position = Vector2(spawnpoint.x, spawnpoint.y);
             print('Set player position to: ${player.position}');
 
-            // Pass the collision blocks to the player for collision detection
-            player.collisionBlocks = collisionBlocks;
-
-            // Pass toilet blocks to player for interaction
-            player.toiletBlocks = toiletBlocks;
-
-            // Add player to the world and ensure it's added properly
-            print('Adding player to level');
+            // Add player to the world
             add(player);
 
             break;
@@ -82,9 +72,6 @@ class GameLevel extends World {
       print('ERROR: Spawnpoint layer not found in TileMap');
       throw Exception('Spawnpoint layer not found');
     }
-
-    print('Level.onLoad completed');
-    return super.onLoad();
   }
 
   // Extract both collision blocks and toilet blocks from the Tiled map in a single pass
