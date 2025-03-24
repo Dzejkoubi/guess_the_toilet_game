@@ -37,31 +37,32 @@
         },
         "lvl_1.tmx": {
             "expandedObjectLayers": [
-                6,
-                5
+                5,
+                6
             ],
-            "scale": 2.94,
+            "scale": 2.24,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 79.93197278911565,
-                "y": 125.85034013605441
+                "x": 58.258928571428555,
+                "y": 139.50892857142856
             }
         },
         "lvl_2.tmx": {
             "expandedObjectLayers": [
-                5
+                5,
+                6
             ],
             "scale": 2.3085,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 96.16634178037688,
-                "y": 159.84405458089668
+                "x": 191.89950184102233,
+                "y": 256.01039636127354
             }
         },
         "lvl_5.tmx": {
             "expandedObjectLayers": [
-                6,
-                5
+                5,
+                6
             ],
             "scale": 2,
             "selectedLayer": 4,
@@ -131,5 +132,6 @@
         "restroom_assets.tsx",
         "toilets_objects.tsx"
     ],
+    "resizeMap.removeObjects": true,
     "tileset.lastUsedFormat": "tsx"
 }

@@ -21,6 +21,7 @@ dependencies:
   flutter_svg: ^2.0.17
   flame_audio: ^2.11.0
   flame_tiled: ^2.0.1
+  flame_camera_tools: ^2.0.0
 
 dev_dependencies:
   flutter_test:

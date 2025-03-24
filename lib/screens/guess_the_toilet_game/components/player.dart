@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
-import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
-import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
+import 'package:guess_the_toilet/screens/guess_the_toilet_game/guess_the_toilet.dart';
 
 enum PlayerState {
   idleDown,
@@ -22,28 +22,17 @@ enum PlayerState {
 class Player extends SpriteAnimationGroupComponent
     with HasGameRef<GuessTheToilet>, KeyboardHandler {
   final PlayerState defaultState;
-
-  // Add reference to collision blocks
-  List<CollisionBlock> collisionBlocks = [];
-
-  // Add reference to toilet blocks
-  List<ToiletBlock> toiletBlocks = [];
-
-  // Track the toilet currently in interaction range
-  ToiletBlock? interactiveToilet;
-
-  // Key for interaction
-  final interactionKey = LogicalKeyboardKey.space;
-
   Player({
     Vector2? position,
+    Vector2? size,
     this.defaultState = PlayerState.idleDown,
   }) : super(
           position: position,
-          size: Vector2.all(32),
-          anchor: Anchor.topLeft,
+          size: size,
+          anchor: Anchor.center,
         ) {
-    debugMode = true;
+    debugMode:
+    false;
   }
 
   // Animations
@@ -55,29 +44,30 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation walkLeftAnimation;
   late final SpriteAnimation walkRightAnimation;
   late final SpriteAnimation walkUpAnimation;
-  double stepTime = 0.15;
+  double stepTime = 0.15; // Time between changing the picture in animaiton
 
   // Movement control
   Vector2 movementVector = Vector2.zero();
   late PlayerState currentDirection;
   final double moveSpeed = 70;
-
-  // Track active keys
-  final Set<LogicalKeyboardKey> _keysPressed = {};
+  final Set<LogicalKeyboardKey> _keysPressed = {}; // Track active keys
 
   @override
-  Future<void> onLoad() async {
+  FutureOr<void> onLoad() {
     try {
-      // Set initial direction from default state
-      currentDirection = defaultState;
+      _loadAllAnimations(); // Load all animations
 
-      // Create animations from loaded images
-      _loadAllAnimations();
+      currentDirection =
+          defaultState; // Set initial direction  from default state
 
-      // Set the initial animation state
-      current = defaultState;
-
-      // Setup hitbox for collision detection - slightly smaller than the player sprite
+      current = defaultState; // Set initial animation state
+      add(
+        RectangleHitbox(
+          size: Vector2(size.x, size.y),
+          anchor: anchor,
+          position: position,
+        ),
+      );
     } catch (e) {
       print('Error loading player assets: $e');
       rethrow;
@@ -87,80 +77,20 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   void update(double dt) {
-    // Split movement into horizontal and vertical components
-    if (movementVector.length > 0) {
-      // Try horizontal movement first
-      _moveHorizontally(dt);
-
-      // Then try vertical movement
-      _moveVertically(dt);
-    }
-
-    // Check for toilets in range
-    _checkToiletInteractions();
-
-    // Update animation state
-    _updatePlayerState();
-
+    // Update player state when stops moving
+    _updatePlayerStateWhenStopsWalking();
     super.update(dt);
   }
 
-  void _moveHorizontally(double dt) {
-    if (movementVector.x != 0) {
-      final horizontalMovement = Vector2(movementVector.x, 0);
-      final originalX = position.x;
-
-      position.x += horizontalMovement.x * moveSpeed * dt;
-
-      if (checkCollisions()) {
-        position.x = originalX;
-      }
-    }
-  }
-
-  void _moveVertically(double dt) {
-    if (movementVector.y != 0) {
-      final verticalMovement = Vector2(0, movementVector.y);
-      final originalY = position.y;
-
-      position.y += verticalMovement.y * moveSpeed * dt;
-
-      if (checkCollisions()) {
-        position.y = originalY;
-      }
-    }
-  }
-
-  // Check for collisions with obstacle blocks
-  bool checkCollisions() {
-    for (final block in collisionBlocks) {
-      if (checkCollision(block)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  // Check collision with a specific block
   bool checkCollision(CollisionBlock block) {
-    // Calculate player hitbox rectangle centered on player position
     final playerHitbox = Rect.fromLTWH(x, y, width, height);
-
-    // Calculate collision block rectangle
     final blockRect = Rect.fromLTWH(
       block.position.x,
       block.position.y,
       block.size.x,
       block.size.y,
     );
-
-    // Debug visualization if needed
-    // if (debugMode) {
-    //   print("Player hitbox: $playerHitbox");
-    //   print("Block rect: $blockRect");
-    //   print("Collision: ${playerHitbox.overlaps(blockRect)}");
-    // }
-
+    print(playerHitbox.overlaps(blockRect).toString());
     return playerHitbox.overlaps(blockRect);
   }
 
@@ -194,67 +124,16 @@ class Player extends SpriteAnimationGroupComponent
       currentDirection = PlayerState.walkRight;
     }
 
-    // Normalize the movement vector if it's not zero(If walking up nad left at the same time, the vector would be 1,1 so it would move faster - this normalizes it to 1)
+    // Normalize the movement vector when moving diagonally
     if (movementVector.length > 0) {
       movementVector.normalize();
-    }
-
-    // Handle interaction key
-    if (event is KeyDownEvent && event.logicalKey == interactionKey) {
-      _interact();
     }
 
     return true; // Always return true to indicate we've handled the input
   }
 
-  // Check if player is in range to interact with toilets
-  void _checkToiletInteractions() {
-    // Reset interactive toilet
-    interactiveToilet = null;
-
-    // Check all toilet blocks
-    for (final toilet in toiletBlocks) {
-      if (_isInInteractionRange(toilet)) {
-        interactiveToilet = toilet;
-        // Show visual indicator that toilet is in range
-        toilet.select();
-        break; // Only interact with one toilet at a time
-      } else if (toilet.isSelected) {
-        // Deselect if not in range anymore
-        toilet.deselect();
-      }
-    }
-  }
-
-  // Check if player is in interaction range with a toilet
-  bool _isInInteractionRange(ToiletBlock toilet) {
-    // Calculate player hitbox rectangle centered on player position
-    final playerHitbox = Rect.fromLTWH(x, y, width, height);
-
-    // Calculate toilet block rectangle
-    final toiletRect = Rect.fromLTWH(
-      toilet.position.x,
-      toilet.position.y,
-      toilet.size.x,
-      toilet.size.y,
-    );
-
-    return playerHitbox.overlaps(toiletRect);
-  }
-
-  // Interact with the toilet in range
-  void _interact() {
-    if (interactiveToilet != null) {
-      // Toggle selection (this is just a demonstration - you can implement your game logic here)
-      interactiveToilet!.toggleSelection();
-
-      // Print toilet state for debugging
-      print(
-          'Interacted with toilet. Is correct? ${interactiveToilet!.isCorrect}');
-    }
-  }
-
-  void _updatePlayerState() {
+  // If player stops moving show the direction animation
+  void _updatePlayerStateWhenStopsWalking() {
     if (movementVector.length > 0) {
       current = currentDirection;
     } else {
@@ -277,6 +156,7 @@ class Player extends SpriteAnimationGroupComponent
     }
   }
 
+  // Load all animation
   void _loadAllAnimations() {
     idleUpAnimation = _spriteAnimation("idle_up", 5);
     idleDownAnimation = _spriteAnimation("idle_down", 5);
@@ -297,9 +177,6 @@ class Player extends SpriteAnimationGroupComponent
       PlayerState.walkRight: walkRightAnimation,
       PlayerState.walkUp: walkUpAnimation,
     };
-
-    // Set initial animation based on default state, but in reality does not change anything as it is set in _updatePlayerState
-    current = defaultState;
   }
 
   // Updated to use consistent paths that match the _loadImages method

@@ -1,70 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="6" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="18">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="14" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="37">
  <tileset firstgid="1" source="floor.tsx"/>
  <tileset firstgid="4" source="outer.tsx"/>
  <tileset firstgid="58" source="orange_wall.tsx"/>
  <tileset firstgid="60" source="toilets_objects.tsx"/>
  <tileset firstgid="69" source="orange_wall_half.tsx"/>
  <tileset firstgid="71" source="Bob.tsx"/>
- <tileset firstgid="76" source="restroom_assets.tsx"/>
- <tileset firstgid="80" source="brown_npc.tsx"/>
- <tileset firstgid="84" source="julia_npc.tsx"/>
- <tileset firstgid="88" source="green_npc.tsx"/>
- <layer id="1" name="Background" width="6" height="10">
+ <tileset firstgid="75" source="restroom_assets.tsx"/>
+ <tileset firstgid="79" source="brown_npc.tsx"/>
+ <tileset firstgid="83" source="julia_npc.tsx"/>
+ <tileset firstgid="87" source="green_npc.tsx"/>
+ <tileset firstgid="91" source="businessman_npc.tsx"/>
+ <layer id="1" name="Background" width="14" height="18">
   <data encoding="csv">
-59,58,58,58,58,2684354619,
-58,0,0,0,0,58,
-58,0,0,0,0,58,
-58,0,0,0,0,1610612795,
-58,0,0,0,0,58,
-58,0,0,0,0,58,
-58,0,0,0,0,58,
-58,0,0,0,0,58,
-58,0,0,0,0,58,
-1610612795,58,58,58,58,3221225531
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,3,3,3,3,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14,
+14,14,14,14,14,14,14,14,14,14,14,14,14,14
 </data>
  </layer>
- <layer id="2" name="Walls" width="6" height="10">
+ <layer id="2" name="Walls" width="14" height="18">
   <data encoding="csv">
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,59,2684354618,2684354618,2684354618,2684354618,2684354619,0,0,0,0,
+0,0,0,0,58,0,0,75,76,58,0,0,0,0,
+0,0,0,0,58,2684354628,0,0,0,58,0,0,0,0,
+0,0,0,0,58,2684354628,0,0,0,58,0,0,0,0,
+0,0,0,0,58,2684354628,0,0,0,58,0,0,0,0,
+0,0,0,0,58,2684354628,0,0,0,58,0,0,0,0,
+0,0,0,0,58,2684354628,0,0,0,58,0,0,0,0,
+0,0,0,0,58,1610612813,0,0,0,58,0,0,0,0,
+0,0,0,0,58,1610612813,0,75,76,58,0,0,0,0,
+0,0,0,0,1610612795,1610612794,1610612794,1610612794,1610612794,3221225531,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="4" name="Object_pictures" width="6" height="10">
+ <layer id="4" name="Object_pictures" width="14" height="18">
   <data encoding="csv">
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0,
-0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1610612803,92,0,0,0,0,0,0,0,
+0,0,0,0,0,1610612803,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1610612802,86,0,0,0,0,0,0,0,
+0,0,0,0,0,1610612802,88,0,0,0,0,0,0,0,
+0,0,0,0,0,1610612803,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="7" name="Decoration" width="14" height="18">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1610612814,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1610612814,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup id="5" name="Objects">
-  <object id="2" name="Wall" type="obstacle" x="0" y="0" width="160" height="32"/>
-  <object id="3" name="Wall" type="obstacle" x="128" y="32" width="32" height="192"/>
-  <object id="4" name="Wall" type="obstacle" x="0" y="224" width="160" height="32"/>
-  <object id="5" name="Wall" type="obstacle" x="0" y="32" width="32" height="192"/>
-  <object id="6" name="NPC" type="npc" x="102.122" y="161.701" width="20" height="32"/>
-  <object id="7" name="Correct" type="toilet_correct" x="32" y="196" width="32" height="28"/>
-  <object id="8" name="Wrong" type="toilet_wrong" x="64" y="196" width="32" height="28"/>
-  <object id="9" name="Wrong" type="toilet_wrong" x="96" y="196" width="32" height="28"/>
-  <object id="11" name="Bench" type="obstacle" x="32" y="32" width="16.8571" height="36.7891"/>
-  <object id="14" name="Sink" type="obstacle" x="102.803" y="32" width="14.6395" height="7.83673"/>
+  <object id="2" name="Wall" type="obstacle" x="128" y="128" width="192" height="32"/>
+  <object id="3" name="Wall" type="obstacle" x="288" y="160" width="32" height="256"/>
+  <object id="4" name="Wall" type="obstacle" x="128" y="416" width="192" height="32"/>
+  <object id="5" name="Wall" type="obstacle" x="128" y="160" width="32" height="256"/>
+  <object id="6" name="NPC" type="npc" x="202.63" y="196.693" width="13.9355" height="22.47"/>
+  <object id="7" name="Correct" type="toilet_correct" x="160" y="320" width="32" height="32"/>
+  <object id="8" name="Wrong" type="toilet_wrong" x="160" y="256" width="32" height="32"/>
+  <object id="14" name="Sink" type="obstacle" x="160.433" y="392.664" width="13.34" height="16.0672"/>
+  <object id="18" name="Sink" type="obstacle" x="160.75" y="360.382" width="13.7731" height="16.0672"/>
+  <object id="19" name="Sink" type="obstacle" x="232.658" y="390.705" width="47.1281" height="24.2977"/>
+  <object id="25" name="toilets" type="obstacle" x="160" y="203.696" width="19.8709" height="132.71"/>
+  <object id="27" name="Wrong" type="toilet_wrong" x="160" y="224" width="32" height="32"/>
+  <object id="28" name="Wrong" type="toilet_wrong" x="160" y="192" width="32" height="32"/>
+  <object id="29" name="Wrong" type="toilet_wrong" x="160" y="288" width="32" height="32"/>
+  <object id="30" name="NPC" type="npc" x="203.337" y="258.849" width="14.3686" height="25.0691"/>
+  <object id="31" name="NPC" type="npc" x="200.738" y="291.77" width="14.3686" height="24.6359"/>
+  <object id="32" name="NPC" type="obstacle" x="200.954" y="294.586" width="14.3686" height="17.2718"/>
+  <object id="33" name="NPC" type="obstacle" x="201.387" y="196.037" width="14.3686" height="17.2718"/>
+  <object id="34" name="NPC" type="obstacle" x="203.12" y="262.314" width="14.3686" height="17.2718"/>
+  <object id="35" name="Bench" type="obstacle" x="235.056" y="159.806" width="44.2186" height="7.75765"/>
  </objectgroup>
  <objectgroup id="6" name="Spawnpoint">
-  <object id="12" name="Spawnpoint" type="spawnpoint" x="75.932" y="100.054" width="20" height="32"/>
+  <object id="12" name="Spawnpoint" type="spawnpoint" x="256" y="288" width="16" height="16"/>
  </objectgroup>
 </map>

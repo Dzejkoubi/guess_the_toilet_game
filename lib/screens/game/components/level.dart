@@ -1,12 +1,14 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame_camera_tools/flame_camera_tools.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:guess_the_toilet/screens/game/components/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
-import 'package:guess_the_toilet/screens/game/components/toilet_block.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 
-class Level extends World {
+class GameLevel extends World {
   final String levelName;
   final Player player;
 
@@ -14,20 +16,32 @@ class Level extends World {
   final List<CollisionBlock> collisionBlocks = [];
   final List<ToiletBlock> toiletBlocks = [];
 
-  Level({
+  GameLevel({
     required this.levelName,
     required this.player,
   }) {
-    debugMode = false;
+    debugMode = true; // Turn on debug mode to visualize components
   }
 
   // Variables to store information used in onLoad
   late TiledComponent level;
 
+  // Method to get level size
+  Vector2 get mapPixelSize {
+    final width = level.tileMap.map.width * level.tileMap.map.tileWidth;
+    final height = level.tileMap.map.height * level.tileMap.map.tileHeight;
+    return Vector2(width.toDouble(), height.toDouble());
+  }
+
   @override
   Future<void> onLoad() async {
+    print('Level.onLoad - Starting to load level: $levelName');
+
     // Load the level with modified path
     level = await TiledComponent.load('$levelName.tmx', Vector2.all(32));
+    print('Size of the map is ${mapPixelSize.toString()}');
+    print(
+        'Level TileMap loaded: ${level.tileMap.map.width}x${level.tileMap.map.height}');
 
     // Add the level to the game
     add(level);
@@ -43,7 +57,11 @@ class Level extends World {
       for (var spawnpoint in spawnpointsLayer.objects) {
         switch (spawnpoint.class_) {
           case "spawnpoint":
+            print('Found spawnpoint at: ${spawnpoint.x}, ${spawnpoint.y}');
+
+            // Set explicit position for player
             player.position = Vector2(spawnpoint.x, spawnpoint.y);
+            print('Set player position to: ${player.position}');
 
             // Pass the collision blocks to the player for collision detection
             player.collisionBlocks = collisionBlocks;
@@ -51,16 +69,21 @@ class Level extends World {
             // Pass toilet blocks to player for interaction
             player.toiletBlocks = toiletBlocks;
 
+            // Add player to the world and ensure it's added properly
+            print('Adding player to level');
             add(player);
+
             break;
           default:
             throw Exception('Spawnpoint not found');
         }
       }
     } else {
+      print('ERROR: Spawnpoint layer not found in TileMap');
       throw Exception('Spawnpoint layer not found');
     }
 
+    print('Level.onLoad completed');
     return super.onLoad();
   }
 
@@ -87,15 +110,12 @@ class Level extends World {
             final toiletBlock = ToiletBlock(
               position: Vector2(object.x, object.y),
               size: Vector2(object.width, object.height),
+              onSelectionChanged: (toilet, isSelected) {
+                if (debugMode) {
+                  print('Toilet selection changed: $isSelected (correct)');
+                }
+              },
             );
-            // Callback to print isSelected state when changed
-            onSelectionChanged:
-            (toilet, isSelected) {
-              if (debugMode) {
-                print(
-                    'Toilet ${toilet.toiletId} selection changed: $isSelected');
-              }
-            };
             toiletBlock.markCorrect(); // Set the answer state to correct
             toiletBlocks.add(toiletBlock);
             add(toiletBlock);
@@ -106,15 +126,12 @@ class Level extends World {
             final toiletBlock = ToiletBlock(
               position: Vector2(object.x, object.y),
               size: Vector2(object.width, object.height),
+              onSelectionChanged: (toilet, isSelected) {
+                if (debugMode) {
+                  print('Toilet selection changed: $isSelected (wrong)');
+                }
+              },
             );
-            onSelectionChanged:
-            (toilet, isSelected) {
-              if (debugMode) {
-                print(
-                    'Toilet ${toilet.toiletId} selection changed: $isSelected');
-              }
-            };
-
             toiletBlock.markWrong(); // Set the answer state to wrong
             toiletBlocks.add(toiletBlock);
             add(toiletBlock);

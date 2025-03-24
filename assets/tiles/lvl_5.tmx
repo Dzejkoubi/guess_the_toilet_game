@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="34">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="8" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="41">
  <tileset firstgid="1" source="floor.tsx"/>
  <tileset firstgid="4" source="outer.tsx"/>
  <tileset firstgid="58" source="orange_wall.tsx"/>
  <tileset firstgid="60" source="toilets_objects.tsx"/>
  <tileset firstgid="69" source="orange_wall_half.tsx"/>
  <tileset firstgid="71" source="Bob.tsx"/>
- <tileset firstgid="76" source="restroom_assets.tsx"/>
- <tileset firstgid="80" source="walls.tsx"/>
- <tileset firstgid="86" source="businessman_npc.tsx"/>
- <tileset firstgid="90" source="julia_npc.tsx"/>
- <tileset firstgid="94" source="brown_npc.tsx"/>
+ <tileset firstgid="75" source="restroom_assets.tsx"/>
+ <tileset firstgid="79" source="walls.tsx"/>
+ <tileset firstgid="85" source="businessman_npc.tsx"/>
+ <tileset firstgid="89" source="julia_npc.tsx"/>
+ <tileset firstgid="93" source="brown_npc.tsx"/>
  <layer id="1" name="Background" width="8" height="12">
   <data encoding="csv">
 20,20,20,20,20,20,20,20,
@@ -29,32 +29,32 @@
  </layer>
  <layer id="2" name="Walls" width="8" height="12">
   <data encoding="csv">
-3221225557,536870995,536870995,536870995,536870995,536870995,536870995,1610612821,
-83,0,0,0,0,0,0,2147483731,
-83,0,0,0,0,0,0,2147483731,
-83,0,0,0,0,0,0,2147483731,
-83,0,0,0,0,0,0,2147483731,
-83,0,3221225557,2684354643,2684354643,2684354643,2684354643,2147483731,
-83,0,2684354645,85,0,0,0,2147483731,
-83,0,0,0,0,0,0,2147483731,
-83,0,0,0,0,0,0,2147483731,
-83,0,0,0,0,0,0,2147483731,
-83,0,0,0,0,0,0,2147483731,
-2684354645,3758096467,3758096467,3758096467,3758096467,3758096467,3758096467,85
+3221225556,536870994,536870994,536870994,536870994,536870994,536870994,1610612820,
+82,0,0,0,0,0,0,2147483730,
+82,0,0,0,0,0,0,2147483730,
+82,0,0,0,0,0,0,2147483730,
+82,0,0,0,0,0,0,2147483730,
+82,0,3221225556,2684354642,2684354642,2684354642,2684354642,2147483730,
+82,0,2684354644,84,0,0,0,2147483730,
+82,0,0,0,0,0,0,2147483730,
+82,0,0,0,0,0,0,2147483730,
+82,0,0,0,0,0,0,2147483730,
+82,0,0,0,0,0,0,2147483730,
+2684354644,3758096466,3758096466,3758096466,3758096466,3758096466,3758096466,84
 </data>
  </layer>
  <layer id="4" name="Object_pictures" width="8" height="12">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
-0,1610612814,0,2684354636,2684354636,0,2684354638,0,
-0,1610612814,0,2684354637,2684354637,0,2684354638,0,
+0,1610612813,0,2684354635,2684354635,0,2684354637,0,
+0,1610612813,0,2684354636,2684354636,0,2684354637,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,67,66,67,0,
-0,0,0,0,0,0,92,0,
+0,0,0,0,0,0,91,0,
 0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,97,0,
+0,0,0,0,0,0,96,0,
 0,3221225539,3221225533,3221225533,3221225533,3221225538,3221225539,0,
 0,0,0,0,0,0,0,0
 </data>
@@ -63,15 +63,15 @@
   <data encoding="csv">
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
-0,1610612815,0,0,0,0,2684354639,0,
-0,1610612815,0,0,0,0,2684354639,0,
+0,1610612814,0,0,0,0,2684354638,0,
+0,1610612814,0,0,0,0,2684354638,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
-0,0,89,0,0,0,0,0,
+0,0,88,0,0,0,0,0,
 0,0,0,0,0,0,0,0
 </data>
  </layer>
@@ -94,6 +94,13 @@
   <object id="31" name="Wrong" type="toilet_wrong" x="192" y="192" width="32" height="32"/>
   <object id="32" name="Wrong" type="toilet_wrong" x="160" y="192" width="32" height="32"/>
   <object id="33" name="Correct" type="toilet_correct" x="128" y="192" width="32" height="32"/>
+  <object id="34" name="Toilet" type="obstacle" x="138.75" y="196.708" width="8.5" height="26.5842"/>
+  <object id="35" name="Toilet" type="obstacle" x="172.25" y="197.208" width="8.5" height="26.5842"/>
+  <object id="36" name="Toilet" type="obstacle" x="204.25" y="196.208" width="8.5" height="26.5842"/>
+  <object id="37" name="Toilet" type="obstacle" x="171.25" y="325.208" width="8.5" height="26.5842"/>
+  <object id="38" name="Toilet" type="obstacle" x="205.25" y="322.708" width="8.5" height="26.5842"/>
+  <object id="39" name="Toilet" type="obstacle" x="42.75" y="324.708" width="8.5" height="26.5842"/>
+  <object id="40" name="Toilet" type="obstacle" x="65.25" y="324.708" width="93.5" height="26.5842"/>
  </objectgroup>
  <objectgroup id="6" name="Spawnpoint">
   <object id="12" name="Spawnpoint" type="spawnpoint" x="169.483" y="49.307" width="20" height="32"/>
