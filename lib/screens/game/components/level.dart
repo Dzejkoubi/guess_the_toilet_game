@@ -11,9 +11,6 @@ class GameLevel extends World {
   final Player player;
 
   // List to store collision blocks
-  final List<ToiletBlock> toiletBlocks = [];
-
-  List<ToiletBlock> get levelToiletBlocks => toiletBlocks;
 
   GameLevel({
     required this.levelName,
@@ -105,7 +102,7 @@ class GameLevel extends World {
               },
             );
             toiletBlock.markCorrect(); // Set the answer state to correct
-            toiletBlocks.add(toiletBlock);
+            player.toiletBlocks.add(toiletBlock);
             add(toiletBlock);
             break;
 
@@ -121,7 +118,7 @@ class GameLevel extends World {
               },
             );
             toiletBlock.markWrong(); // Set the answer state to wrong
-            toiletBlocks.add(toiletBlock);
+            player.toiletBlocks.add(toiletBlock);
             add(toiletBlock);
             break;
         }

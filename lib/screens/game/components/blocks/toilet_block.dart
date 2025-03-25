@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +11,7 @@ enum ToiletAnswerState {
   wrong,
 }
 
-class ToiletBlock extends PositionComponent {
+class ToiletBlock extends PositionComponent with CollisionCallbacks {
   // Track if this toilet block is currently selected
   bool _isSelected = false;
   // Track answer state
@@ -31,6 +34,15 @@ class ToiletBlock extends PositionComponent {
   ToiletAnswerState get answerState => _answerState;
   bool get isCorrect => _answerState == ToiletAnswerState.correct;
   bool get isWrong => _answerState == ToiletAnswerState.wrong;
+
+  @override
+  FutureOr<void> onLoad() {
+    final hitbox = RectangleHitbox(
+      size: size,
+    );
+    add(hitbox);
+    return super.onLoad();
+  }
 
   // Select the toilet before answering
   void select() {

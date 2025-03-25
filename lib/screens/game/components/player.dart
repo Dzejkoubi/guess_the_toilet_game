@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
@@ -50,7 +51,15 @@ class Player extends SpriteAnimationGroupComponent
   Vector2 movement = Vector2.zero();
   late PlayerState
       playerDirection; // Saves last activated PlayerState for the use of changing to idle
+
+  // ** Collisions **
   List<CollisionBlock> collisionBlocks = [];
+  List<ToiletBlock> get getCollisionBlock => toiletBlocks;
+
+  // Toilet blocks for answering
+  final List<ToiletBlock> toiletBlocks = [];
+  List<ToiletBlock> get getToiletBlocks => toiletBlocks;
+  late ToiletBlock _activeToilet;
 
   // Pressed keys
   final Set<LogicalKeyboardKey> _keysPressed = {};
@@ -65,6 +74,12 @@ class Player extends SpriteAnimationGroupComponent
       rethrow;
     }
     playerDirection = defaultState;
+
+    final playerHitbox = RectangleHitbox(
+      position: Vector2(0, size.y * 0.5), // Bottom half of player
+      size: Vector2(size.x, size.y * 0.5), // Half of player height
+    );
+    add(playerHitbox);
 
     return super.onLoad();
   }
@@ -168,31 +183,15 @@ class Player extends SpriteAnimationGroupComponent
     );
   }
 
-  @override
-  void update(double dt) {
-    // When player moves correct the movement with these functions
-    if (movement.length > 0) {
-      // Try horizontal movement first
-      _horizontalMovement(dt);
-
-      // After that try vertical
-      _verticalMovement(dt);
-    }
-
-    // If not walking switch to appropriate idle state
-    _updatePlayerState();
-
-    super.update(dt);
-  }
-
-  // If player collides push him to the original place - X axis
+  // ** If player collides push him to the original place **
+  // X axis
   void _horizontalMovement(double dt) {
     if (movement.x != 0) {
       final horizontalMovement = Vector2(movement.x, 0);
 
       final originalX = position.x;
       position.x += horizontalMovement.x * speed * dt;
-      if (checkForCollisions()) {
+      if (checkForObstacleCollisions()) {
         position.x = originalX;
       }
     }
@@ -205,16 +204,16 @@ class Player extends SpriteAnimationGroupComponent
 
       final originalY = position.y;
       position.y += verticalMovement.y * speed * dt;
-      if (checkForCollisions()) {
+      if (checkForObstacleCollisions()) {
         position.y = originalY;
       }
     }
   }
 
   // Activates function for each of the blocks to check the collisions with them
-  bool checkForCollisions() {
+  bool checkForObstacleCollisions() {
     for (final block in collisionBlocks) {
-      if (checkCollision(block)) {
+      if (checkObstacleCollision(block)) {
         return true;
       }
     }
@@ -222,7 +221,7 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   // Checks collision with specific block
-  bool checkCollision(CollisionBlock block) {
+  bool checkObstacleCollision(CollisionBlock block) {
     final playerHitbox = Rect.fromCenter(
       center: Offset(position.x + size.x / 2,
           position.y + size.y * 0.75), // Center at bottom half of player
@@ -240,5 +239,49 @@ class Player extends SpriteAnimationGroupComponent
     //   print('Collision detected: Player $playerHitbox with Block $blockHitbox');
     // }
     return playerHitbox.overlaps(blockHitbox);
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is ToiletBlock) {
+      for (final toilet in toiletBlocks) {
+        if (toilet.isSelected) {
+          toilet.deselect();
+        }
+      }
+      other.select();
+      if (debugMode) {
+        print(
+          'Toilet block collision detected with \n X: ${other.position.x},\n Y: ${other.position.y}',
+        );
+      }
+    }
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
+  void onCollisionEnd(PositionComponent other) {
+    if (other is ToiletBlock) {
+      other.deselect();
+    }
+    super.onCollisionEnd(other);
+  }
+
+  @override
+  void update(double dt) {
+    // When player moves correct the movement with these functions
+    if (movement.length > 0) {
+      // Try horizontal movement first
+      _horizontalMovement(dt);
+
+      // After that try vertical
+      _verticalMovement(dt);
+    }
+
+    // If not walking switch to appropriate idle state
+    _updatePlayerState();
+
+    super.update(dt);
   }
 }
