@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:guess_the_toilet/screens/game/components/player.dart';
 
 class CollisionBlock extends PositionComponent {
   CollisionBlock({
@@ -9,5 +13,10 @@ class CollisionBlock extends PositionComponent {
   }) {
     // Set to true to see collision blocks when debugging
     debugMode = true;
+  }
+  @override
+  FutureOr<void> onLoad() {
+    add(RectangleHitbox());
+    return super.onLoad();
   }
 }

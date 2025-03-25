@@ -11,8 +11,9 @@ class GameLevel extends World {
   final Player player;
 
   // List to store collision blocks
-  final List<CollisionBlock> collisionBlocks = [];
   final List<ToiletBlock> toiletBlocks = [];
+
+  List<ToiletBlock> get levelToiletBlocks => toiletBlocks;
 
   GameLevel({
     required this.levelName,
@@ -88,7 +89,7 @@ class GameLevel extends World {
               position: Vector2(object.x, object.y),
               size: Vector2(object.width, object.height),
             );
-            collisionBlocks.add(collisionBlock);
+            player.collisionBlocks.add(collisionBlock);
             add(collisionBlock);
             break;
 
@@ -124,11 +125,6 @@ class GameLevel extends World {
             add(toiletBlock);
             break;
         }
-      }
-
-      if (debugMode) {
-        print(
-            'Extracted ${collisionBlocks.length} collision blocks and ${toiletBlocks.length} toilet blocks from the map');
       }
     } else {
       print('Warning: No "Objects" layer found in the Tiled map');

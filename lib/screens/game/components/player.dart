@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
 enum PlayerState {
@@ -16,7 +19,7 @@ enum PlayerState {
 }
 
 class Player extends SpriteAnimationGroupComponent
-    with HasGameRef<GuessTheToilet>, KeyboardHandler {
+    with HasGameRef<GuessTheToilet>, KeyboardHandler, CollisionCallbacks {
   final PlayerState defaultState;
 
   Player({
@@ -39,28 +42,34 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation walkLeftAnimation;
   late final SpriteAnimation walkRightAnimation;
   late final SpriteAnimation walkUpAnimation;
-  double stepTime = 0.15;
+  double idleStepTime = 0.15;
+  double walkingStepTime = 0.1;
 
   // Movement variables
   double speed = 70;
   Vector2 movement = Vector2.zero();
+  late PlayerState
+      playerDirection; // Saves last activated PlayerState for the use of changing to idle
+  List<CollisionBlock> collisionBlocks = [];
+
+  // Pressed keys
   final Set<LogicalKeyboardKey> _keysPressed = {};
-  late PlayerState playerDirection;
 
   @override
   Future<void> onLoad() async {
     try {
       // Load all animation
       _loadAllAnimations();
-
-      playerDirection = defaultState;
     } catch (e) {
       print('Error loading player assets: $e');
       rethrow;
     }
+    playerDirection = defaultState;
+
     return super.onLoad();
   }
 
+  // Handles key events like: walking
   @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     // Resets movement direction vector and pressed keys so they can be set again
@@ -97,6 +106,7 @@ class Player extends SpriteAnimationGroupComponent
     return true;
   }
 
+  // Based on the PlayerDirection set appropriate Player Idle State
   void _updatePlayerState() {
     if (movement.length == 0) {
       switch (playerDirection) {
@@ -121,15 +131,16 @@ class Player extends SpriteAnimationGroupComponent
     }
   }
 
+  // Loads all animation
   void _loadAllAnimations() {
-    idleUpAnimation = _spriteAnimation("idle_up", 5);
-    idleDownAnimation = _spriteAnimation("idle_down", 5);
-    idleLeftAnimation = _spriteAnimation("idle_left", 5);
-    idleRightAnimation = _spriteAnimation("idle_right", 5);
-    walkUpAnimation = _spriteAnimation("walk_up", 4);
-    walkDownAnimation = _spriteAnimation("walk_down", 4);
-    walkLeftAnimation = _spriteAnimation("walk_left", 4);
-    walkRightAnimation = _spriteAnimation("walk_right", 4);
+    idleUpAnimation = _spriteAnimation("idle_up", 5, idleStepTime);
+    idleDownAnimation = _spriteAnimation("idle_down", 5, idleStepTime);
+    idleLeftAnimation = _spriteAnimation("idle_left", 5, idleStepTime);
+    idleRightAnimation = _spriteAnimation("idle_right", 5, idleStepTime);
+    walkUpAnimation = _spriteAnimation("walk_up", 4, walkingStepTime);
+    walkDownAnimation = _spriteAnimation("walk_down", 4, walkingStepTime);
+    walkLeftAnimation = _spriteAnimation("walk_left", 4, walkingStepTime);
+    walkRightAnimation = _spriteAnimation("walk_right", 4, walkingStepTime);
 
     animations = {
       PlayerState.idleDown: idleDownAnimation,
@@ -144,7 +155,8 @@ class Player extends SpriteAnimationGroupComponent
     current = defaultState; // Default state
   }
 
-  SpriteAnimation _spriteAnimation(String state, int amount) {
+  // Handles pictures repeating to create the animation
+  SpriteAnimation _spriteAnimation(String state, int amount, double stepTime) {
     return SpriteAnimation.fromFrameData(
       game.images.fromCache("Main Characters/Bob/$state.png"),
       SpriteAnimationData.sequenced(
@@ -158,9 +170,75 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   void update(double dt) {
-    position = position + (movement * speed * dt);
+    // When player moves correct the movement with these functions
+    if (movement.length > 0) {
+      // Try horizontal movement first
+      _horizontalMovement(dt);
+
+      // After that try vertical
+      _verticalMovement(dt);
+    }
+
+    // If not walking switch to appropriate idle state
     _updatePlayerState();
 
     super.update(dt);
+  }
+
+  // If player collides push him to the original place - X axis
+  void _horizontalMovement(double dt) {
+    if (movement.x != 0) {
+      final horizontalMovement = Vector2(movement.x, 0);
+
+      final originalX = position.x;
+      position.x += horizontalMovement.x * speed * dt;
+      if (checkForCollisions()) {
+        position.x = originalX;
+      }
+    }
+  }
+
+  // Y axis
+  void _verticalMovement(double dt) {
+    if (movement.y != 0) {
+      final verticalMovement = Vector2(0, movement.y);
+
+      final originalY = position.y;
+      position.y += verticalMovement.y * speed * dt;
+      if (checkForCollisions()) {
+        position.y = originalY;
+      }
+    }
+  }
+
+  // Activates function for each of the blocks to check the collisions with them
+  bool checkForCollisions() {
+    for (final block in collisionBlocks) {
+      if (checkCollision(block)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Checks collision with specific block
+  bool checkCollision(CollisionBlock block) {
+    final playerHitbox = Rect.fromCenter(
+      center: Offset(position.x + size.x / 2,
+          position.y + size.y * 0.75), // Center at bottom half of player
+      width: size.x / 2, // Half width
+      height: size.y / 2, // Half height
+    );
+    final blockHitbox = Rect.fromLTWH(
+      block.position.x,
+      block.position.y,
+      block.size.x,
+      block.size.y,
+    );
+    // For debugging - print hitboxes
+    // if (debugMode && playerHitbox.overlaps(blockHitbox)) {
+    //   print('Collision detected: Player $playerHitbox with Block $blockHitbox');
+    // }
+    return playerHitbox.overlaps(blockHitbox);
   }
 }

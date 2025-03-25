@@ -5,18 +5,18 @@ import 'package:flame/input.dart';
 import 'package:flame_camera_tools/flame_camera_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:guess_the_toilet/app/constants/style_constants.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
 
-class GuessTheToilet extends FlameGame with KeyboardEvents {
+class GuessTheToilet extends FlameGame
+    with KeyboardEvents, HasCollisionDetection {
   // Declare class fields
   late Player player;
   late CameraComponent cam;
   late GameLevel level;
 
   @override
-  Color backgroundColor() => AppConstants.backgroundColor;
+  Color backgroundColor() => Colors.white;
 
   @override
   Future<void> onLoad() async {
@@ -29,25 +29,21 @@ class GuessTheToilet extends FlameGame with KeyboardEvents {
 
       level = GameLevel(player: player, levelName: 'lvl_2');
       add(level);
-
       cam = CameraComponent.withFixedResolution(
-        height: 288,
+        height: 256,
         width: 160,
         world: level,
       );
-      cam.smoothFollow(player,
-          stiffness: 2,
-          deadZone: Rect.fromLTWH(
-            0,
-            0,
-            0,
-            0,
-          ));
+      cam.smoothFollow(
+        player,
+        stiffness: 3,
+      );
       add(cam);
     } catch (e) {
       print('Error in onLoad: $e');
       rethrow;
     }
+    debugMode = true;
     return super.onLoad();
   }
 
