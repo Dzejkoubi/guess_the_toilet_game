@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 
@@ -127,8 +128,8 @@ class GameLevel extends World {
           case 'toilet_wrong':
             // Create a toilet block marked as wrong
             final toiletBlock = ToiletBlock(
-              position: Vector2(object.x, object.y),
-              size: Vector2(object.width, object.height),
+              position: Vector2(object.x + 1, object.y + 1),
+              size: Vector2(object.width - 2, object.height - 2),
               onSelectionChanged: (toilet, isSelected) {
                 if (debugMode) {
                   print('Toilet selection changed: $isSelected (wrong)');
@@ -155,6 +156,51 @@ class GameLevel extends World {
             );
             player.collisionBlocks.add(collisionToiletBlock);
             add(collisionToiletBlock);
+            break;
+          case 'npc_slim':
+            // Create a NPC block with slim hitbox
+            final collisionNpcBlock = CollisionBlock(
+              position: Vector2(
+                object.x + (object.width * 5 / 16) + 1,
+                object.y + 1,
+              ),
+              size: Vector2(
+                (object.width * 6 / 16) - 2,
+                object.height - 2,
+              ),
+            );
+            player.collisionBlocks.add(collisionNpcBlock);
+            add(collisionNpcBlock);
+            final npcBlock = NpcBlock(
+              position: Vector2(object.x, object.y),
+              size: Vector2(object.width, object.height),
+              npcType: NpcType.slim,
+            );
+            player.npcBlocks.add(npcBlock);
+            add(npcBlock);
+            break;
+          case 'npc_wide':
+            // Create a NPC block with wide hitbox
+            final collisionNpcBlock = CollisionBlock(
+              position: Vector2(
+                object.x + (object.width * 3 / 16) + 1,
+                object.y + 1,
+              ),
+              size: Vector2(
+                (object.width * 10 / 16) - 2,
+                object.height - 2,
+              ),
+            );
+            player.collisionBlocks.add(collisionNpcBlock);
+            add(collisionNpcBlock);
+            final npcBlock = NpcBlock(
+              position: Vector2(object.x, object.y),
+              size: Vector2(object.width, object.height),
+              npcType: NpcType.wide,
+            );
+            player.npcBlocks.add(npcBlock);
+            add(npcBlock);
+
             break;
         }
       }

@@ -40,23 +40,27 @@
                 5,
                 6
             ],
-            "scale": 3.0036,
+            "scale": 3.475,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 67.4190970834998,
-                "y": 144.99267545611934
+                "x": 191.2230215827338,
+                "y": 365.8992805755396
             }
+        },
+        "lvl_1.tmx#outer": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "lvl_2.tmx": {
             "expandedObjectLayers": [
                 5,
                 6
             ],
-            "scale": 2.4675,
+            "scale": 4.5536,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 275.78520770010135,
-                "y": 298.07497467071937
+                "x": 188.53215038650734,
+                "y": 386.17796907940965
             }
         },
         "lvl_5.tmx": {
@@ -64,11 +68,11 @@
                 5,
                 6
             ],
-            "scale": 6.1004,
+            "scale": 9.5996,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 188.59419054488228,
-                "y": 221.05107861779555
+                "x": 167.14238093253883,
+                "y": 231.7284053502229
             }
         },
         "orange_wall.tsx": {
@@ -80,7 +84,7 @@
             "scaleInEditor": 1
         },
         "outer.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 4.1666,
             "scaleInEditor": 1
         },
         "restroom_assets.tsx": {
@@ -96,7 +100,7 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/NPC",
+    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Background",
     "map.fixedSize": true,
     "map.height": 16,
     "map.lastUsedFormat": "tmx",
@@ -119,6 +123,7 @@
     ],
     "project": "guess_the_toilet_game.tiled-project",
     "recentFiles": [
+        "outer.tsx",
         "lvl_2.tmx",
         "lvl_5.tmx",
         "julia_npc.tsx",
@@ -128,10 +133,11 @@
         "orange_wall_half.tsx",
         "Bob.tsx",
         "floor.tsx",
-        "outer.tsx",
         "restroom_assets.tsx",
         "toilets_objects.tsx"
     ],
     "resizeMap.removeObjects": true,
-    "tileset.lastUsedFormat": "tsx"
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.transparentColor": "#060000",
+    "tileset.useTransparentColor": true
 }

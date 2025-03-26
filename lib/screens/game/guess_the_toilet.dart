@@ -27,7 +27,7 @@ class GuessTheToilet extends FlameGame
       // Initialize class fields directly
       player = Player(defaultState: PlayerState.idleLeft);
 
-      level = GameLevel(player: player, levelName: 'lvl_2');
+      level = GameLevel(player: player, levelName: 'lvl_5');
       add(level);
       cam = CameraComponent.withFixedResolution(
         height: 256,

@@ -3,9 +3,11 @@ import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
@@ -36,6 +38,36 @@ class Player extends SpriteAnimationGroupComponent
     debugMode = true;
   }
 
+  @override
+  Future<void> onLoad() async {
+    try {
+      // Load all animation
+      _loadAllAnimations();
+    } catch (e) {
+      print('Error loading player assets: $e');
+      rethrow;
+    }
+    playerDirection = defaultState;
+
+    // Adding hitbox for player for detection using collisionCallbacks
+    final playerHitbox = RectangleHitbox(
+      position: Vector2(
+        size.x / 4, // Offset by 1/4 width to center
+        size.y / 2, // Offset by 1/4 height to center
+      ),
+      size: Vector2(
+        size.x / 2,
+        size.y / 2,
+      ),
+
+      anchor: Anchor.topLeft, // Set anchor to center of hitbox
+    );
+    add(playerHitbox);
+    // If debugging show hitboxes for toilet collisions
+
+    return super.onLoad();
+  }
+
   // Animations
   late final SpriteAnimation idleDownAnimation;
   late final SpriteAnimation idleLeftAnimation;
@@ -55,6 +87,7 @@ class Player extends SpriteAnimationGroupComponent
       playerDirection; // Saves last activated PlayerState for the use of changing to idle
 
   // ** Collisions **
+  // Collision blocks so player can't pass through them
   List<CollisionBlock> collisionBlocks = [];
   List<ToiletBlock> get getCollisionBlock => toiletBlocks;
 
@@ -62,45 +95,13 @@ class Player extends SpriteAnimationGroupComponent
   final List<ToiletBlock> toiletBlocks = [];
   List<ToiletBlock> get getToiletBlocks => toiletBlocks;
 
+  // NPC blocks for interaction
+  final List<NpcBlock> npcBlocks = [];
+
+  // ** Key handling **
+
   // Pressed keys
   final Set<LogicalKeyboardKey> _keysPressed = {};
-
-  @override
-  Future<void> onLoad() async {
-    try {
-      // Load all animation
-      _loadAllAnimations();
-    } catch (e) {
-      print('Error loading player assets: $e');
-      rethrow;
-    }
-    playerDirection = defaultState;
-
-    // Adding hitbox for player for detection using collisionCallbacks
-    final playerHitbox = RectangleHitbox(
-      position: Vector2(
-        size.x / 4, // Offset by 1/4 width to center
-        size.y / 4, // Offset by 1/4 height to center
-      ),
-      size: Vector2(
-        size.x / 2,
-        size.y * 0.75,
-      ),
-
-      anchor: Anchor.topLeft, // Set anchor to center of hitbox
-    );
-    add(playerHitbox);
-    // If debugging show hitboxes for toilet collisions
-
-    return super.onLoad();
-  }
-
-  @override
-  void render(Canvas canvas) {
-    //
-
-    super.render(canvas);
-  }
 
   // Handles key events like: walking
   @override
@@ -139,6 +140,7 @@ class Player extends SpriteAnimationGroupComponent
     return true;
   }
 
+  // ** Animations **
   // Based on the PlayerDirection set appropriate Player Idle State
   void _updatePlayerState() {
     if (movement.length == 0) {
@@ -201,7 +203,8 @@ class Player extends SpriteAnimationGroupComponent
     );
   }
 
-  // ** If player collides push him to the original place **
+  // ** Collision handling **
+  // If player collides push him to the original place
   // X axis
   void _horizontalMovement(double dt) {
     if (movement.x != 0) {
@@ -242,9 +245,9 @@ class Player extends SpriteAnimationGroupComponent
   bool checkObstacleCollision(CollisionBlock block) {
     final playerHitbox = Rect.fromLTWH(
       position.x + size.x / 4,
-      position.y + size.y / 4,
+      position.y + size.y / 2,
       size.x / 2,
-      size.y * 0.75,
+      size.y / 2,
     );
     final blockHitbox = Rect.fromLTWH(
       block.position.x,
@@ -253,9 +256,9 @@ class Player extends SpriteAnimationGroupComponent
       block.size.y,
     );
     // For debugging - print hitboxes
-    if (debugMode && playerHitbox.overlaps(blockHitbox)) {
-      print('Collision detected: Player $playerHitbox with Block $blockHitbox');
-    }
+    // if (debugMode && playerHitbox.overlaps(blockHitbox)) {
+    //   print('Collision detected: Player $playerHitbox with Block $blockHitbox');
+    // }
     return playerHitbox.overlaps(blockHitbox);
   }
 
@@ -275,6 +278,16 @@ class Player extends SpriteAnimationGroupComponent
         );
       }
     }
+    if (other is NpcBlock) {
+      print('NPC COLLISION DETECTED!');
+      // Highlight the NPC temporarily for debugging
+      other.debugMode = true;
+
+      // Optional: add a visual effect to the NPC
+
+      print(
+          'NPC block collision detected with \n X: ${other.position.x},\n Y: ${other.position.y}');
+    }
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -286,6 +299,7 @@ class Player extends SpriteAnimationGroupComponent
     super.onCollisionEnd(other);
   }
 
+  // Update function
   @override
   void update(double dt) {
     // When player moves correct the movement with these functions
