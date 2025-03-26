@@ -38,7 +38,14 @@ class ToiletBlock extends PositionComponent with CollisionCallbacks {
   @override
   FutureOr<void> onLoad() {
     final hitbox = RectangleHitbox(
-      size: size,
+      position: Vector2(
+        size.x / 4, // Offset by 1/4 width to center
+        size.y / 8, // Offset by 1/4 height to center
+      ),
+      size: Vector2(
+        size.x / 2,
+        size.y * 6 / 8,
+      ),
     );
     add(hitbox);
     return super.onLoad();
@@ -79,7 +86,7 @@ class ToiletBlock extends PositionComponent with CollisionCallbacks {
   @override
   void render(Canvas canvas) {
     // When debugging see which toilets are correct and which ones wrong
-    if (debugMode) {
+    if (!debugMode) {
       final paint = Paint()..style = PaintingStyle.fill;
       if (answerState == ToiletAnswerState.correct) {
         paint.color = Colors.green.withOpacity(0.5);

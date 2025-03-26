@@ -16,7 +16,7 @@ class GameLevel extends World {
     required this.levelName,
     required this.player,
   }) {
-    debugMode = true; // Turn on debug mode to visualize components
+    debugMode = false; // Turn on debug mode to visualize components
   }
 
   @override
@@ -93,8 +93,8 @@ class GameLevel extends World {
           case 'toilet_correct':
             // Create a toilet block marked as correct
             final toiletBlock = ToiletBlock(
-              position: Vector2(object.x, object.y),
-              size: Vector2(object.width, object.height),
+              position: Vector2(object.x + 1, object.y + 1),
+              size: Vector2(object.width - 2, object.height - 2),
               onSelectionChanged: (toilet, isSelected) {
                 if (debugMode) {
                   print('Toilet selection changed: $isSelected (correct)');
@@ -104,6 +104,24 @@ class GameLevel extends World {
             toiletBlock.markCorrect(); // Set the answer state to correct
             player.toiletBlocks.add(toiletBlock);
             add(toiletBlock);
+
+            // Create an smaller obstacle for not passing throught the toiletblock
+            final collisionToiletBlock = CollisionBlock(
+              position: Vector2(
+                object.x +
+                    (object.width / 4) +
+                    2, // Offset by 1/4 width to center
+                object.y +
+                    (object.height / 8) +
+                    2, // Offset by 1/4 height to center
+              ),
+              size: Vector2(
+                (object.width / 2) - 4,
+                (object.height * 6 / 8) - 4,
+              ),
+            );
+            player.collisionBlocks.add(collisionToiletBlock);
+            add(collisionToiletBlock);
             break;
 
           case 'toilet_wrong':
@@ -120,6 +138,23 @@ class GameLevel extends World {
             toiletBlock.markWrong(); // Set the answer state to wrong
             player.toiletBlocks.add(toiletBlock);
             add(toiletBlock);
+            // Create an smaller obstacle for not passing throught the toiletblock
+            final collisionToiletBlock = CollisionBlock(
+              position: Vector2(
+                object.x +
+                    (object.width / 4) +
+                    2, // Offset by 1/4 width to center
+                object.y +
+                    (object.height / 8) +
+                    2, // Offset by 1/4 height to center
+              ),
+              size: Vector2(
+                (object.width / 2) - 4,
+                (object.height * 6 / 8) - 4,
+              ),
+            );
+            player.collisionBlocks.add(collisionToiletBlock);
+            add(collisionToiletBlock);
             break;
         }
       }

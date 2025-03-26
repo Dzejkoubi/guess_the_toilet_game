@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
@@ -59,7 +61,6 @@ class Player extends SpriteAnimationGroupComponent
   // Toilet blocks for answering
   final List<ToiletBlock> toiletBlocks = [];
   List<ToiletBlock> get getToiletBlocks => toiletBlocks;
-  late ToiletBlock _activeToilet;
 
   // Pressed keys
   final Set<LogicalKeyboardKey> _keysPressed = {};
@@ -75,13 +76,30 @@ class Player extends SpriteAnimationGroupComponent
     }
     playerDirection = defaultState;
 
+    // Adding hitbox for player for detection using collisionCallbacks
     final playerHitbox = RectangleHitbox(
-      position: Vector2(0, size.y * 0.5), // Bottom half of player
-      size: Vector2(size.x, size.y * 0.5), // Half of player height
+      position: Vector2(
+        size.x / 4, // Offset by 1/4 width to center
+        size.y / 4, // Offset by 1/4 height to center
+      ),
+      size: Vector2(
+        size.x / 2,
+        size.y * 0.75,
+      ),
+
+      anchor: Anchor.topLeft, // Set anchor to center of hitbox
     );
     add(playerHitbox);
+    // If debugging show hitboxes for toilet collisions
 
     return super.onLoad();
+  }
+
+  @override
+  void render(Canvas canvas) {
+    //
+
+    super.render(canvas);
   }
 
   // Handles key events like: walking
@@ -220,13 +238,13 @@ class Player extends SpriteAnimationGroupComponent
     return false;
   }
 
-  // Checks collision with specific block
+  // Checks collision with specific collision block
   bool checkObstacleCollision(CollisionBlock block) {
-    final playerHitbox = Rect.fromCenter(
-      center: Offset(position.x + size.x / 2,
-          position.y + size.y * 0.75), // Center at bottom half of player
-      width: size.x / 2, // Half width
-      height: size.y / 2, // Half height
+    final playerHitbox = Rect.fromLTWH(
+      position.x + size.x / 4,
+      position.y + size.y / 4,
+      size.x / 2,
+      size.y * 0.75,
     );
     final blockHitbox = Rect.fromLTWH(
       block.position.x,
@@ -235,9 +253,9 @@ class Player extends SpriteAnimationGroupComponent
       block.size.y,
     );
     // For debugging - print hitboxes
-    // if (debugMode && playerHitbox.overlaps(blockHitbox)) {
-    //   print('Collision detected: Player $playerHitbox with Block $blockHitbox');
-    // }
+    if (debugMode && playerHitbox.overlaps(blockHitbox)) {
+      print('Collision detected: Player $playerHitbox with Block $blockHitbox');
+    }
     return playerHitbox.overlaps(blockHitbox);
   }
 
