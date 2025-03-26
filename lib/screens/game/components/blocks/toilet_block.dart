@@ -85,8 +85,10 @@ class ToiletBlock extends PositionComponent with CollisionCallbacks {
 
   @override
   void render(Canvas canvas) {
+    final showAnswers = false;
+
     // When debugging see which toilets are correct and which ones wrong
-    if (!debugMode) {
+    if (showAnswers) {
       final paint = Paint()..style = PaintingStyle.fill;
       if (answerState == ToiletAnswerState.correct) {
         paint.color = Colors.green.withOpacity(0.5);
@@ -103,7 +105,7 @@ class ToiletBlock extends PositionComponent with CollisionCallbacks {
     // Making the selection visual styling
     if (_isSelected) {
       final paint = Paint()..style = PaintingStyle.fill;
-      paint.color = Colors.blue.withOpacity(0.5);
+      paint.color = Colors.lightBlue.withOpacity(0.3);
       canvas.drawRect(
         Rect.fromLTWH(0, 0, width, height),
         paint,
@@ -114,7 +116,7 @@ class ToiletBlock extends PositionComponent with CollisionCallbacks {
     if (_isSelected) {
       final borderPaint = Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 2
+        ..strokeWidth = 1
         ..color = Colors.white;
 
       canvas.drawRect(
