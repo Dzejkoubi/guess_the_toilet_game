@@ -40,10 +40,6 @@ flutter_launcher_icons:
 flutter:
   generate: true
   uses-material-design: true
-  fonts:
-    - family: Lexend
-      fonts:
-        - asset: assets/fonts/Lexend-VariableFont_wght.ttf
   assets:
     - .env
     - assets/icon/icon.png
@@ -59,3 +55,10 @@ flutter:
     - assets/images/Objects/
     # Tiled maps
     - assets/tiles/
+  fonts:
+    - family: Lexend
+      fonts:
+        - asset: assets/fonts/Lexend-VariableFont_wght.ttf
+    - family: dpcomic
+      fonts:
+        - asset: assets/fonts/dpcomic.ttf

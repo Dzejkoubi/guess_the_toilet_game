@@ -63,7 +63,6 @@ class Player extends SpriteAnimationGroupComponent
       anchor: Anchor.topLeft, // Set anchor to center of hitbox
     );
     add(playerHitbox);
-    // If debugging show hitboxes for toilet collisions
 
     return super.onLoad();
   }
@@ -272,6 +271,7 @@ class Player extends SpriteAnimationGroupComponent
         }
       }
       other.select();
+
       if (debugMode) {
         print(
           'Toilet block collision detected with \n X: ${other.position.x},\n Y: ${other.position.y}',

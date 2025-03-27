@@ -2,7 +2,11 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:guess_the_toilet/screens/game/components/player.dart';
+import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
 // Enum to represent answer state
 enum ToiletAnswerState {
@@ -11,7 +15,8 @@ enum ToiletAnswerState {
   wrong,
 }
 
-class ToiletBlock extends PositionComponent with CollisionCallbacks {
+class ToiletBlock extends PositionComponent
+    with CollisionCallbacks, HasGameRef<GuessTheToilet> {
   // Track if this toilet block is currently selected
   bool _isSelected = false;
   // Track answer state
@@ -126,5 +131,41 @@ class ToiletBlock extends PositionComponent with CollisionCallbacks {
     }
 
     super.render(canvas);
+  }
+
+  @override
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    // Delay adding the debug text by 3 seconds
+    if (other is Player) {
+      final debugText = TextComponent(
+        text: 'Debug text',
+        position: Vector2(position.x, position.y + 20),
+        textRenderer: TextPaint(
+          textDirection: TextDirection.ltr,
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 16,
+            fontFamily: 'dpcomic',
+            shadows: [
+              Shadow(
+                color: Colors.black,
+                offset: Offset(1.0, 1.0),
+                blurRadius: 1.0,
+              ),
+            ],
+          ),
+        ),
+        anchor: Anchor.topCenter,
+      );
+      game.level.add(debugText);
+    }
+
+    super.onCollision(intersectionPoints, other);
+  }
+
+  @override
+  void onCollisionEnd(PositionComponent other) {
+    if (other is Player) {}
+    super.onCollisionEnd(other);
   }
 }
