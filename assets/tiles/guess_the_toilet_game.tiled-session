@@ -3,11 +3,14 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "lvl_2.tmx",
+    "activeFile": "lvl_5.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
         "/Users/jakubkraus/development/guess_the_toilet/assets/Tiled/Bob.tsx": {
             "scaleInDock": 1
         },
@@ -35,16 +38,28 @@
             "scaleInDock": 4,
             "scaleInEditor": 1
         },
+        "lvl_0.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
+            "scale": 0.6553,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": -138.1046848771556,
+                "y": 434.1522966580193
+            }
+        },
         "lvl_1.tmx": {
             "expandedObjectLayers": [
                 6,
                 5
             ],
-            "scale": 1,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 4.5,
-                "y": 344.5
+                "x": 152.25,
+                "y": 241.75
             }
         },
         "lvl_1.tmx#outer": {
@@ -56,11 +71,23 @@
                 6,
                 5
             ],
-            "scale": 2.0126,
+            "scale": 1.8816,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 186.57458014508592,
-                "y": 310.79201033489016
+                "x": 214.44515306122452,
+                "y": 320.20620748299325
+            }
+        },
+        "lvl_3.tmx": {
+            "expandedObjectLayers": [
+                6,
+                5
+            ],
+            "scale": 2.0737,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 232.67589333076145,
+                "y": 307.90374692578484
             }
         },
         "lvl_5.tmx": {
@@ -68,12 +95,27 @@
                 6,
                 5
             ],
-            "scale": 1.43,
-            "selectedLayer": 3,
+            "scale": 1.5276,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 313.6363636363636,
-                "y": 443.7062937062937
+                "x": 267.412935323383,
+                "y": 326.32888190625823
             }
+        },
+        "lvl_6.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 162.5,
+                "y": 676.5
+            }
+        },
+        "menu_assets.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "orange_wall.tsx": {
             "scaleInDock": 5.5,
@@ -91,6 +133,43 @@
             "scaleInDock": 4,
             "scaleInEditor": 1
         },
+        "roadmap copy.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 0.56,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": -106.25,
+                "y": 313.3928571428572
+            }
+        },
+        "roadmap copy.tmx#roadmap_background": {
+            "scaleInDock": 1
+        },
+        "roadmap.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 280.25,
+                "y": 357.75
+            }
+        },
+        "roadmap.tmx#roadmap_background": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "roadmap_assets.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "roadmap_background.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "toilets_objects.tsx": {
             "scaleInDock": 3,
             "scaleInEditor": 1
@@ -100,11 +179,12 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Background",
+    "last.externalTilesetPath": "/Users/jakubkraus/development/guess_the_toilet/assets/tiles",
+    "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Menu",
     "map.fixedSize": true,
-    "map.height": 16,
+    "map.height": 42,
     "map.lastUsedFormat": "tmx",
-    "map.width": 10,
+    "map.width": 17,
     "openFiles": [
         "lvl_1.tmx",
         "lvl_2.tmx",
@@ -122,20 +202,21 @@
     ],
     "project": "guess_the_toilet_game.tiled-project",
     "recentFiles": [
-        "outer.tsx",
-        "lvl_1.tmx",
+        "lvl_6.tmx",
+        "lvl_0.tmx",
+        "roadmap.tmx",
+        "roadmap_background.tsx",
+        "roadmap copy.tmx",
+        "menu_assets.tsx",
+        "toilets_objects.tsx",
         "julia_npc.tsx",
         "green_npc.tsx",
         "businessman_npc.tsx",
         "brown_npc.tsx",
-        "orange_wall_half.tsx",
-        "Bob.tsx",
-        "floor.tsx",
-        "restroom_assets.tsx",
-        "toilets_objects.tsx",
-        "walls.tsx"
+        "orange_wall_half.tsx"
     ],
     "resizeMap.removeObjects": true,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.transparentColor": "#060000",
     "tileset.useTransparentColor": false

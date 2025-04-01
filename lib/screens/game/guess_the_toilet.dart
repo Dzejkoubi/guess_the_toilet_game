@@ -1,5 +1,7 @@
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_camera_tools/flame_camera_tools.dart';
@@ -18,6 +20,9 @@ class GuessTheToilet extends FlameGame
   @override
   Color backgroundColor() => Colors.white;
 
+  int numberOfLevels = 5;
+  int currentLevelIndex = 0;
+
   @override
   Future<void> onLoad() async {
     try {
@@ -27,8 +32,9 @@ class GuessTheToilet extends FlameGame
       // Initialize class fields directly
       player = Player(defaultState: PlayerState.idleLeft);
 
-      level = GameLevel(player: player, levelName: 'lvl_5');
+      level = GameLevel(player: player, levelName: 'roadmap');
       add(level);
+
       cam = CameraComponent.withFixedResolution(
         height: 256,
         width: 160,

@@ -24,19 +24,39 @@ class GameLevel extends World {
 
   @override
   Future<void> onLoad() async {
-    // Load the level with modified path
-    level = await TiledComponent.load('$levelName.tmx', Vector2.all(32));
+    try {
+      final mapPath = '$levelName.tmx';
+      print('Loading map from: $mapPath');
 
-    // Add the level to the game
-    add(level);
+      // Load the level with error handling
+      level = await TiledComponent.load(mapPath, Vector2.all(32));
 
-    // Extract both collision blocks and toilet blocks in a single pass
-    _extractObjectsFromMap();
+      // Add the level to the game
+      add(level);
 
-    // Find spawnpoint and adds player to correct position
-    _extractSpawnpointFromMap();
+      // Extract both collision blocks and toilet blocks in a single pass
+      _extractObjectsFromMap();
 
-    return super.onLoad();
+      // Find spawnpoint and adds player to correct position
+      _extractSpawnpointFromMap();
+
+      return super.onLoad();
+    } catch (e, stackTrace) {
+      print('Error loading map: $e');
+      print('Stack trace: $stackTrace');
+      // Create a fallback level or show error message
+      final textComponent = TextComponent(
+        text: 'Error loading level: $levelName',
+        position: Vector2(10, 10),
+        textRenderer: TextPaint(
+          style: const TextStyle(
+            color: Colors.red,
+            fontSize: 16,
+          ),
+        ),
+      );
+      add(textComponent);
+    }
   }
 
   // Variables to store information used in onLoad

@@ -105,6 +105,18 @@ class Player extends SpriteAnimationGroupComponent
   // Handles key events like: walking
   @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    // Check for key E pressed for interaction
+    if (event is KeyDownEvent) {
+      if (event.logicalKey == LogicalKeyboardKey.keyE) {
+        for (final toilet in toiletBlocks) {
+          if (toilet.isSelected) {
+            // Call the answer function
+            answer(toilet);
+          }
+        }
+      }
+    }
+
     // Resets movement direction vector and pressed keys so they can be set again
     _keysPressed.clear();
     movement = Vector2.zero();
@@ -297,6 +309,15 @@ class Player extends SpriteAnimationGroupComponent
       other.deselect();
     }
     super.onCollisionEnd(other);
+  }
+
+  // Player answer
+  void answer(ToiletBlock selectedToilet) {
+    if (selectedToilet.isCorrect) {
+      print('Correct answer!');
+    } else {
+      print('Wrong answer!');
+    }
   }
 
   // Update function

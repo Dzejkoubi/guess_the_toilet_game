@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="75">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="76">
  <tileset firstgid="1" source="floor.tsx"/>
  <tileset firstgid="4" source="outer.tsx"/>
  <tileset firstgid="58" source="orange_wall.tsx"/>
@@ -100,7 +100,7 @@
 0,1610612768,1610612777,1610612786,0,0,0,0,0,0,0,0,35,43,0,0,
 0,1610612768,1610612777,1610612786,0,0,0,0,0,0,0,0,44,0,57,0,
 0,1610612768,1610612777,1610612786,0,0,0,0,0,0,0,36,37,38,0,0,
-0,1610612768,1610612777,1610612786,0,0,88,0,0,0,0,45,46,47,0,0,
+0,1610612768,1610612777,1610612786,0,0,0,0,0,0,0,45,46,47,0,0,
 0,1610612768,1610612777,1610612786,0,0,0,0,0,34,0,54,55,56,0,39,
 0,1610612768,1610612777,1610612786,36,37,38,39,0,43,0,35,0,0,0,0,
 0,1610612768,1610612777,1610612786,45,46,47,0,0,34,0,44,0,0,34,0,
@@ -132,6 +132,6 @@
   <object id="74" name="NPC" type="npc_slim" x="320" y="416" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="Spawnpoint">
-  <object id="12" name="Spawnpoint" type="spawnpoint" x="288" y="384" width="32" height="32"/>
+  <object id="12" name="Spawnpoint" type="spawnpoint" x="288" y="256" width="32" height="32"/>
  </objectgroup>
 </map>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="14" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="68">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="14" height="18" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="64">
  <tileset firstgid="1" source="floor.tsx"/>
  <tileset firstgid="4" source="orange_wall.tsx"/>
  <tileset firstgid="6" source="toilets_objects.tsx"/>
@@ -109,13 +109,13 @@
   <object id="35" name="Bench" type="obstacle" x="232.644" y="166.825" width="46.7209" height="10.5353"/>
   <object id="50" name="Bench" type="obstacle" x="233.006" y="391.024" width="46.7209" height="11.0581"/>
   <object id="53" name="Correct" type="toilet_correct" x="160" y="320" width="32" height="32"/>
+  <object id="55" name="Wrong" type="toilet_wrong" x="160" y="288" width="32" height="32"/>
+  <object id="57" name="Wrong" type="toilet_wrong" x="160" y="256" width="32" height="32"/>
+  <object id="58" name="Wrong" type="toilet_wrong" x="160" y="224" width="32" height="32"/>
+  <object id="59" name="Wrong" type="toilet_wrong" x="160" y="192" width="32" height="32"/>
   <object id="61" name="NPC" type="npc_slim" x="192" y="288" width="32" height="32"/>
   <object id="62" name="NPC" type="npc_slim" x="192" y="256" width="32" height="32"/>
   <object id="63" name="NPC" type="npc_slim" x="192" y="192" width="32" height="32"/>
-  <object id="64" name="Wrong" type="toilet_wrong" x="160" y="288" width="32" height="32"/>
-  <object id="65" name="Wrong" type="toilet_wrong" x="160" y="256" width="32" height="32"/>
-  <object id="66" name="Wrong" type="toilet_wrong" x="160" y="224" width="32" height="32"/>
-  <object id="67" name="Wrong" type="toilet_wrong" x="160" y="192" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="Spawnpoint">
   <object id="12" name="Spawnpoint" type="spawnpoint" x="256" y="288" width="32" height="32"/>
