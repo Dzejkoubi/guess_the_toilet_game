@@ -35,7 +35,7 @@ class GameLevel extends World {
       level = await TiledComponent.load(mapPath, Vector2.all(32));
 
       // Add the level to the game
-      add(level);
+      await add(level);
 
       // Extract both collision blocks and toilet blocks in a single pass
       _extractObjectsFromMap();
@@ -253,5 +253,34 @@ class GameLevel extends World {
     } else {
       print('Warning: No "Objects" layer found in the Tiled map');
     }
+  }
+
+  // Fallback level when error occurs
+  static GameLevel createFallbackLevel({required Player player}) {
+    // Create a minimal level when loading fails
+    final level = GameLevel(
+      player: player,
+      levelName: 'fallback',
+      timeLimit: 0,
+    );
+
+    // Add error message
+    final textComponent = TextComponent(
+      text: 'Error loading level.\nPress R to return to roadmap, or use menu.',
+      position: Vector2(10, 10),
+      textRenderer: TextPaint(
+        style: const TextStyle(
+          color: Colors.red,
+          fontSize: 16,
+        ),
+      ),
+    );
+    level.add(textComponent);
+
+    // Add player directly
+    player.position = Vector2(80, 128); // Center of screen
+    level.add(player);
+
+    return level;
   }
 }

@@ -22,6 +22,8 @@ class GuessTheToilet extends FlameGame
 
   int numberOfLevels = 10;
   int currentLevelIndex = 0;
+  bool _isPlayerOnRoadmap = true;
+  static const String roadmapLevelName = 'roadmap';
 
   @override
   Future<void> onLoad() async {
@@ -30,10 +32,18 @@ class GuessTheToilet extends FlameGame
       await images.loadAllImages();
 
       // Initialize class fields directly
-      player = Player(defaultState: PlayerState.idleLeft);
+      player = Player(defaultState: PlayerState.idleDown);
 
-      level = GameLevel(player: player, levelName: 'roadmap', timeLimit: 0);
-      add(level);
+      try {
+        level = GameLevel(
+            player: player, levelName: roadmapLevelName, timeLimit: 0);
+        add(level);
+      } catch (e) {
+        print('Failed to load roadmap: $e');
+        // Create a simple fallback level
+        level = GameLevel.createFallbackLevel(player: player);
+        add(level);
+      }
 
       cam = CameraComponent.withFixedResolution(
         height: 256,
@@ -53,8 +63,51 @@ class GuessTheToilet extends FlameGame
     return super.onLoad();
   }
 
-  void openLevel({int levelNumber = 1}) {
-    print(levelNumber.toString());
+  void openLevel({int levelNumber = 0}) async {
+    try {
+      if (debugMode) {
+        print('Opening level $levelNumber');
+      }
+      //First remove the level and reset the player so new one can be inserted
+      remove(level);
+      player.reset();
+
+      // Set the index of level to the number passed from function
+      currentLevelIndex = levelNumber;
+
+      // Set level name based on level number
+      String levelName;
+
+      if (levelNumber == 0) {
+        levelName = roadmapLevelName;
+        _isPlayerOnRoadmap = true;
+      } else {
+        levelName = 'lvl_$levelNumber';
+        _isPlayerOnRoadmap = false;
+      }
+      player = Player();
+      level = GameLevel(levelName: levelName, player: player);
+
+      // Add the level
+      await add(level);
+
+      // When the level loads add the camera
+      cam.world = level;
+      // Update the camera to follow the player in the new level
+      cam.viewfinder.position = Vector2.zero();
+      cam.smoothFollow(
+        player,
+        stiffness: 3,
+      );
+    } catch (e) {
+      if (debugMode) {
+        print('Error opening level: $levelNumber: $e');
+      }
+    }
+  }
+
+  void returnToRoadmap() {
+    openLevel(levelNumber: 0);
   }
 
   void nextLevel() {}

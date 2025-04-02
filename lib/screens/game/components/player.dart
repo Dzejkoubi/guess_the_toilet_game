@@ -362,6 +362,28 @@ class Player extends SpriteAnimationGroupComponent
     }
   }
 
+  // Reset player to set it again when loading new level
+  void reset() {
+    // Clear lists
+    collisionBlocks.clear();
+    toiletBlocks.clear();
+    levelBlocks.clear();
+    npcBlocks.clear();
+
+    // Reset position (will be set by new level)
+    position = Vector2.zero();
+
+    // Reset movement state
+    movement = Vector2.zero();
+    playerDirection = defaultState;
+    current = defaultState;
+
+    // Clear any active effects
+    children.whereType<Effect>().forEach((effect) {
+      effect.removeFromParent();
+    });
+  }
+
   // Update function
   @override
   void update(double dt) {
