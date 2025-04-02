@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(
           onPressed: () {
             AutoRouter.of(context).navigate(
-              RoadmapRoute(),
+              GameRoute(),
             );
           },
           icon: Icon(Icons.arrow_back),

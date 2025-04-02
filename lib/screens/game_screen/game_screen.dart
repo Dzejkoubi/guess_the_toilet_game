@@ -9,8 +9,8 @@ import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
 @RoutePage()
-class RoadmapScreen extends StatelessWidget {
-  const RoadmapScreen({super.key});
+class GameScreen extends StatelessWidget {
+  const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,14 +11,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:guess_the_toilet/auth/auth_gate.dart' as _i1;
+import 'package:guess_the_toilet/screens/game_screen/game_screen.dart' as _i2;
 import 'package:guess_the_toilet/screens/leaderboard/leader_board_screen.dart'
-    as _i2;
-import 'package:guess_the_toilet/screens/login_screen/login_screen.dart' as _i3;
+    as _i3;
+import 'package:guess_the_toilet/screens/login_screen/login_screen.dart' as _i4;
 import 'package:guess_the_toilet/screens/profile_screen.dart/profile_screen.dart'
-    as _i4;
-import 'package:guess_the_toilet/screens/register_screen/register_screen.dart'
     as _i5;
-import 'package:guess_the_toilet/screens/roadmap_screen/roadmap_screen.dart'
+import 'package:guess_the_toilet/screens/register_screen/register_screen.dart'
     as _i6;
 
 /// generated route for
@@ -38,7 +37,23 @@ class AuthGate extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.LeaderBoardScreen]
+/// [_i2.GameScreen]
+class GameRoute extends _i7.PageRouteInfo<void> {
+  const GameRoute({List<_i7.PageRouteInfo>? children})
+    : super(GameRoute.name, initialChildren: children);
+
+  static const String name = 'GameRoute';
+
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.GameScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i3.LeaderBoardScreen]
 class LeaderBoardRoute extends _i7.PageRouteInfo<void> {
   const LeaderBoardRoute({List<_i7.PageRouteInfo>? children})
     : super(LeaderBoardRoute.name, initialChildren: children);
@@ -48,13 +63,13 @@ class LeaderBoardRoute extends _i7.PageRouteInfo<void> {
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i2.LeaderBoardScreen();
+      return const _i3.LeaderBoardScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i3.LoginScreen]
+/// [_i4.LoginScreen]
 class LoginRoute extends _i7.PageRouteInfo<void> {
   const LoginRoute({List<_i7.PageRouteInfo>? children})
     : super(LoginRoute.name, initialChildren: children);
@@ -64,13 +79,13 @@ class LoginRoute extends _i7.PageRouteInfo<void> {
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i3.LoginScreen();
+      return const _i4.LoginScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i4.ProfileScreen]
+/// [_i5.ProfileScreen]
 class ProfileRoute extends _i7.PageRouteInfo<void> {
   const ProfileRoute({List<_i7.PageRouteInfo>? children})
     : super(ProfileRoute.name, initialChildren: children);
@@ -80,13 +95,13 @@ class ProfileRoute extends _i7.PageRouteInfo<void> {
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i4.ProfileScreen();
+      return const _i5.ProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i5.RegisterScreen]
+/// [_i6.RegisterScreen]
 class RegisterRoute extends _i7.PageRouteInfo<void> {
   const RegisterRoute({List<_i7.PageRouteInfo>? children})
     : super(RegisterRoute.name, initialChildren: children);
@@ -96,23 +111,7 @@ class RegisterRoute extends _i7.PageRouteInfo<void> {
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i5.RegisterScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i6.RoadmapScreen]
-class RoadmapRoute extends _i7.PageRouteInfo<void> {
-  const RoadmapRoute({List<_i7.PageRouteInfo>? children})
-    : super(RoadmapRoute.name, initialChildren: children);
-
-  static const String name = 'RoadmapRoute';
-
-  static _i7.PageInfo page = _i7.PageInfo(
-    name,
-    builder: (data) {
-      return const _i6.RoadmapScreen();
+      return const _i6.RegisterScreen();
     },
   );
 }

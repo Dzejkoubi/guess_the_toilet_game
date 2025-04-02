@@ -14,7 +14,7 @@ class LeaderBoardScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             AutoRouter.of(context).navigate(
-              const RoadmapRoute(),
+              const GameRoute(),
             );
           },
           icon: const Icon(Icons.arrow_back),
