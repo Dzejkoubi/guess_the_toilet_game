@@ -5,6 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/level_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
@@ -12,12 +13,14 @@ import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dar
 class GameLevel extends World {
   final String levelName;
   final Player player;
+  final int timeLimit;
 
-  // List to store collision blocks
+  double timeElapsed = 0;
 
   GameLevel({
     required this.levelName,
     required this.player,
+    this.timeLimit = 0,
   }) {
     debugMode = false; // Turn on debug mode to visualize components
   }
@@ -223,6 +226,27 @@ class GameLevel extends World {
             player.npcBlocks.add(npcBlock);
             add(npcBlock);
 
+            break;
+          case 'level_block':
+            // Create a generic NPC block
+            final collisionLevelBlock = CollisionBlock(
+              position: Vector2(
+                object.x + 3,
+                object.y + 3,
+              ),
+              size: Vector2(
+                object.width - 6,
+                object.height - 6,
+              ),
+            );
+            player.collisionBlocks.add(collisionLevelBlock);
+            add(collisionLevelBlock);
+            final levelBlock = LevelBlock(
+              position: Vector2(object.x, object.y),
+              levelState: LevelState.incomplete,
+            );
+            player.levelBlocks.add(levelBlock);
+            add(levelBlock);
             break;
         }
       }

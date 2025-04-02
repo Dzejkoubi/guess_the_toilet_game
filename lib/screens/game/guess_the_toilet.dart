@@ -20,7 +20,7 @@ class GuessTheToilet extends FlameGame
   @override
   Color backgroundColor() => Colors.white;
 
-  int numberOfLevels = 5;
+  int numberOfLevels = 10;
   int currentLevelIndex = 0;
 
   @override
@@ -32,7 +32,7 @@ class GuessTheToilet extends FlameGame
       // Initialize class fields directly
       player = Player(defaultState: PlayerState.idleLeft);
 
-      level = GameLevel(player: player, levelName: 'roadmap');
+      level = GameLevel(player: player, levelName: 'roadmap', timeLimit: 0);
       add(level);
 
       cam = CameraComponent.withFixedResolution(
@@ -52,6 +52,12 @@ class GuessTheToilet extends FlameGame
     debugMode = true;
     return super.onLoad();
   }
+
+  void openLevel({int levelNumber = 1}) {
+    print(levelNumber.toString());
+  }
+
+  void nextLevel() {}
 
   // Handle key events and forward them to the player to control movement
   @override

@@ -7,6 +7,7 @@ import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
+import 'package:guess_the_toilet/screens/game/components/blocks/level_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
@@ -97,6 +98,13 @@ class Player extends SpriteAnimationGroupComponent
   // NPC blocks for interaction
   final List<NpcBlock> npcBlocks = [];
 
+  /*
+  Level blocks in roadmap. The order of the blocks is important,
+  because it is used to determine the order of the levels
+  and the level state (completed, incomplete, locked)
+  */
+  List<LevelBlock> levelBlocks = [];
+
   // ** Key handling **
 
   // Pressed keys
@@ -108,11 +116,29 @@ class Player extends SpriteAnimationGroupComponent
     // Check for key E pressed for interaction
     if (event is KeyDownEvent) {
       if (event.logicalKey == LogicalKeyboardKey.keyE) {
+        // Handle toilet interaction
         for (final toilet in toiletBlocks) {
           if (toilet.isSelected) {
+            if (debugMode) {
+              print(
+                  'Answering toilet on Toilet block collision detected with \n X: ${toilet.position.x},\n Y: ${toilet.position.y}');
+            }
             // Call the answer function
             answer(toilet);
+            return true;
           }
+        }
+
+        // Handle level selection
+        final selectedLevelIndex =
+            levelBlocks.indexWhere((levelBlock) => levelBlock.isSelected);
+        if (selectedLevelIndex != -1) {
+          if (debugMode) {
+            print('Opening level ${selectedLevelIndex + 1}');
+          }
+          // Open the level
+          game.openLevel(levelNumber: selectedLevelIndex + 1);
+          return true;
         }
       }
     }
@@ -278,6 +304,7 @@ class Player extends SpriteAnimationGroupComponent
       Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is ToiletBlock) {
       for (final toilet in toiletBlocks) {
+        // Makes that when player collides with another toilet block while still colliding with the old one, the old one is deselected.
         if (toilet.isSelected) {
           toilet.deselect();
         }
@@ -300,12 +327,27 @@ class Player extends SpriteAnimationGroupComponent
       print(
           'NPC block collision detected with \n X: ${other.position.x},\n Y: ${other.position.y}');
     }
+
+    if (other is LevelBlock) {
+      for (final level in levelBlocks) {
+        if (level.isSelected) {
+          level.select();
+        }
+      }
+      other.select();
+      print(
+          'Player collided with level block at  ${other.position.x},\n Y: ${other.position.y}');
+    }
     super.onCollisionStart(intersectionPoints, other);
   }
 
   @override
   void onCollisionEnd(PositionComponent other) {
+    // Deselects toiletblock and levelblock so it can be set when player collides with different one - this makes sure that only one is selected
     if (other is ToiletBlock) {
+      other.deselect();
+    }
+    if (other is LevelBlock) {
       other.deselect();
     }
     super.onCollisionEnd(other);
