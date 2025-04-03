@@ -16,7 +16,7 @@ class LevelBlock extends PositionComponent with HasGameRef {
 
   LevelBlock({
     required super.position,
-    this.levelState = LevelState.locked,
+    this.levelState = LevelState.completed,
     this.onSelectionChanged,
   }) : super(
           size: Vector2.all(32),
@@ -74,14 +74,13 @@ class LevelBlock extends PositionComponent with HasGameRef {
     switch (levelState) {
       case LevelState.completed:
         return Sprite(
-            await gameRef.images.load('Menu/roadmap_button_done.png'));
+            await gameRef.images.load('Roadmap/roadmap_button_done.png'));
       case LevelState.incomplete:
         return Sprite(
-            await gameRef.images.load('Menu/roadmap_button_play.png'));
-      case LevelState.locked:
+            await gameRef.images.load('Roadmap/roadmap_button_play.png'));
       default:
         return Sprite(
-            await gameRef.images.load('Menu/roadmap_button_locked.png'));
+            await gameRef.images.load('Roadmap/roadmap_button_locked.png'));
     }
   }
 }

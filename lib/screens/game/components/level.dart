@@ -243,7 +243,7 @@ class GameLevel extends World {
             add(collisionLevelBlock);
             final levelBlock = LevelBlock(
               position: Vector2(object.x, object.y),
-              levelState: LevelState.incomplete,
+              levelState: LevelState.completed,
             );
             player.levelBlocks.add(levelBlock);
             add(levelBlock);

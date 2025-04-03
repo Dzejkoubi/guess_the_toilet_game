@@ -58,8 +58,8 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 152.25,
-                "y": 241.75
+                "x": 176,
+                "y": 221
             }
         },
         "lvl_1.tmx#outer": {
@@ -74,8 +74,8 @@
             "scale": 1.8816,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 214.44515306122452,
-                "y": 320.20620748299325
+                "x": 223.74574829931979,
+                "y": 288.0527210884354
             }
         },
         "lvl_3.tmx": {
@@ -87,7 +87,7 @@
             "selectedLayer": 5,
             "viewCenter": {
                 "x": 232.67589333076145,
-                "y": 307.90374692578484
+                "y": 248.10724791435598
             }
         },
         "lvl_5.tmx": {
@@ -98,8 +98,8 @@
             "scale": 1.5276,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 267.412935323383,
-                "y": 326.32888190625823
+                "x": 262.1759622937942,
+                "y": 240.57344854673997
             }
         },
         "lvl_6.tmx": {
@@ -151,11 +151,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 2,
+            "scale": 2.11,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 280.25,
-                "y": 357.75
+                "x": 202.60663507109,
+                "y": 288.86255924170615
             }
         },
         "roadmap.tmx#roadmap_background": {
@@ -189,31 +189,25 @@
         "lvl_1.tmx",
         "lvl_2.tmx",
         "lvl_5.tmx",
-        "walls.tsx",
-        "toilets_objects.tsx",
-        "restroom_assets.tsx",
-        "floor.tsx",
-        "Bob.tsx",
-        "orange_wall_half.tsx",
-        "brown_npc.tsx",
-        "businessman_npc.tsx",
-        "green_npc.tsx",
-        "julia_npc.tsx"
+        "roadmap_assets.tsx",
+        "roadmap_background.tsx",
+        "lvl_3.tmx",
+        "roadmap.tmx"
     ],
     "project": "guess_the_toilet_game.tiled-project",
     "recentFiles": [
+        "lvl_1.tmx",
+        "lvl_2.tmx",
+        "roadmap.tmx",
+        "lvl_3.tmx",
+        "roadmap_background.tsx",
+        "roadmap_assets.tsx",
+        "lvl_5.tmx",
         "lvl_6.tmx",
         "lvl_0.tmx",
-        "roadmap.tmx",
-        "roadmap_background.tsx",
         "roadmap copy.tmx",
         "menu_assets.tsx",
-        "toilets_objects.tsx",
-        "julia_npc.tsx",
-        "green_npc.tsx",
-        "businessman_npc.tsx",
-        "brown_npc.tsx",
-        "orange_wall_half.tsx"
+        "toilets_objects.tsx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

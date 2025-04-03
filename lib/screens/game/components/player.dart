@@ -132,13 +132,16 @@ class Player extends SpriteAnimationGroupComponent
         // Handle level selection
         final selectedLevelIndex =
             levelBlocks.indexWhere((levelBlock) => levelBlock.isSelected);
-        if (selectedLevelIndex != -1) {
-          if (debugMode) {
-            print('Opening level ${selectedLevelIndex + 1}');
+        if ({LevelState.completed, LevelState.incomplete}
+            .contains(levelBlocks[selectedLevelIndex].levelState)) {
+          if (selectedLevelIndex != -1) {
+            if (debugMode) {
+              print('Opening level ${selectedLevelIndex + 1}');
+            }
+            // Open the level
+            game.openLevel(levelNumber: selectedLevelIndex + 1);
+            return true;
           }
-          // Open the level
-          game.openLevel(levelNumber: selectedLevelIndex + 1);
-          return true;
         }
       }
     }
