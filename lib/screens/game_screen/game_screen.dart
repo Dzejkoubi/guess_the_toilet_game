@@ -94,7 +94,6 @@ class _GameWidgetWrapState extends State<GameWidgetWrap> {
         WrongAnswer.id: (BuildContext context, GuessTheToilet gamRef) =>
             WrongAnswer(),
       },
-      initialActiveOverlays: [PauseButton.id],
     );
   }
 }

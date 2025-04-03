@@ -51,6 +51,7 @@ flutter:
     - assets/images/Main Characters/Bob/
     - assets/images/HUD/
     - assets/images/Roadmap/
+    - assets/images/PopUps/Buttons/
     - assets/images/PopUps/
     - assets/images/NPC/
     - assets/images/Objects/

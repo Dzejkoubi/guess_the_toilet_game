@@ -25,6 +25,7 @@ class GuessTheToilet extends FlameGame
   int numberOfLevels = 10; // Total number of levels
   int currentLevelIndex = 0; // Level the player is currently in (0 is roadmap)
   bool _isPlayerOnRoadmap = true;
+  bool get isPlayerOnRoadmap => _isPlayerOnRoadmap;
   static const String roadmapLevelName = 'roadmap';
 
   // Popup menus
@@ -109,6 +110,7 @@ class GuessTheToilet extends FlameGame
         player,
         stiffness: 3,
       );
+      overlays.add(PauseButton.id);
     } catch (e) {
       if (debugMode) {
         print('Error opening level: $levelNumber: $e');
@@ -161,6 +163,7 @@ class GuessTheToilet extends FlameGame
 
   void returnToRoadmap() {
     openLevel(levelNumber: 0);
+    overlays.remove(PauseButton.id);
   }
 
   // Handle key events and forward them to the player to control movement

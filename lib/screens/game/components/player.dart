@@ -12,6 +12,7 @@ import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 
 enum PlayerState {
   idleDown,
@@ -142,6 +143,14 @@ class Player extends SpriteAnimationGroupComponent
             game.openLevel(levelNumber: selectedLevelIndex + 1);
             return true;
           }
+        }
+      }
+
+      // Space for stoping the game
+      if (event.logicalKey == LogicalKeyboardKey.space) {
+        // Check if player is in level
+        if (!game.isPlayerOnRoadmap) {
+          PauseButton.toggleGamePause(game);
         }
       }
     }
