@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
-import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
-import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
 
 class GuessTheToilet extends FlameGame
     with KeyboardEvents, HasCollisionDetection {
@@ -31,12 +31,15 @@ class GuessTheToilet extends FlameGame
   // Popup menus
   final pauseOverlayIdentifier = PauseMenu.id;
   final pauseButtonOverlayIdentifier = PauseButton.id;
-  final correctOverlayIdentifier = CorrectAnswer.id;
-  final wrongOverlayIdentifier = WrongAnswer.id;
+  final correctOverlayIdentifier = CorrectAnswerMenu.id;
+  final wrongOverlayIdentifier = WrongAnswerMenu.id;
 
   @override
   Future<void> onLoad() async {
     try {
+      // Clear all overlays and play engine
+      resumeEngine();
+      overlays.clear();
       // Load all images
       await images.loadAllImages();
 
@@ -74,96 +77,101 @@ class GuessTheToilet extends FlameGame
     return super.onLoad();
   }
 
-  void openLevel({int levelNumber = 0}) async {
+  // **Moving across levels and roadmap**
+  // Private method to handle common level loading functionality so the code does not repeats its self in
+  Future<void> _loadLevel({
+    required String levelName,
+    required int levelIndex,
+    required bool isRoadmap,
+  }) async {
     try {
-      if (debugMode) {
-        print('Opening level $levelNumber');
-      }
-      //First remove the level and reset the player so new one can be inserted
+      // Clear all overlays and play engine
+      resumeEngine();
+      overlays.clear();
+
+      // First remove the level and reset the player so new one can be inserted
       remove(level);
       player.reset();
 
-      // Set the index of level to the number passed from function
-      currentLevelIndex = levelNumber;
+      // Set the index of level
+      currentLevelIndex = levelIndex;
+      _isPlayerOnRoadmap = isRoadmap;
 
-      // Set level name based on level number
-      String levelName;
-
-      if (levelNumber == 0) {
-        levelName = roadmapLevelName;
-        _isPlayerOnRoadmap = true;
-      } else {
-        levelName = 'lvl_$levelNumber';
-        _isPlayerOnRoadmap = false;
-      }
+      // Create new player and level
       player = Player();
       level = GameLevel(levelName: levelName, player: player);
 
       // Add the level
       await add(level);
 
-      // When the level loads add the camera
+      // Set up camera
       cam.world = level;
-      // Update the camera to follow the player in the new level
       cam.viewfinder.position = Vector2.zero();
       cam.smoothFollow(
         player,
         stiffness: 3,
       );
-      overlays.add(PauseButton.id);
+
+      // Only add pause button for non-roadmap levels
+      if (!isRoadmap) {
+        overlays.add(PauseButton.id);
+      }
     } catch (e) {
       if (debugMode) {
-        print('Error opening level: $levelNumber: $e');
+        print('Error loading level "$levelName": $e');
       }
     }
+  }
+
+  // Simplif
+  void openLevel({int levelNumber = 0}) async {
+    if (debugMode) {
+      print('Opening level $levelNumber');
+    }
+
+    final String levelName =
+        levelNumber == 0 ? roadmapLevelName : 'lvl_$levelNumber';
+
+    await _loadLevel(
+      levelName: levelName,
+      levelIndex: levelNumber,
+      isRoadmap: levelNumber == 0,
+    );
   }
 
   void nextLevel() async {
-    try {
-      if (debugMode) {
-        print('Restarting level: $currentLevelIndex');
-      }
-      //First remove the level and reset the player so new one can be inserted
-      remove(level);
-      player.reset();
+    final nextLevelIndex = currentLevelIndex + 1;
 
-      // Set the index of level to the number passed from function
-      currentLevelIndex += 1;
-
-      // Set level name based on level number
-      String levelName;
-
-      if (currentLevelIndex == 0) {
-        levelName = roadmapLevelName;
-        _isPlayerOnRoadmap = true;
-      } else {
-        levelName = 'lvl_$currentLevelIndex';
-        _isPlayerOnRoadmap = false;
-      }
-      player = Player();
-      level = GameLevel(levelName: levelName, player: player);
-
-      // Add the level
-      await add(level);
-
-      // When the level loads add the camera
-      cam.world = level;
-      // Update the camera to follow the player in the new level
-      cam.viewfinder.position = Vector2.zero();
-      cam.smoothFollow(
-        player,
-        stiffness: 3,
-      );
-    } catch (e) {
-      if (debugMode) {
-        print('Error opening level: $currentLevelIndex: $e');
-      }
+    if (debugMode) {
+      print('Moving to next level: $nextLevelIndex');
     }
+
+    // Check if we've exceeded max levels
+    if (nextLevelIndex > numberOfLevels) {
+      print('No more levels, returning to roadmap');
+      returnToRoadmap();
+      return;
+    }
+
+    final String levelName = 'lvl_$nextLevelIndex';
+
+    await _loadLevel(
+      levelName: levelName,
+      levelIndex: nextLevelIndex,
+      isRoadmap: false,
+    );
   }
 
-  void returnToRoadmap() {
-    openLevel(levelNumber: 0);
-    overlays.remove(PauseButton.id);
+  void returnToRoadmap() async {
+    if (debugMode) {
+      print('Opening roadmap');
+    }
+
+    await _loadLevel(
+      levelName: roadmapLevelName,
+      levelIndex: 0,
+      isRoadmap: true,
+    );
   }
 
   // Handle key events and forward them to the player to control movement

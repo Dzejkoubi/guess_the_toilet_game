@@ -12,7 +12,10 @@ import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
 
 enum PlayerState {
   idleDown,
@@ -131,11 +134,14 @@ class Player extends SpriteAnimationGroupComponent
         }
 
         // Handle level selection
+        // Handle level selection
         final selectedLevelIndex =
             levelBlocks.indexWhere((levelBlock) => levelBlock.isSelected);
-        if ({LevelState.completed, LevelState.incomplete}
-            .contains(levelBlocks[selectedLevelIndex].levelState)) {
-          if (selectedLevelIndex != -1) {
+        // First check if any level block is selected
+        if (selectedLevelIndex != -1) {
+          // Then check if it's in a valid state to be opened
+          if ({LevelState.completed, LevelState.incomplete}
+              .contains(levelBlocks[selectedLevelIndex].levelState)) {
             if (debugMode) {
               print('Opening level ${selectedLevelIndex + 1}');
             }
@@ -368,9 +374,20 @@ class Player extends SpriteAnimationGroupComponent
   // Player answer
   void answer(ToiletBlock selectedToilet) {
     if (selectedToilet.isCorrect) {
-      print('Correct answer!');
+      game.overlays.remove(PauseMenu.id);
+      game.overlays.add(CorrectAnswerMenu.id);
+      game.pauseEngine();
+      if (debugMode) {
+        print('Correct answer!');
+      }
     } else {
-      print('Wrong answer!');
+      game.overlays.remove(PauseMenu.id);
+      game.overlays.add(WrongAnswerMenu.id);
+      game.pauseEngine();
+
+      if (debugMode) {
+        print('Wrong answer!');
+      }
     }
   }
 

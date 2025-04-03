@@ -7,10 +7,10 @@ import 'package:guess_the_toilet/app/constants/game_constants.dart';
 import 'package:guess_the_toilet/app/constants/style_constants.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
-import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
-import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
 
 @RoutePage()
 class GameScreen extends StatelessWidget {
@@ -83,16 +83,22 @@ class _GameWidgetWrapState extends State<GameWidgetWrap> {
   @override
   Widget build(BuildContext context) {
     return GameWidget(
-      game: kDebugMode ? GuessTheToilet() : game,
+      game: game,
       overlayBuilderMap: {
         PauseMenu.id: (BuildContext context, GuessTheToilet gamRef) =>
-            PauseMenu(),
+            PauseMenu(
+              gameRef: gamRef,
+            ),
         PauseButton.id: (BuildContext context, GuessTheToilet gamRef) =>
             PauseButton(),
-        CorrectAnswer.id: (BuildContext context, GuessTheToilet gamRef) =>
-            CorrectAnswer(),
-        WrongAnswer.id: (BuildContext context, GuessTheToilet gamRef) =>
-            WrongAnswer(),
+        CorrectAnswerMenu.id: (BuildContext context, GuessTheToilet gamRef) =>
+            CorrectAnswerMenu(
+              gameRef: gamRef,
+            ),
+        WrongAnswerMenu.id: (BuildContext context, GuessTheToilet gamRef) =>
+            WrongAnswerMenu(
+              gameRef: gamRef,
+            ),
       },
     );
   }

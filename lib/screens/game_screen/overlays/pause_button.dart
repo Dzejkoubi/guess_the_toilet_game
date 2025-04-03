@@ -23,7 +23,11 @@ class PauseButton extends StatefulWidget {
     } else {
       // Pause the game
       game.pauseEngine();
+      game.overlays.remove(PauseButton
+          .id); // Removes pause button because it is under the menuOverlay
       game.overlays.add(PauseMenu.id);
+      game.overlays.add(PauseButton
+          .id); // Adds the button so it is over the menu button (very ugly sollution but im lazy :D )
       return true; // Paused
     }
   }
