@@ -39,9 +39,7 @@ class Player extends SpriteAnimationGroupComponent
           position: position,
           size: Vector2.all(32),
           anchor: Anchor.topLeft,
-        ) {
-    debugMode = true;
-  }
+        );
 
   @override
   Future<void> onLoad() async {
@@ -109,6 +107,9 @@ class Player extends SpriteAnimationGroupComponent
   */
   List<LevelBlock> levelBlocks = [];
 
+  // Check if player is in penalty cooldown so he can't be penalized again (2 seconds)
+  bool _penaltyCooldown = false;
+
   // ** Key handling **
 
   // Pressed keys
@@ -123,7 +124,7 @@ class Player extends SpriteAnimationGroupComponent
         // Handle toilet interaction
         for (final toilet in toiletBlocks) {
           if (toilet.isSelected) {
-            if (debugMode) {
+            if (game.debugMode) {
               print(
                   'Answering toilet on Toilet block collision detected with \n X: ${toilet.position.x},\n Y: ${toilet.position.y}');
             }
@@ -142,7 +143,7 @@ class Player extends SpriteAnimationGroupComponent
           // Then check if it's in a valid state to be opened
           if ({LevelState.completed, LevelState.incomplete}
               .contains(levelBlocks[selectedLevelIndex].levelState)) {
-            if (debugMode) {
+            if (game.debugMode) {
               print('Opening level ${selectedLevelIndex + 1}');
             }
             // Open the level
@@ -153,7 +154,7 @@ class Player extends SpriteAnimationGroupComponent
       }
 
       // Space for stoping the game
-      if (event.logicalKey == LogicalKeyboardKey.space) {
+      if (event.logicalKey == LogicalKeyboardKey) {
         // Check if player is in level
         if (!game.isPlayerOnRoadmap) {
           PauseButton.toggleGamePause(game);
@@ -329,21 +330,27 @@ class Player extends SpriteAnimationGroupComponent
       }
       other.select();
 
-      if (debugMode) {
+      if (game.debugMode) {
         print(
           'Toilet block collision detected with \n X: ${other.position.x},\n Y: ${other.position.y}',
         );
       }
     }
-    if (other is NpcBlock) {
-      print('NPC COLLISION DETECTED!');
-      // Highlight the NPC temporarily for debugging
-      other.debugMode = true;
+    if (other is NpcBlock && !_penaltyCooldown) {
+      // Apply time penalty
+      game.applyTimePenalty(10);
 
-      // Optional: add a visual effect to the NPC
+      // Set cooldown to prevent continuous penalties
+      _penaltyCooldown = true;
 
-      print(
-          'NPC block collision detected with \n X: ${other.position.x},\n Y: ${other.position.y}');
+      // Reset cooldown after 2 seconds
+      Future.delayed(const Duration(seconds: 2), () {
+        _penaltyCooldown = false;
+      });
+
+      if (game.debugMode) {
+        print('Player touched NPC! -10 seconds penalty applied.');
+      }
     }
 
     if (other is LevelBlock) {
@@ -374,24 +381,25 @@ class Player extends SpriteAnimationGroupComponent
   // Player answer
   void answer(ToiletBlock selectedToilet) {
     if (selectedToilet.isCorrect) {
+      game.timerActive = false; // Stop timer
       game.overlays.remove(PauseMenu.id);
       game.overlays.add(CorrectAnswerMenu.id);
       game.pauseEngine();
-      if (debugMode) {
+      if (game.debugMode) {
         print('Correct answer!');
       }
     } else {
+      game.timerActive = false; // Stop timer
       game.overlays.remove(PauseMenu.id);
-      game.overlays.add(WrongAnswerMenu.id);
+      game.overlays.add(WrongAnswerMenu.wrongAnswerId);
       game.pauseEngine();
-
-      if (debugMode) {
+      if (game.debugMode) {
         print('Wrong answer!');
       }
     }
   }
 
-  // Reset player to set it again when loading new level
+  // Reset player function to set it again when loading new level
   void reset() {
     // Clear lists
     collisionBlocks.clear();

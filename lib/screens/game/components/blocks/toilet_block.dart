@@ -28,9 +28,7 @@ class ToiletBlock extends PositionComponent
     required super.size,
     super.anchor = Anchor.topLeft,
     this.onSelectionChanged,
-  }) {
-    debugMode = false;
-  }
+  });
 
   // Getters
   bool get isSelected => _isSelected;

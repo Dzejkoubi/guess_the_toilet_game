@@ -9,10 +9,7 @@ class CollisionBlock extends PositionComponent {
     required super.position,
     required super.size,
     super.anchor = Anchor.topLeft,
-  }) {
-    // Set to true to see collision blocks when debugging
-    debugMode = true;
-  }
+  });
   @override
   FutureOr<void> onLoad() {
     add(RectangleHitbox());

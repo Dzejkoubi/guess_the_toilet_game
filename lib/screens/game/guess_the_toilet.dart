@@ -9,6 +9,7 @@ import 'package:guess_the_toilet/screens/game/components/player.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/time_indicator.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
 
 class GuessTheToilet extends FlameGame
@@ -21,7 +22,11 @@ class GuessTheToilet extends FlameGame
   @override
   Color backgroundColor() => Colors.white;
 
-  // Level switching variables
+  // **Level switching variables**
+
+  // Number of levels
+  // This is the number of levels in the game, not including the roadmap
+  // The roadmap is level 0, so the number of levels is 10
   int numberOfLevels = 10; // Total number of levels
   int currentLevelIndex = 0; // Level the player is currently in (0 is roadmap)
   bool _isPlayerOnRoadmap = true;
@@ -32,7 +37,12 @@ class GuessTheToilet extends FlameGame
   final pauseOverlayIdentifier = PauseMenu.id;
   final pauseButtonOverlayIdentifier = PauseButton.id;
   final correctOverlayIdentifier = CorrectAnswerMenu.id;
-  final wrongOverlayIdentifier = WrongAnswerMenu.id;
+  final wrongOverlayIdentifier = WrongAnswerMenu.wrongAnswerId;
+  final timeIsUpOverlayIdentifier =
+      WrongAnswerMenu.timeIsUpId; // Time is up overlay
+
+  // Getter to if the game is paused
+  bool get isGamePaused => overlays.isActive(pauseOverlayIdentifier);
 
   @override
   Future<void> onLoad() async {
@@ -112,6 +122,23 @@ class GuessTheToilet extends FlameGame
         stiffness: 3,
       );
 
+      // Set the index of level
+      currentLevelIndex = levelIndex;
+      _isPlayerOnRoadmap = isRoadmap;
+
+      // Initialize timer for non-roadmap levels
+      if (!isRoadmap && levelIndex < levelTimeLimits.length) {
+        int timeLimit = levelTimeLimits[levelIndex];
+        startTimer(timeLimit);
+
+        // Add time indicator overlay
+        overlays.add(TimeIndicator.id);
+      } else {
+        // No timer for roadmap
+        stopTimer();
+        overlays.remove(TimeIndicator.id);
+      }
+
       // Only add pause button for non-roadmap levels
       if (!isRoadmap) {
         overlays.add(PauseButton.id);
@@ -172,6 +199,94 @@ class GuessTheToilet extends FlameGame
       levelIndex: 0,
       isRoadmap: true,
     );
+  }
+
+  // Time limits for each level
+  List<int> levelTimeLimits = [
+    15, // Roadmap
+    30, // Level 1
+    30, // Level 2
+    30, // Level 3
+    30, // Level 4
+    45, // Level 5
+    45, // Level 6
+    45, // Level 7
+    60, // Level 8
+    60, // Level 9
+    120, // Level 10
+  ];
+  double _timeRemaining = 0;
+  double get time => _timeRemaining;
+  bool timerActive = false;
+
+  // Time handling in update method
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    // Only update time in non-roadmap levels and when timer is active
+    if (!_isPlayerOnRoadmap && timerActive) {
+      if (_timeRemaining > 0) {
+        _timeRemaining -= dt;
+
+        // Force rebuild of the TimeIndicator overlay to update the UI
+        if (overlays.isActive(TimeIndicator.id)) {
+          overlays.remove(TimeIndicator.id);
+          overlays.add(TimeIndicator.id);
+        }
+
+        // Check for time up
+        if (_timeRemaining <= 0) {
+          _timeRemaining = 0;
+          timerActive = false;
+          showTimeIsUpOverlay();
+        }
+      }
+    }
+  }
+
+// Method to start timer
+  void startTimer(int seconds) {
+    _timeRemaining = seconds.toDouble();
+    timerActive = true;
+
+    // Add time indicator overlay if not already added
+    if (!overlays.isActive(TimeIndicator.id)) {
+      overlays.add(TimeIndicator.id);
+    }
+  }
+
+// Method to stop timer
+  void stopTimer() {
+    timerActive = false;
+  }
+
+// Show time's up overlay
+  void showTimeIsUpOverlay() {
+    pauseEngine();
+    overlays.add(timeIsUpOverlayIdentifier);
+  }
+
+  // Apply time penalty when player touches an NPC
+  void applyTimePenalty(int seconds) {
+    // Only apply penalty if we're in a level with active timer
+    if (!_isPlayerOnRoadmap && timerActive && _timeRemaining > 0) {
+      // Decrease time by penalty amount
+      _timeRemaining -= seconds;
+
+      // Make sure we don't go below zero
+      if (_timeRemaining <= 0) {
+        _timeRemaining = 0;
+        timerActive = false;
+        showTimeIsUpOverlay();
+      }
+
+      // Force rebuild of the TimeIndicator overlay to immediately update the UI
+      if (overlays.isActive(TimeIndicator.id)) {
+        overlays.remove(TimeIndicator.id);
+        overlays.add(TimeIndicator.id);
+      }
+    }
   }
 
   // Handle key events and forward them to the player to control movement

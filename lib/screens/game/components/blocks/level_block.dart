@@ -21,9 +21,7 @@ class LevelBlock extends PositionComponent with HasGameRef {
   }) : super(
           size: Vector2.all(32),
           anchor: Anchor.topLeft,
-        ) {
-    debugMode = true;
-  }
+        );
 
   @override
   FutureOr<void> onLoad() async {

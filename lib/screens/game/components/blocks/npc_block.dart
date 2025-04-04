@@ -12,15 +12,14 @@ enum NpcType {
 class NpcBlock extends PositionComponent with CollisionCallbacks {
   // Track answer state
   final NpcType npcType;
+  bool hasCollided = false;
 
   NpcBlock({
     required super.position,
     required super.size,
     super.anchor = Anchor.topLeft,
     this.npcType = NpcType.slim,
-  }) {
-    debugMode = true;
-  }
+  });
 
   @override
   FutureOr<void> onLoad() {
@@ -49,6 +48,10 @@ class NpcBlock extends PositionComponent with CollisionCallbacks {
       );
       add(hitbox);
     }
+    void resetCollision() {
+      hasCollided = false;
+    }
+
     return super.onLoad();
   }
 }

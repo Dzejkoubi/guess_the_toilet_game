@@ -8,7 +8,7 @@ class PauseButton extends StatefulWidget {
 
   const PauseButton({super.key});
 
-  // Add a static method that can be called from anywhere
+  // Static method to toggle game pause
   static bool toggleGamePause(GuessTheToilet game) {
     if (game.isPlayerOnRoadmap) {
       print('Player cannot stop game when player is on roadmap');
@@ -19,15 +19,13 @@ class PauseButton extends StatefulWidget {
       // Resume the game
       game.overlays.remove(PauseMenu.id);
       game.resumeEngine();
+      game.timerActive = true; // Resume timer
       return false; // Not paused
     } else {
       // Pause the game
       game.pauseEngine();
-      game.overlays.remove(PauseButton
-          .id); // Removes pause button because it is under the menuOverlay
+      game.timerActive = false; // Pause timer
       game.overlays.add(PauseMenu.id);
-      game.overlays.add(PauseButton
-          .id); // Adds the button so it is over the menu button (very ugly sollution but im lazy :D )
       return true; // Paused
     }
   }

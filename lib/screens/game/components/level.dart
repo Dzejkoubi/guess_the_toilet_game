@@ -9,8 +9,9 @@ import 'package:guess_the_toilet/screens/game/components/blocks/level_block.dart
 import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
+import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
-class GameLevel extends World {
+class GameLevel extends World with HasGameRef<GuessTheToilet> {
   final String levelName;
   final Player player;
   final int timeLimit;
@@ -21,9 +22,7 @@ class GameLevel extends World {
     required this.levelName,
     required this.player,
     this.timeLimit = 0,
-  }) {
-    debugMode = false; // Turn on debug mode to visualize components
-  }
+  });
 
   @override
   Future<void> onLoad() async {
@@ -122,7 +121,7 @@ class GameLevel extends World {
               position: Vector2(object.x + 1, object.y + 1),
               size: Vector2(object.width - 2, object.height - 2),
               onSelectionChanged: (toilet, isSelected) {
-                if (debugMode) {
+                if (game.debugMode) {
                   print('Toilet selection changed: $isSelected (correct)');
                 }
               },
@@ -156,7 +155,7 @@ class GameLevel extends World {
               position: Vector2(object.x + 1, object.y + 1),
               size: Vector2(object.width - 2, object.height - 2),
               onSelectionChanged: (toilet, isSelected) {
-                if (debugMode) {
+                if (game.debugMode) {
                   print('Toilet selection changed: $isSelected (wrong)');
                 }
               },

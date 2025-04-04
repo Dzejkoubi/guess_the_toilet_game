@@ -10,6 +10,7 @@ import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/time_indicator.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
 
 @RoutePage()
@@ -95,9 +96,24 @@ class _GameWidgetWrapState extends State<GameWidgetWrap> {
             CorrectAnswerMenu(
               gameRef: gamRef,
             ),
-        WrongAnswerMenu.id: (BuildContext context, GuessTheToilet gamRef) =>
-            WrongAnswerMenu(
-              gameRef: gamRef,
+        WrongAnswerMenu.wrongAnswerId:
+            (BuildContext context, GuessTheToilet gamRef) => WrongAnswerMenu(
+                  gameRef: gamRef,
+                  text: 'Wrong Toilet',
+                ),
+        WrongAnswerMenu.timeIsUpId:
+            (BuildContext context, GuessTheToilet gamRef) => WrongAnswerMenu(
+                  gameRef: gamRef,
+                  text: 'Time\'s up!',
+                ),
+        TimeIndicator.id: (BuildContext context, GuessTheToilet gameRef) =>
+            TimeIndicator(
+              timeLimit:
+                  gameRef.currentLevelIndex < gameRef.levelTimeLimits.length
+                      ? gameRef.levelTimeLimits[gameRef.currentLevelIndex]
+                      : 0,
+              timeRemaining: gameRef.time,
+              gameRef: gameRef,
             ),
       },
     );
