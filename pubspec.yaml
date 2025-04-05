@@ -22,6 +22,7 @@ dependencies:
   flame_audio: ^2.11.0
   flame_tiled: ^2.0.1
   flame_camera_tools: ^2.0.0
+  provider: ^6.1.4
 
 dev_dependencies:
   flutter_test:

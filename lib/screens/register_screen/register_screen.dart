@@ -16,7 +16,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  // Get auth service
+  // Get services
   final authService = AuthService();
   final UserService _userService = UserService();
 

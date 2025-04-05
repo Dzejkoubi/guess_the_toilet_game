@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/services/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
+import 'package:guess_the_toilet/services/user_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @RoutePage()
@@ -14,8 +15,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // Get auth service
+  // Services
   final authService = AuthService();
+  final UserService _userService = UserService();
 
   // Login credentials controllers
   final TextEditingController _emailController = TextEditingController();
@@ -26,7 +28,26 @@ class _LoginScreenState extends State<LoginScreen> {
     final email = _emailController.text;
     final password = _passwordController.text;
 
-    // Attempt login...
+    // Validate email using _userService
+    // If validateEmail isValid is false: show showValidation error with the error message from the first true if statement in _userService
+    if (!_userService.validateEmail(email: email, context: context).isValid) {
+      _userService.showValidationError(
+        context,
+        _userService
+            .validateEmail(
+              email: email,
+              context: context,
+            )
+            .errorMessage!,
+      );
+      return;
+    }
+    // Check if password isn't empty
+    if (password.isEmpty) {
+      _userService.showValidationError(
+          context, S.of(context).caught_error_password_empty);
+      return;
+    }
     try {
       await authService.signInWithEmailPassword(email, password);
 
@@ -35,21 +56,18 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted) {
         if (e is AuthException) {
           // Extract the error message
-          String errorMessage = e.message;
 
+          String errorMessage = e.message;
           if (errorMessage.contains('Invalid login credentials')) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(S.of(context).caught_error_invalid_credentials),
-            ));
+            _userService.showValidationError(
+                context, S.of(context).caught_error_invalid_credentials);
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(S.of(context).caught_error(errorMessage)),
-            ));
+            _userService.showValidationError(
+                context, S.of(context).caught_error(errorMessage));
           }
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(S.of(context).caught_error(e.toString())),
-          ));
+          _userService.showValidationError(
+              context, S.of(context).caught_error(e.toString()));
         }
       }
       return;

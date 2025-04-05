@@ -10,7 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:guess_the_toilet/auth/auth_gate.dart' as _i1;
+import 'package:guess_the_toilet/services/auth/auth_gate.dart' as _i1;
 import 'package:guess_the_toilet/screens/game_screen/game_screen.dart' as _i2;
 import 'package:guess_the_toilet/screens/leaderboard/leader_board_screen.dart'
     as _i3;
@@ -24,7 +24,7 @@ import 'package:guess_the_toilet/screens/register_screen/register_screen.dart'
 /// [_i1.AuthGate]
 class AuthGate extends _i7.PageRouteInfo<void> {
   const AuthGate({List<_i7.PageRouteInfo>? children})
-    : super(AuthGate.name, initialChildren: children);
+      : super(AuthGate.name, initialChildren: children);
 
   static const String name = 'AuthGate';
 
@@ -40,7 +40,7 @@ class AuthGate extends _i7.PageRouteInfo<void> {
 /// [_i2.GameScreen]
 class GameRoute extends _i7.PageRouteInfo<void> {
   const GameRoute({List<_i7.PageRouteInfo>? children})
-    : super(GameRoute.name, initialChildren: children);
+      : super(GameRoute.name, initialChildren: children);
 
   static const String name = 'GameRoute';
 
@@ -56,7 +56,7 @@ class GameRoute extends _i7.PageRouteInfo<void> {
 /// [_i3.LeaderBoardScreen]
 class LeaderBoardRoute extends _i7.PageRouteInfo<void> {
   const LeaderBoardRoute({List<_i7.PageRouteInfo>? children})
-    : super(LeaderBoardRoute.name, initialChildren: children);
+      : super(LeaderBoardRoute.name, initialChildren: children);
 
   static const String name = 'LeaderBoardRoute';
 
@@ -72,7 +72,7 @@ class LeaderBoardRoute extends _i7.PageRouteInfo<void> {
 /// [_i4.LoginScreen]
 class LoginRoute extends _i7.PageRouteInfo<void> {
   const LoginRoute({List<_i7.PageRouteInfo>? children})
-    : super(LoginRoute.name, initialChildren: children);
+      : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
@@ -88,7 +88,7 @@ class LoginRoute extends _i7.PageRouteInfo<void> {
 /// [_i5.ProfileScreen]
 class ProfileRoute extends _i7.PageRouteInfo<void> {
   const ProfileRoute({List<_i7.PageRouteInfo>? children})
-    : super(ProfileRoute.name, initialChildren: children);
+      : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
@@ -104,7 +104,7 @@ class ProfileRoute extends _i7.PageRouteInfo<void> {
 /// [_i6.RegisterScreen]
 class RegisterRoute extends _i7.PageRouteInfo<void> {
   const RegisterRoute({List<_i7.PageRouteInfo>? children})
-    : super(RegisterRoute.name, initialChildren: children);
+      : super(RegisterRoute.name, initialChildren: children);
 
   static const String name = 'RegisterRoute';
 

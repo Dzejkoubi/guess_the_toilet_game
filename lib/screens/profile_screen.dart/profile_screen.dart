@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/services/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
+import 'package:guess_the_toilet/services/user_service.dart';
 
 @RoutePage()
 class ProfileScreen extends StatefulWidget {
@@ -13,15 +14,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // Get auth service
+  // Get services
   final authService = AuthService();
+  final UserService _userService = UserService();
 
   // Log out from your account
   void logout() async {
     await authService.signOut();
 
     // Check if the widget is still mounted before accessing context
-
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(S.of(context).successfully_logged_out),
