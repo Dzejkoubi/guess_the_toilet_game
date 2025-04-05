@@ -1,13 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
-import 'package:guess_the_toilet/auth/auth_service.dart';
+import 'package:guess_the_toilet/services/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:guess_the_toilet/screens/register_screen/button_widget.dart';
-import 'package:guess_the_toilet/screens/register_screen/google_button_widget.dart';
+import 'package:guess_the_toilet/services/user_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'apple_button_widget.dart';
 
 @RoutePage()
 class RegisterScreen extends StatefulWidget {
@@ -20,107 +18,102 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   // Get auth service
   final authService = AuthService();
+  final UserService _userService = UserService();
 
-  // Login credentials controllers
+  // Credentials controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
 
-  // Error message saving
-  String? errorMessage;
-
   // *Sign up button*
   void signUp() async {
+    // Text from text Controllers
     final email = _emailController.text;
     final password = _passwordController.text;
     final confirmPassword = _confirmPasswordController.text;
     final username = _usernameController.text;
-    // Checks the conditions for the valid credentials
-    if (email.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).register__error_email_empty),
-        ),
-      );
-      return;
-    } else if (!_isValidEmail(email)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).register__error_email_invalid),
-        ),
-      );
-      return;
-    } else if (password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            S.of(context).register__error_password_empty,
-          ),
-        ),
-      );
-      return;
-    } else if (password.length < 6) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).register__error_password_length),
-        ),
-      );
-      return;
-    } else if (confirmPassword != password) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).register__error_passwords_mismatch),
-        ),
-      );
-      return;
-    } else if (username.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).register__error_username_empty),
-        ),
+
+    // Validate email using _userService
+    // If validateEmail isValid is false: show showValidation error with the error message from the first true if statement in _userService
+    if (!_userService.validateEmail(email: email, context: context).isValid) {
+      _userService.showValidationError(
+        context,
+        _userService
+            .validateEmail(
+              email: email,
+              context: context,
+            )
+            .errorMessage!,
       );
       return;
     }
-    // A Attempt sign up
+    // Validate password using _userService
+    // If validPassword isValid is false: show showValidation error with the error message from the first true if statement in _userService
+    if (!_userService
+        .validatePassword(
+          password: password,
+          confirmPassword: confirmPassword,
+          context: context,
+        )
+        .isValid) {
+      _userService.showValidationError(
+        context,
+        _userService
+            .validatePassword(
+              password: password,
+              confirmPassword: confirmPassword,
+              context: context,
+            )
+            .errorMessage!,
+      );
+      return;
+    }
+    // Validate username using _userService
+    // If validUsername isValid is false: show showValidation error with the error message from the first true if statement in _userService
+    if (!_userService
+        .validateUsername(username: username, context: context)
+        .isValid) {
+      _userService.showValidationError(
+        context,
+        _userService
+            .validateUsername(
+              username: username,
+              context: context,
+            )
+            .errorMessage!,
+      );
+      return;
+    }
+
+    // If credentials are correct try:
     try {
       await authService.signUpWithEmailPassword(email, password);
     }
-
     // Catch any error
     catch (e) {
+      // Catch error
       if (mounted) {
         // Getting the error and writing it to the user
         if (e is AuthException) {
           // Extract the error message
           String errorMessage = e.message;
           if (errorMessage.contains('User already registered')) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content:
-                  Text(S.of(context).register__error_email_already_registered),
-            ));
+            _userService.showValidationError(
+                context, S.of(context).caught_error_email_already_registered);
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(S.of(context).caught_error(errorMessage)),
-            ));
+            _userService.showValidationError(
+                context, S.of(context).caught_error(errorMessage));
           }
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(S.of(context).caught_error(e.toString())),
-          ));
+          _userService.showValidationError(
+              context, S.of(context).caught_error(e.toString()));
         }
       }
       return;
     }
     AutoRouter.of(context).popAndPush(ProfileRoute());
-  }
-
-  // Validate email
-  bool _isValidEmail(String email) {
-    final emailRegex =
-        RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-    return emailRegex.hasMatch(email);
   }
 
   void signUpAsGuest() async {
@@ -131,9 +124,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // Catch any error
     catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(S.of(context).caught_error(e.toString())),
-        ));
+        _userService.showValidationError(
+            context, S.of(context).caught_error(e.toString()));
       }
       return;
     }
@@ -144,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).register__title.toUpperCase(),
+        title: Text(S.of(context).register_title.toUpperCase(),
             style: Theme.of(context).textTheme.titleLarge),
         automaticallyImplyLeading: false,
       ),
@@ -198,7 +190,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               Expanded(child: SizedBox()),
               ButtonWidget(
-                S.of(context).register__guest_sign_up,
+                S.of(context).register_guest_sign_up,
                 signUpAsGuest,
               ),
             ]) ...[

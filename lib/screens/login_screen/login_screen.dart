@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
-import 'package:guess_the_toilet/auth/auth_service.dart';
+import 'package:guess_the_toilet/services/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
           if (errorMessage.contains('Invalid login credentials')) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(S.of(context).login__error_invalid_credentials),
+              content: Text(S.of(context).caught_error_invalid_credentials),
             ));
           } else {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            S.of(context).login__title,
+            S.of(context).login_title,
           ),
         ),
         body: Scaffold(
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(S.of(context).login__login_with_email,
+                              Text(S.of(context).login_with_email,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,

@@ -18,7 +18,7 @@ class SCs extends S {
   String get welcome_text_2 => 'Guesser';
 
   @override
-  String get register__title => 'Vytvořit účet';
+  String get register_title => 'Vytvořit účet';
 
   @override
   String get input_email => 'Email';
@@ -48,28 +48,13 @@ class SCs extends S {
   String get registered => 'Máte již účet? Přihlásit se';
 
   @override
-  String get register__error_email_empty => 'Zadejte email';
+  String get login_title => 'Přihlášení';
 
   @override
-  String get register__error_password_empty => 'Input the password';
+  String get register_guest_sign_up => 'Pokračovat jako host';
 
   @override
-  String get register__error_passwords_mismatch => 'Passwords do not match';
-
-  @override
-  String get register__error_email_invalid => 'Invalid email';
-
-  @override
-  String get register__error_password_length => 'Password too short (min. 6 chars)';
-
-  @override
-  String get register__error_username_empty => 'Enter your username';
-
-  @override
-  String get login__title => 'Login page';
-
-  @override
-  String get login__login_with_email => 'Login with email';
+  String get successfully_logged_out => 'Úspěšně jste se přihlásili';
 
   @override
   String caught_error(String error) {
@@ -77,14 +62,41 @@ class SCs extends S {
   }
 
   @override
-  String get login__error_invalid_credentials => 'Invalid credentials';
+  String get caught_error_invalid_credentials => 'Neplatné přihlašovací údaje';
 
   @override
-  String get register__error_email_already_registered => 'Email already registered';
+  String get caught_error_email_already_registered => 'Pod tímto emailem je již založený účet';
 
   @override
-  String get profile__successfully_logged_out => 'Successfully logged out';
+  String get caught_error_email_empty => 'Vyplňte email';
 
   @override
-  String get register__guest_sign_up => 'Sign up as a guest';
+  String get caught_error_password_empty => 'Vyplňte heslo';
+
+  @override
+  String get caught_error_passwords_mismatch => 'Hesla se neshodují';
+
+  @override
+  String get caught_error_email_invalid => 'Neplatná emailová adresa';
+
+  @override
+  String get caught_error_password_length => 'Heslo je moc krátké (min. 6 chars)';
+
+  @override
+  String get caught_error_username_empty => 'Vyplňte jméno';
+
+  @override
+  String get caught_error_username_too_short => 'Jméno je příliš krátké (min. 3 chars)';
+
+  @override
+  String get caught_error_username_too_long => 'Jméno je příliš dlouhé (max. 20 chars)';
+
+  @override
+  String get caught_error_username_invalid => 'Neplatné uživatelské jméno';
+
+  @override
+  String get caught_error_new_username_same_as_current_username => 'Nové jméno je stejné jako staré';
+
+  @override
+  String get caught_error_new_email_same_as_current_email => 'Nový email je stejný jako ten starý';
 }

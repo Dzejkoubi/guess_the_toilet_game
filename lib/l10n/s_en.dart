@@ -18,7 +18,7 @@ class SEn extends S {
   String get welcome_text_2 => 'Guesser';
 
   @override
-  String get register__title => 'Create an account';
+  String get register_title => 'Create an account';
 
   @override
   String get input_email => 'Email';
@@ -48,28 +48,13 @@ class SEn extends S {
   String get registered => 'Already registered? Log in';
 
   @override
-  String get register__error_email_empty => 'Input the email';
+  String get login_title => 'Login page';
 
   @override
-  String get register__error_password_empty => 'Input the password';
+  String get register_guest_sign_up => 'Sign up as a guest';
 
   @override
-  String get register__error_passwords_mismatch => 'Passwords do not match';
-
-  @override
-  String get register__error_email_invalid => 'Invalid email';
-
-  @override
-  String get register__error_password_length => 'Password too short (min. 6 chars)';
-
-  @override
-  String get register__error_username_empty => 'Enter your username';
-
-  @override
-  String get login__title => 'Login page';
-
-  @override
-  String get login__login_with_email => 'Login with email';
+  String get successfully_logged_out => 'Successfully logged out';
 
   @override
   String caught_error(String error) {
@@ -77,14 +62,41 @@ class SEn extends S {
   }
 
   @override
-  String get login__error_invalid_credentials => 'Invalid credentials';
+  String get caught_error_invalid_credentials => 'Invalid credentials';
 
   @override
-  String get register__error_email_already_registered => 'Email already registered';
+  String get caught_error_email_already_registered => 'Email already registered';
 
   @override
-  String get profile__successfully_logged_out => 'Successfully logged out';
+  String get caught_error_email_empty => 'Input the email';
 
   @override
-  String get register__guest_sign_up => 'Sign up as a guest';
+  String get caught_error_password_empty => 'Input the password';
+
+  @override
+  String get caught_error_passwords_mismatch => 'Passwords do not match';
+
+  @override
+  String get caught_error_email_invalid => 'Invalid email';
+
+  @override
+  String get caught_error_password_length => 'Password too short (min. 6 chars)';
+
+  @override
+  String get caught_error_username_empty => 'Enter your username';
+
+  @override
+  String get caught_error_username_too_short => 'Password is too short (min. 3 chars)';
+
+  @override
+  String get caught_error_username_too_long => 'Password is too long  (max. 20 chars)';
+
+  @override
+  String get caught_error_username_invalid => 'Invalid username';
+
+  @override
+  String get caught_error_new_username_same_as_current_username => 'New username is same as the old one';
+
+  @override
+  String get caught_error_new_email_same_as_current_email => 'New email is same as the old one';
 }

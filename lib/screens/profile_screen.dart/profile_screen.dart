@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
-import 'package:guess_the_toilet/auth/auth_service.dart';
+import 'package:guess_the_toilet/services/auth/auth_service.dart';
 import 'package:guess_the_toilet/l10n/s.dart';
 
 @RoutePage()
@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(S.of(context).profile__successfully_logged_out),
+      content: Text(S.of(context).successfully_logged_out),
     ));
   }
 

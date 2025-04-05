@@ -113,11 +113,11 @@ abstract class S {
   /// **'Guesser'**
   String get welcome_text_2;
 
-  /// No description provided for @register__title.
+  /// No description provided for @register_title.
   ///
   /// In en, this message translates to:
   /// **'Create an account'**
-  String get register__title;
+  String get register_title;
 
   /// No description provided for @input_email.
   ///
@@ -173,53 +173,23 @@ abstract class S {
   /// **'Already registered? Log in'**
   String get registered;
 
-  /// No description provided for @register__error_email_empty.
-  ///
-  /// In en, this message translates to:
-  /// **'Input the email'**
-  String get register__error_email_empty;
-
-  /// No description provided for @register__error_password_empty.
-  ///
-  /// In en, this message translates to:
-  /// **'Input the password'**
-  String get register__error_password_empty;
-
-  /// No description provided for @register__error_passwords_mismatch.
-  ///
-  /// In en, this message translates to:
-  /// **'Passwords do not match'**
-  String get register__error_passwords_mismatch;
-
-  /// No description provided for @register__error_email_invalid.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid email'**
-  String get register__error_email_invalid;
-
-  /// No description provided for @register__error_password_length.
-  ///
-  /// In en, this message translates to:
-  /// **'Password too short (min. 6 chars)'**
-  String get register__error_password_length;
-
-  /// No description provided for @register__error_username_empty.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your username'**
-  String get register__error_username_empty;
-
-  /// No description provided for @login__title.
+  /// No description provided for @login_title.
   ///
   /// In en, this message translates to:
   /// **'Login page'**
-  String get login__title;
+  String get login_title;
 
-  /// No description provided for @login__login_with_email.
+  /// No description provided for @register_guest_sign_up.
   ///
   /// In en, this message translates to:
-  /// **'Login with email'**
-  String get login__login_with_email;
+  /// **'Sign up as a guest'**
+  String get register_guest_sign_up;
+
+  /// No description provided for @successfully_logged_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully logged out'**
+  String get successfully_logged_out;
 
   /// No description provided for @caught_error.
   ///
@@ -227,29 +197,83 @@ abstract class S {
   /// **'Error: {error}'**
   String caught_error(String error);
 
-  /// No description provided for @login__error_invalid_credentials.
+  /// No description provided for @caught_error_invalid_credentials.
   ///
   /// In en, this message translates to:
   /// **'Invalid credentials'**
-  String get login__error_invalid_credentials;
+  String get caught_error_invalid_credentials;
 
-  /// No description provided for @register__error_email_already_registered.
+  /// No description provided for @caught_error_email_already_registered.
   ///
   /// In en, this message translates to:
   /// **'Email already registered'**
-  String get register__error_email_already_registered;
+  String get caught_error_email_already_registered;
 
-  /// No description provided for @profile__successfully_logged_out.
+  /// No description provided for @caught_error_email_empty.
   ///
   /// In en, this message translates to:
-  /// **'Successfully logged out'**
-  String get profile__successfully_logged_out;
+  /// **'Input the email'**
+  String get caught_error_email_empty;
 
-  /// No description provided for @register__guest_sign_up.
+  /// No description provided for @caught_error_password_empty.
   ///
   /// In en, this message translates to:
-  /// **'Sign up as a guest'**
-  String get register__guest_sign_up;
+  /// **'Input the password'**
+  String get caught_error_password_empty;
+
+  /// No description provided for @caught_error_passwords_mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get caught_error_passwords_mismatch;
+
+  /// No description provided for @caught_error_email_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email'**
+  String get caught_error_email_invalid;
+
+  /// No description provided for @caught_error_password_length.
+  ///
+  /// In en, this message translates to:
+  /// **'Password too short (min. 6 chars)'**
+  String get caught_error_password_length;
+
+  /// No description provided for @caught_error_username_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your username'**
+  String get caught_error_username_empty;
+
+  /// No description provided for @caught_error_username_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is too short (min. 3 chars)'**
+  String get caught_error_username_too_short;
+
+  /// No description provided for @caught_error_username_too_long.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is too long  (max. 20 chars)'**
+  String get caught_error_username_too_long;
+
+  /// No description provided for @caught_error_username_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid username'**
+  String get caught_error_username_invalid;
+
+  /// No description provided for @caught_error_new_username_same_as_current_username.
+  ///
+  /// In en, this message translates to:
+  /// **'New username is same as the old one'**
+  String get caught_error_new_username_same_as_current_username;
+
+  /// No description provided for @caught_error_new_email_same_as_current_email.
+  ///
+  /// In en, this message translates to:
+  /// **'New email is same as the old one'**
+  String get caught_error_new_email_same_as_current_email;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

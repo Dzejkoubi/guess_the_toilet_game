@@ -56,10 +56,10 @@
                 5
             ],
             "scale": 2,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 176,
-                "y": 221
+                "x": 152.25,
+                "y": 239.75
             }
         },
         "lvl_1.tmx#outer": {
@@ -71,11 +71,11 @@
                 6,
                 5
             ],
-            "scale": 1.8816,
-            "selectedLayer": 4,
+            "scale": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 223.74574829931979,
-                "y": 288.0527210884354
+                "x": 190.75,
+                "y": 312.75
             }
         },
         "lvl_3.tmx": {
@@ -83,11 +83,31 @@
                 6,
                 5
             ],
-            "scale": 2.0737,
-            "selectedLayer": 5,
+            "scale": 2,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 232.67589333076145,
-                "y": 248.10724791435598
+                "x": 188.25,
+                "y": 287.25
+            }
+        },
+        "lvl_4.tmx": {
+            "expandedObjectLayers": [
+                6,
+                5
+            ],
+            "scale": 1,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 219.5,
+                "y": 442.5
+            }
+        },
+        "lvl_5 copy.tmx": {
+            "scale": 1.3596875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 255.94116295104575,
+                "y": 319.9264536888072
             }
         },
         "lvl_5.tmx": {
@@ -95,22 +115,23 @@
                 6,
                 5
             ],
-            "scale": 1.5276,
+            "scale": 1.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 262.1759622937942,
-                "y": 240.57344854673997
+                "x": 215.66666666666666,
+                "y": 343.66666666666663
             }
         },
         "lvl_6.tmx": {
             "expandedObjectLayers": [
-                4
+                6,
+                2
             ],
-            "scale": 1,
-            "selectedLayer": 2,
+            "scale": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 162.5,
-                "y": 676.5
+                "x": 273.5,
+                "y": 399.83333333333337
             }
         },
         "menu_assets.tsx": {
@@ -154,8 +175,8 @@
             "scale": 2.11,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 202.60663507109,
-                "y": 288.86255924170615
+                "x": 156.39810426540285,
+                "y": 292.41706161137444
             }
         },
         "roadmap.tmx#roadmap_background": {
@@ -182,9 +203,9 @@
     "last.externalTilesetPath": "/Users/jakubkraus/development/guess_the_toilet/assets/tiles",
     "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Menu",
     "map.fixedSize": true,
-    "map.height": 42,
+    "map.height": 22,
     "map.lastUsedFormat": "tmx",
-    "map.width": 17,
+    "map.width": 18,
     "openFiles": [
         "lvl_1.tmx",
         "lvl_2.tmx",
@@ -196,6 +217,7 @@
     ],
     "project": "guess_the_toilet_game.tiled-project",
     "recentFiles": [
+        "lvl_5 copy.tmx",
         "lvl_1.tmx",
         "lvl_2.tmx",
         "roadmap.tmx",
@@ -206,8 +228,7 @@
         "lvl_6.tmx",
         "lvl_0.tmx",
         "roadmap copy.tmx",
-        "menu_assets.tsx",
-        "toilets_objects.tsx"
+        "menu_assets.tsx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

@@ -15,6 +15,7 @@
  <tileset firstgid="91" name="outer" tilewidth="32" tileheight="32" tilecount="54" columns="9">
   <image source="../images/Background/outer.png" trans="060000" width="288" height="192"/>
  </tileset>
+ <tileset firstgid="145" source="walls.tsx"/>
  <layer id="1" name="Background" width="11" height="14">
   <data encoding="csv">
 47,47,47,47,47,47,47,47,47,47,47,
@@ -74,7 +75,7 @@
 0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,16,1610612751,1610612751,1610612751,2684354576,0,0,0,
+0,0,0,16,1610612751,2684354705,1610612751,2684354576,0,0,0,
 0,0,0,3221225487,0,0,0,15,0,0,0,
 0,0,0,3221225487,0,0,0,15,0,0,0,
 0,0,0,3221225487,0,0,0,15,0,0,0,

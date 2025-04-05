@@ -2,7 +2,7 @@
   "language": "English",
   "welcome_text_1": "Toilet",
   "welcome_text_2": "Guesser",
-  "register__title": "Create an account",
+  "register_title": "Create an account",
   "input_email": "Email",
   "input_password": "Password",
   "input_confirm_password": "Confirm password",
@@ -12,38 +12,9 @@
   "continue_with_google": "Continue with Google",
   "login_with_email": "Log in with email",
   "registered": "Already registered? Log in",
-  "register__error_email_empty": "Input the email",
-  "@register__error_email_empty": {
-    "type": "text"
-  },
-  "register__error_password_empty": "Input the password",
-  "@register__error_password_empty": {
-    "type": "text"
-  },
-  "register__error_passwords_mismatch": "Passwords do not match",
-  "@register__error_passwords_mismatch": {
-    "type": "text"
-  },
-  "register__error_email_invalid": "Invalid email",
-  "@register__error_email_invalid": {
-    "type": "text"
-  },
-  "register__error_password_length": "Password too short (min. 6 chars)",
-  "@register__error_password_length": {
-    "type": "text"
-  },
-  "register__error_username_empty": "Enter your username",
-  "@register__error_username_empty": {
-    "type": "text"
-  },
-  "login__title": "Login page",
-  "@login__title": {
-    "type": "text"
-  },
-  "login__login_with_email": "Login with email",
-  "@login__login_with_email": {
-    "type": "text"
-  },
+  "login_title": "Login page",
+  "register_guest_sign_up": "Sign up as a guest",
+  "successfully_logged_out": "Successfully logged out",
   "caught_error": "Error: {error}",
   "@caught_error": {
     "placeholders": {
@@ -52,20 +23,17 @@
       }
     }
   },
-  "login__error_invalid_credentials": "Invalid credentials",
-  "@login__error_invalid_credentials": {
-    "type": "text"
-  },
-  "register__error_email_already_registered": "Email already registered",
-  "@register__error_email_already_registered": {
-    "type": "text"
-  },
-  "profile__successfully_logged_out": "Successfully logged out",
-  "@profile__successfully_logged_out": {
-    "type": "text"
-  },
-  "register__guest_sign_up": "Sign up as a guest",
-  "@register__guest_sign_up": {
-    "type": "text"
-  }
+  "caught_error_invalid_credentials": "Invalid credentials",
+  "caught_error_email_already_registered": "Email already registered",
+  "caught_error_email_empty": "Input the email",
+  "caught_error_password_empty": "Input the password",
+  "caught_error_passwords_mismatch": "Passwords do not match",
+  "caught_error_email_invalid": "Invalid email",
+  "caught_error_password_length": "Password too short (min. 6 chars)",
+  "caught_error_username_empty": "Enter your username",
+  "caught_error_username_too_short": "Password is too short (min. 3 chars)",
+  "caught_error_username_too_long": "Password is too long  (max. 20 chars)",
+  "caught_error_username_invalid": "Invalid username",
+  "caught_error_new_username_same_as_current_username": "New username is same as the old one",
+  "caught_error_new_email_same_as_current_email": "New email is same as the old one"
 }

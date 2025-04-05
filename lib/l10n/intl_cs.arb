@@ -2,7 +2,7 @@
   "language": "Čeština",
   "welcome_text_1": "Toilet",
   "welcome_text_2": "Guesser",
-  "register__title": "Vytvořit účet",
+  "register_title": "Vytvořit účet",
   "input_email": "Email",
   "input_password": "Heslo",
   "input_confirm_password": "Potvrďte heslo",
@@ -12,53 +12,28 @@
   "continue_with_google": "Pokračovat s Googlem",
   "login_with_email": "Přihlásit přes email",
   "registered": "Máte již účet? Přihlásit se",
-  "register__error_email_empty": "Zadejte email",
-  "@register__error_email_empty": {
-    "type": "text"
+  "login_title": "Přihlášení",
+  "register_guest_sign_up": "Pokračovat jako host",
+  "successfully_logged_out": "Úspěšně jste se přihlásili",
+  "caught_error": "Error: {error}",
+  "@caught_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
   },
-  "register__error_password_empty": "Input the password",
-  "@register__error_password_empty": {
-    "type": "text"
-  },
-  "register__error_passwords_mismatch": "Passwords do not match",
-  "@register__error_passwords_mismatch": {
-    "type": "text"
-  },
-  "register__error_email_invalid": "Invalid email",
-  "@register__error_email_invalid": {
-    "type": "text"
-  },
-  "register__error_password_length": "Password too short (min. 6 chars)",
-  "@register__error_password_length": {
-    "type": "text"
-  },
-  "register__error_username_empty": "Enter your username",
-  "@register__error_username_empty": {
-    "type": "text"
-  },
-  "login__title": "Login page",
-  "@login__title": {
-    "type": "text"
-  },
-  "login__login_with_email": "Login with email",
-  "@login__login_with_email": {
-    "type": "text"
-  },
-  "login__caught_error": "Error: {error}",
-  "login__error_invalid_credentials": "Invalid credentials",
-  "@login__error_invalid_credentials": {
-    "type": "text"
-  },
-  "register__error_email_already_registered": "Email already registered",
-  "@register__error_email_already_registered": {
-    "type": "text"
-  },
-  "profile__successfully_logged_out": "Successfully logged out",
-  "@profile__successfully_logged_out": {
-    "type": "text"
-  },
-  "register__guest_sign_up": "Sign up as a guest",
-  "@register__guest_sign_up": {
-    "type": "text"
-  }
+  "caught_error_invalid_credentials": "Neplatné přihlašovací údaje",
+  "caught_error_email_already_registered": "Pod tímto emailem je již založený účet",
+  "caught_error_email_empty": "Vyplňte email",
+  "caught_error_password_empty": "Vyplňte heslo",
+  "caught_error_passwords_mismatch": "Hesla se neshodují",
+  "caught_error_email_invalid": "Neplatná emailová adresa",
+  "caught_error_password_length": "Heslo je moc krátké (min. 6 chars)",
+  "caught_error_username_empty": "Vyplňte jméno",
+  "caught_error_username_too_short": "Jméno je příliš krátké (min. 3 chars)",
+  "caught_error_username_too_long": "Jméno je příliš dlouhé (max. 20 chars)",
+  "caught_error_username_invalid": "Neplatné uživatelské jméno",
+  "caught_error_new_username_same_as_current_username": "Nové jméno je stejné jako staré",
+  "caught_error_new_email_same_as_current_email": "Nový email je stejný jako ten starý"
 }

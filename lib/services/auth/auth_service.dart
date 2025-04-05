@@ -30,6 +30,12 @@ class AuthService {
     return user?.email;
   }
 
+  // Get user name
+  String? getCurrentUserUsername() {
+    // TODO: Implement this method
+    return null;
+  }
+
   // Sign up as a guest
   Future<AuthResponse> signUpAsGuest() async {
     return await _supabase.auth.signInAnonymously();
