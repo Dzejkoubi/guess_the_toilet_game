@@ -10,17 +10,22 @@ import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
+import 'package:guess_the_toilet/services/providers/user_provider.dart';
 
 class GameLevel extends World with HasGameRef<GuessTheToilet> {
   final String levelName;
   final Player player;
+  final int levelNumber;
   final int timeLimit;
+  final UserProvider userProvider;
 
   double timeElapsed = 0;
 
   GameLevel({
     required this.levelName,
     required this.player,
+    required this.levelNumber,
+    required this.userProvider,
     this.timeLimit = 0,
   });
 
@@ -240,9 +245,25 @@ class GameLevel extends World with HasGameRef<GuessTheToilet> {
             );
             player.collisionBlocks.add(collisionLevelBlock);
             add(collisionLevelBlock);
+
+            // Get the level_number property from Tiled
+            final levelNumber = object.properties.first.value as int;
+
+            LevelState levelState;
+            if (levelNumber < userProvider.currentLevel) {
+              levelState = LevelState.completed;
+            } else if (levelNumber == userProvider.currentLevel) {
+              levelState = LevelState.incomplete;
+            } else {
+              levelState = LevelState.locked;
+            }
+            if (game.debugMode) {
+              print(
+                  'Creating level block $levelNumber with state: $levelState (current user level: ${userProvider.currentLevel})');
+            }
             final levelBlock = LevelBlock(
               position: Vector2(object.x, object.y),
-              levelState: LevelState.completed,
+              levelState: levelState,
             );
             player.levelBlocks.add(levelBlock);
             add(levelBlock);
@@ -252,34 +273,5 @@ class GameLevel extends World with HasGameRef<GuessTheToilet> {
     } else {
       print('Warning: No "Objects" layer found in the Tiled map');
     }
-  }
-
-  // Fallback level when error occurs
-  static GameLevel createFallbackLevel({required Player player}) {
-    // Create a minimal level when loading fails
-    final level = GameLevel(
-      player: player,
-      levelName: 'fallback',
-      timeLimit: 0,
-    );
-
-    // Add error message
-    final textComponent = TextComponent(
-      text: 'Error loading level.\nPress R to return to roadmap, or use menu.',
-      position: Vector2(10, 10),
-      textRenderer: TextPaint(
-        style: const TextStyle(
-          color: Colors.red,
-          fontSize: 16,
-        ),
-      ),
-    );
-    level.add(textComponent);
-
-    // Add player directly
-    player.position = Vector2(80, 128); // Center of screen
-    level.add(player);
-
-    return level;
   }
 }

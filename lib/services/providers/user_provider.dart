@@ -77,4 +77,17 @@ class UserProvider extends ChangeNotifier {
       return false;
     }
   }
+
+  // Get and save current level number
+  Future<int> getCurrentLevelNumber() async {
+    try {
+      _currentLevel = await _authService.getCurrentLevelNumber();
+      notifyListeners();
+      return _currentLevel;
+    } catch (e) {
+      _error = e.toString();
+      notifyListeners();
+      return -1; // Return -1 or some error value
+    }
+  }
 }

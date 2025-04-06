@@ -11,6 +11,8 @@ import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart'
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/time_indicator.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
+import 'package:guess_the_toilet/services/auth/auth_service.dart';
+import 'package:guess_the_toilet/services/providers/user_provider.dart';
 
 class GuessTheToilet extends FlameGame
     with KeyboardEvents, HasCollisionDetection {
@@ -21,6 +23,9 @@ class GuessTheToilet extends FlameGame
 
   @override
   Color backgroundColor() => Colors.white;
+
+  // Services
+  UserProvider _userProvider = UserProvider();
 
   // **Level switching variables**
 
@@ -46,6 +51,9 @@ class GuessTheToilet extends FlameGame
 
   @override
   Future<void> onLoad() async {
+    await _userProvider.getCurrentLevelNumber();
+    print('Current level number: ${_userProvider.currentLevel}');
+
     try {
       // Clear all overlays and play engine
       resumeEngine();
@@ -59,13 +67,17 @@ class GuessTheToilet extends FlameGame
       // Create a level(roadmap by default) and add it to the world
       try {
         level = GameLevel(
-            player: player, levelName: roadmapLevelName, timeLimit: 0);
+          player: player,
+          levelName: roadmapLevelName,
+          timeLimit: 0,
+          levelNumber: 0,
+          userProvider: _userProvider,
+        );
         add(level);
       } catch (e) {
         print('Failed to load roadmap: $e');
         // Create a simple fallback level
-        level = GameLevel.createFallbackLevel(player: player);
-        add(level);
+        rethrow;
       }
 
       cam = CameraComponent.withFixedResolution(
@@ -94,6 +106,10 @@ class GuessTheToilet extends FlameGame
     required int levelIndex,
     required bool isRoadmap,
   }) async {
+    // Get the maximum level number from the user provider
+    await _userProvider.getCurrentLevelNumber();
+    print('Current level number: ${_userProvider.currentLevel}');
+
     try {
       // Clear all overlays and play engine
       resumeEngine();
@@ -109,7 +125,12 @@ class GuessTheToilet extends FlameGame
 
       // Create new player and level
       player = Player();
-      level = GameLevel(levelName: levelName, player: player);
+      level = GameLevel(
+        levelName: levelName,
+        player: player,
+        levelNumber: levelIndex,
+        userProvider: _userProvider,
+      );
 
       // Add the level
       await add(level);

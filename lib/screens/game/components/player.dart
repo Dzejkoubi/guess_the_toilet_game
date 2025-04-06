@@ -16,6 +16,7 @@ import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_men
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
+import 'package:guess_the_toilet/services/providers/user_provider.dart';
 
 enum PlayerState {
   idleDown,
@@ -40,6 +41,8 @@ class Player extends SpriteAnimationGroupComponent
           size: Vector2.all(32),
           anchor: Anchor.topLeft,
         );
+
+  UserProvider _userProvider = UserProvider();
 
   @override
   Future<void> onLoad() async {
@@ -135,7 +138,6 @@ class Player extends SpriteAnimationGroupComponent
         }
 
         // Handle level selection
-        // Handle level selection
         final selectedLevelIndex =
             levelBlocks.indexWhere((levelBlock) => levelBlock.isSelected);
         // First check if any level block is selected
@@ -154,7 +156,7 @@ class Player extends SpriteAnimationGroupComponent
       }
 
       // Space for stoping the game
-      if (event.logicalKey == LogicalKeyboardKey) {
+      if (event.logicalKey == LogicalKeyboardKey.space) {
         // Check if player is in level
         if (!game.isPlayerOnRoadmap) {
           PauseButton.toggleGamePause(game);
@@ -387,6 +389,10 @@ class Player extends SpriteAnimationGroupComponent
       game.pauseEngine();
       if (game.debugMode) {
         print('Correct answer!');
+      }
+      // If player finishes his highest level, update the current level
+      if (_userProvider.currentLevel == game.currentLevelIndex) {
+        _userProvider.updateCurrentLevelNumber(_userProvider.currentLevel + 1);
       }
     } else {
       game.timerActive = false; // Stop timer
