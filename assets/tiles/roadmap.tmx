@@ -88,7 +88,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="1" name="Decoration" width="15" height="38" parallaxx="1">
+ <layer id="1" name="Decoration" width="15" height="38">
   <data encoding="csv">
 0,0,0,0,73,74,75,0,0,0,0,0,0,0,0,
 0,0,0,0,82,83,84,0,0,0,0,0,71,0,0,
@@ -135,16 +135,56 @@
   <object id="42" name="Wall" type="obstacle" x="320" y="96" width="32" height="1024"/>
   <object id="43" name="Wall" type="obstacle" x="160" y="96" width="160" height="32"/>
   <object id="44" name="Fence" type="obstacle" x="160" y="960" width="160" height="32"/>
-  <object id="45" name="Level" type="level_block" x="224" y="224" width="32" height="32"/>
-  <object id="46" name="Level" type="level_block" x="288" y="288" width="32" height="32"/>
-  <object id="47" name="Level" type="level_block" x="224" y="352" width="32" height="32"/>
-  <object id="48" name="Level" type="level_block" x="160" y="480" width="32" height="32"/>
-  <object id="49" name="Level" type="level_block" x="192" y="544" width="32" height="32"/>
-  <object id="50" name="Level" type="level_block" x="288" y="608" width="32" height="32"/>
-  <object id="51" name="Level" type="level_block" x="224" y="672" width="32" height="32"/>
-  <object id="52" name="Level" type="level_block" x="224" y="768" width="32" height="32"/>
-  <object id="53" name="Level" type="level_block" x="160" y="864" width="32" height="32"/>
-  <object id="54" name="Level" type="level_block" x="224" y="928" width="32" height="32"/>
+  <object id="45" name="Level" type="level_block" x="224" y="224" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="46" name="Level" type="level_block" x="288" y="288" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="47" name="Level" type="level_block" x="224" y="352" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="48" name="Level" type="level_block" x="160" y="480" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="49" name="Level" type="level_block" x="192" y="544" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="50" name="Level" type="level_block" x="288" y="608" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="6"/>
+   </properties>
+  </object>
+  <object id="51" name="Level" type="level_block" x="224" y="672" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="52" name="Level" type="level_block" x="224" y="768" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="8"/>
+   </properties>
+  </object>
+  <object id="53" name="Level" type="level_block" x="160" y="864" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="9"/>
+   </properties>
+  </object>
+  <object id="54" name="Level" type="level_block" x="224" y="928" width="32" height="32">
+   <properties>
+    <property name="level_number" type="int" value="10"/>
+   </properties>
+  </object>
   <object id="55" name="Wall" type="obstacle" x="256" y="800" width="64" height="32"/>
   <object id="56" name="Wall" type="obstacle" x="160" y="608" width="64" height="32"/>
   <object id="57" name="Wall" type="obstacle" x="256" y="416" width="64" height="32"/>

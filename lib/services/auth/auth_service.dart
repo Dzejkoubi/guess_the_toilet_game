@@ -106,8 +106,44 @@ class AuthService {
     }
   }
 
+  Future<void> resetPassword(String email) async {
+    await _supabase.auth.resetPasswordForEmail(email,
+        redirectTo: 'io.supabase.flutterquickstart://reset-callback/');
+  }
+
   // Sign up as a guest
   Future<AuthResponse> signUpAsGuest() async {
     return await _supabase.auth.signInAnonymously();
+  }
+
+  Future<int> getCurrentLevelNumber() async {
+    final userId = getCurrentUserId();
+    if (userId == null) {
+      throw Exception("User not logged in");
+    }
+    final response = await _supabase
+        .from('profiles')
+        .select('current_level')
+        .eq('id', userId)
+        .single();
+    return response['current_level'];
+  }
+
+  Future<int> updateCurrentLevelNumber(int newCurrentLevel) async {
+    final userId = getCurrentUserId();
+
+    if (userId == null) {
+      throw Exception("Cannot update username: User is not logged in");
+    }
+
+    try {
+      await _supabase
+          .from('profiles')
+          .update({'current_level': newCurrentLevel}).eq('id', userId);
+
+      return newCurrentLevel;
+    } catch (e) {
+      throw Exception("Failed to update new current level: ${e.toString()}");
+    }
   }
 }

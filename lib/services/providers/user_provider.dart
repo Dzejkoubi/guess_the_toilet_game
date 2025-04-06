@@ -6,12 +6,14 @@ class UserProvider extends ChangeNotifier {
 
   String _username = '';
   String _email = '';
+  int _currentLevel = 1;
   bool _isLoading = true;
   String? _error;
 
   // Getters
   String get username => _username;
   String get email => _email;
+  int get currentLevel => _currentLevel;
   bool get isLoading => _isLoading;
   String? get error => _error;
 
@@ -29,6 +31,7 @@ class UserProvider extends ChangeNotifier {
       // Get current email and username using auth_service
       _email = _authService.getCurrentUserEmail() ?? 'no email';
       _username = await _authService.getCurrentUsername();
+      _currentLevel = await _authService.getCurrentLevelNumber();
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -53,6 +56,19 @@ class UserProvider extends ChangeNotifier {
     try {
       _username = await _authService.updateUsername(newUsername);
       _error = null;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _error = e.toString();
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> updateCurrentLevelNumber(int newCurrentLevel) async {
+    try {
+      await _authService.updateCurrentLevelNumber(newCurrentLevel);
+      _currentLevel = newCurrentLevel;
       notifyListeners();
       return true;
     } catch (e) {
