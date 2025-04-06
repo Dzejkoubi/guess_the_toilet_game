@@ -105,6 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           } else {
             _userService.showValidationError(
                 context, S.of(context).caught_error(errorMessage));
+            print(e);
           }
         } else {
           _userService.showValidationError(
@@ -113,6 +114,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }
       return;
     }
+    // If the user is successfully registered, add the username to the profile database
+    try {
+      await authService.addUsernameToProfile(username);
+    }
+    // Catch any error
+    catch (e) {
+      if (mounted) {
+        _userService.showValidationError(
+            context, S.of(context).caught_error(e.toString()));
+      }
+      return;
+    }
+
     AutoRouter.of(context).popAndPush(ProfileRoute());
   }
 
@@ -151,6 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   hintText: S.of(context).input_email,
                 ),
                 autocorrect: false,
+                autofocus: true,
               ),
               TextField(
                 controller: _passwordController,

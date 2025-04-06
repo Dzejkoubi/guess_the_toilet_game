@@ -33,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     // get user email
     final currentEmail = authService.getCurrentUserEmail();
+    final currentId = authService.getCurrentUserId();
 
     return Scaffold(
       appBar: AppBar(
@@ -98,8 +99,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     : currentEmail.toString(),
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
-
-              // Display the user id
+              const SizedBox(height: 16),
+              // Display the user ID
+              Text(
+                currentId == null ? "No ID" : currentId.toString(),
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              // Display the user name
+              // FutureBuilder<String>(
+              //   future: authService.getUsername(),
+              //   builder: (context, snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.waiting) {
+              //       return CircularProgressIndicator();
+              //     } else if (snapshot.hasError) {
+              //       return Text("Error loading username");
+              //     } else if (snapshot.hasData) {
+              //       return Text(
+              //         snapshot.data!,
+              //         style: Theme.of(context).textTheme.bodyLarge,
+              //       );
+              //     } else {
+              //       return Text(
+              //         "No username found",
+              //         style: Theme.of(context).textTheme.bodyLarge,
+              //       );
+              //     }
+              //   },
+              // ),
             ],
           ),
         ),

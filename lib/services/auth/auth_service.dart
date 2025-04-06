@@ -1,7 +1,10 @@
+import 'package:guess_the_toilet/services/user_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
+
+  UserService _userService = UserService();
 
   // Sign in with email and password
   Future<AuthResponse> signInWithEmailPassword(
@@ -23,17 +26,45 @@ class AuthService {
   }
 
   // Get user email
-
   String? getCurrentUserEmail() {
     final session = _supabase.auth.currentSession;
     final user = session?.user;
     return user?.email;
   }
 
-  // Get user name
-  String? getCurrentUserUsername() {
-    // TODO: Implement this method
-    return null;
+  // Get user id
+  String? getCurrentUserId() {
+    final session = _supabase.auth.currentSession;
+    final user = session?.user;
+    return user?.id;
+  }
+
+  // Add username to user to profile database
+  Future<void> addUsernameToProfile(String username) async {
+    final userId = getCurrentUserId();
+    if (userId == null) {
+      throw Exception("User ID is null");
+    }
+
+    await await _supabase
+        .from('profiles')
+        .update({'username': username}).eq('id', userId);
+  }
+
+  // Get user name from profile database
+  Future<String> getUsername() async {
+    final userId = getCurrentUserId();
+    if (userId == null) {
+      throw Exception("User ID is null");
+    }
+
+    final response = await _supabase
+        .from('profiles')
+        .select('username')
+        .eq('id', userId)
+        .single();
+
+    return response['username'] ?? 'No username found';
   }
 
   // Sign up as a guest
