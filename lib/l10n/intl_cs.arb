@@ -35,5 +35,13 @@
   "caught_error_username_too_long": "Jméno je příliš dlouhé (max. 20 chars)",
   "caught_error_username_invalid": "Neplatné uživatelské jméno",
   "caught_error_new_username_same_as_current_username": "Nové jméno je stejné jako staré",
-  "caught_error_new_email_same_as_current_email": "Nový email je stejný jako ten starý"
+  "caught_error_new_email_same_as_current_email": "Nový email je stejný jako ten starý",
+  "notification_changed_email_successfully": "Potvrďte změnění ve starém mailu",
+  "@notification_changed_email_successfully": {
+    "type": "text"
+  },
+  "notification_changed_username_successfully": "Jméno úspěšně změněno",
+  "@notification_changed_username_successfully": {
+    "type": "text"
+  }
 }

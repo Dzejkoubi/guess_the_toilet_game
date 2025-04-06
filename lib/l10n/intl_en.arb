@@ -32,8 +32,16 @@
   "caught_error_password_length": "Password too short (min. 6 chars)",
   "caught_error_username_empty": "Enter your username",
   "caught_error_username_too_short": "Password is too short (min. 3 chars)",
-  "caught_error_username_too_long": "Password is too long  (max. 20 chars)",
+  "caught_error_username_too_long": "Password is too long (max. 20 chars)",
   "caught_error_username_invalid": "Invalid username",
   "caught_error_new_username_same_as_current_username": "New username is same as the old one",
-  "caught_error_new_email_same_as_current_email": "New email is same as the old one"
+  "caught_error_new_email_same_as_current_email": "New email is same as the old one",
+  "notification_changed_email_successfully": "Confirm the change in the old email",
+  "@notification_changed_email_successfully": {
+    "type": "text"
+  },
+  "notification_changed_username_successfully": "Username has been successfully changed",
+  "@notification_changed_username_successfully": {
+    "type": "text"
+  }
 }

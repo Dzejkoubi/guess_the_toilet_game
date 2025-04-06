@@ -89,7 +89,7 @@ class SEn extends S {
   String get caught_error_username_too_short => 'Password is too short (min. 3 chars)';
 
   @override
-  String get caught_error_username_too_long => 'Password is too long  (max. 20 chars)';
+  String get caught_error_username_too_long => 'Password is too long (max. 20 chars)';
 
   @override
   String get caught_error_username_invalid => 'Invalid username';
@@ -99,4 +99,10 @@ class SEn extends S {
 
   @override
   String get caught_error_new_email_same_as_current_email => 'New email is same as the old one';
+
+  @override
+  String get notification_changed_email_successfully => 'Confirm the change in the old email';
+
+  @override
+  String get notification_changed_username_successfully => 'Username has been successfully changed';
 }

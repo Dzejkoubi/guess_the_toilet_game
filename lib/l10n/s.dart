@@ -254,7 +254,7 @@ abstract class S {
   /// No description provided for @caught_error_username_too_long.
   ///
   /// In en, this message translates to:
-  /// **'Password is too long  (max. 20 chars)'**
+  /// **'Password is too long (max. 20 chars)'**
   String get caught_error_username_too_long;
 
   /// No description provided for @caught_error_username_invalid.
@@ -274,6 +274,18 @@ abstract class S {
   /// In en, this message translates to:
   /// **'New email is same as the old one'**
   String get caught_error_new_email_same_as_current_email;
+
+  /// No description provided for @notification_changed_email_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm the change in the old email'**
+  String get notification_changed_email_successfully;
+
+  /// No description provided for @notification_changed_username_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Username has been successfully changed'**
+  String get notification_changed_username_successfully;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

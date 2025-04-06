@@ -99,4 +99,10 @@ class SCs extends S {
 
   @override
   String get caught_error_new_email_same_as_current_email => 'Nový email je stejný jako ten starý';
+
+  @override
+  String get notification_changed_email_successfully => 'Potvrďte změnění ve starém mailu';
+
+  @override
+  String get notification_changed_username_successfully => 'Jméno úspěšně změněno';
 }

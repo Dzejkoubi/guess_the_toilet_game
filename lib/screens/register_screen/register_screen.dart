@@ -89,7 +89,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     // If credentials are correct try:
     try {
-      await authService.signUpWithEmailPassword(email, password);
+      await authService.signUpWithEmailPassword(email, password,
+          username: username);
     }
     // Catch any error
     catch (e) {
@@ -111,18 +112,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _userService.showValidationError(
               context, S.of(context).caught_error(e.toString()));
         }
-      }
-      return;
-    }
-    // If the user is successfully registered, add the username to the profile database
-    try {
-      await authService.addUsernameToProfile(username);
-    }
-    // Catch any error
-    catch (e) {
-      if (mounted) {
-        _userService.showValidationError(
-            context, S.of(context).caught_error(e.toString()));
       }
       return;
     }
