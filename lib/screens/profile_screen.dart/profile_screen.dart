@@ -270,7 +270,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             icon: Icon(Icons.edit))
                       ],
                     ),
-                    // Replace the broken TextButton at the end
+                    const SizedBox(height: 16),
+                    // Show current user level
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                          "Level: ${userProvider.currentLevel}",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        )
+                      ],
+                    )
                   ],
                 ),
               ]),

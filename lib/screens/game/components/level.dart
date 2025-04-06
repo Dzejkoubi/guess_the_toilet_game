@@ -48,21 +48,10 @@ class GameLevel extends World with HasGameRef<GuessTheToilet> {
       _extractSpawnpointFromMap();
 
       return super.onLoad();
-    } catch (e, stackTrace) {
+    } catch (e) {
       print('Error loading map: $e');
-      print('Stack trace: $stackTrace');
-      // Create a fallback level or show error message
-      final textComponent = TextComponent(
-        text: 'Error loading level: $levelName',
-        position: Vector2(10, 10),
-        textRenderer: TextPaint(
-          style: const TextStyle(
-            color: Colors.red,
-            fontSize: 16,
-          ),
-        ),
-      );
-      add(textComponent);
+      // Handle the error, e.g., show a message to the user
+      game.returnToRoadmap;
     }
   }
 

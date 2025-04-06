@@ -4,8 +4,8 @@ import 'package:guess_the_toilet/services/auth/auth_service.dart';
 class UserProvider extends ChangeNotifier {
   final AuthService _authService = AuthService();
 
-  String _username = '';
-  String _email = '';
+  String _username = 'anonymous';
+  String _email = 'no email';
   int _currentLevel = 1;
   bool _isLoading = true;
   String? _error;

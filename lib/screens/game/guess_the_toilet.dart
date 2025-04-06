@@ -76,7 +76,6 @@ class GuessTheToilet extends FlameGame
         add(level);
       } catch (e) {
         print('Failed to load roadmap: $e');
-        // Create a simple fallback level
         rethrow;
       }
 
