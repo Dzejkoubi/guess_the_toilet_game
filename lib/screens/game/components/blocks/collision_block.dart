@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:guess_the_toilet/screens/game/components/player.dart';
 
 class CollisionBlock extends PositionComponent {
   CollisionBlock({

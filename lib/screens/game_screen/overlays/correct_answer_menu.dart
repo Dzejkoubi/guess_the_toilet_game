@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
-import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
 
 class CorrectAnswerMenu extends StatelessWidget {

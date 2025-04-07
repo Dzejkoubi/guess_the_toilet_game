@@ -86,10 +86,8 @@ class ToiletBlock extends PositionComponent
 
   @override
   void render(Canvas canvas) {
-    final showAnswers = false;
-
     // When debugging see which toilets are correct and which ones wrong
-    if (showAnswers) {
+    if (game.debugMode) {
       final paint = Paint()..style = PaintingStyle.fill;
       if (answerState == ToiletAnswerState.correct) {
         paint.color = Colors.green.withOpacity(0.5);

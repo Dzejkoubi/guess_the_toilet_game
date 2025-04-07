@@ -286,6 +286,24 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Username has been successfully changed'**
   String get notification_changed_username_successfully;
+
+  /// No description provided for @game__wrong_toilet.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong Toilet'**
+  String get game__wrong_toilet;
+
+  /// No description provided for @game__time_s_up.
+  ///
+  /// In en, this message translates to:
+  /// **'Time\\\'s up!'**
+  String get game__time_s_up;
+
+  /// No description provided for @leader__leaderboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard'**
+  String get leader__leaderboard;
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

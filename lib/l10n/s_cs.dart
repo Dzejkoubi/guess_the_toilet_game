@@ -105,4 +105,13 @@ class SCs extends S {
 
   @override
   String get notification_changed_username_successfully => 'Jméno úspěšně změněno';
+
+  @override
+  String get game__wrong_toilet => 'Wrong Toilet';
+
+  @override
+  String get game__time_s_up => 'Time\\\'s up!';
+
+  @override
+  String get leader__leaderboard => 'Leaderboard';
 }

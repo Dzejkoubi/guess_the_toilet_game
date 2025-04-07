@@ -1,10 +1,7 @@
-import 'package:guess_the_toilet/services/user_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
   final SupabaseClient _supabase = Supabase.instance.client;
-
-  UserService _userService = UserService();
 
   // Sign in with email and password
   Future<AuthResponse> signInWithEmailPassword(

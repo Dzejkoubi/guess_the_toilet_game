@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:guess_the_toilet/app/router/router.gr.dart';
-import 'package:guess_the_toilet/services/auth/auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @RoutePage()
@@ -14,7 +12,6 @@ class LeaderBoardScreen extends StatefulWidget {
 
 class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   late Future<List<Map<String, dynamic>>> _data;
-  final _authService = AuthService();
 
   @override
   void initState() {
@@ -58,7 +55,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Leaderboard'),
+        title: const Text('l10n.leader__leaderboard'),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _data,

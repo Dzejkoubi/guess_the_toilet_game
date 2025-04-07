@@ -1,19 +1,15 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/level_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/toilet_block.dart';
-import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
-import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
 import 'package:guess_the_toilet/services/providers/user_provider.dart';

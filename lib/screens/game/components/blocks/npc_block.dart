@@ -48,9 +48,6 @@ class NpcBlock extends PositionComponent with CollisionCallbacks {
       );
       add(hitbox);
     }
-    void resetCollision() {
-      hasCollided = false;
-    }
 
     return super.onLoad();
   }

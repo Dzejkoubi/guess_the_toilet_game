@@ -45,7 +45,7 @@ class WrongAnswerMenu extends StatelessWidget {
                         text!,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 24,
+                          fontSize: 48,
                           fontFamily: 'dpcomic',
                         ),
                       ),

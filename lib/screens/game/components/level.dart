@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:flutter/material.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/collision_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/level_block.dart';
 import 'package:guess_the_toilet/screens/game/components/blocks/npc_block.dart';

@@ -105,4 +105,13 @@ class SEn extends S {
 
   @override
   String get notification_changed_username_successfully => 'Username has been successfully changed';
+
+  @override
+  String get game__wrong_toilet => 'Wrong Toilet';
+
+  @override
+  String get game__time_s_up => 'Time\\\'s up!';
+
+  @override
+  String get leader__leaderboard => 'Leaderboard';
 }

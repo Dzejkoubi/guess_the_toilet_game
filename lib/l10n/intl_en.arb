@@ -43,5 +43,17 @@
   "notification_changed_username_successfully": "Username has been successfully changed",
   "@notification_changed_username_successfully": {
     "type": "text"
+  },
+  "game__wrong_toilet": "Wrong Toilet",
+  "@game__wrong_toilet": {
+    "type": "text"
+  },
+  "game__time_s_up": "Time\\'s up!",
+  "@game__time_s_up": {
+    "type": "text"
+  },
+  "leader__leaderboard": "Leaderboard",
+  "@leader__leaderboard": {
+    "type": "text"
   }
 }
