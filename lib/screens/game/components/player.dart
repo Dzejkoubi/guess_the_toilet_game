@@ -423,63 +423,68 @@ class Player extends SpriteAnimationGroupComponent
 
   // Handle joystick input
   void handleJoystickInput() {
-    if (game.joystick == null ||
-        game.joystick!.direction == JoystickDirection.idle) {
-      // Clear any joystick-simulated keys when joystick is idle
-      _keysPressed.removeAll([
-        LogicalKeyboardKey.keyW,
-        LogicalKeyboardKey.keyA,
-        LogicalKeyboardKey.keyS,
-        LogicalKeyboardKey.keyD,
-      ]);
+    // If no joystick, exit early
+    if (game.joystick == null) {
       return;
     }
 
-    // First remove any previously simulated keys
-    _keysPressed.removeAll([
-      LogicalKeyboardKey.keyW,
-      LogicalKeyboardKey.keyA,
-      LogicalKeyboardKey.keyS,
-      LogicalKeyboardKey.keyD,
-    ]);
-
-    // Add keys based on joystick direction
-    if (game.joystick!.relativeDelta.x > 0.5) {
-      _keysPressed.add(LogicalKeyboardKey.keyD); // Right
-    } else if (game.joystick!.relativeDelta.x < -0.5) {
-      _keysPressed.add(LogicalKeyboardKey.keyA); // Left
+    // Reset movement when joystick is idle (auto-return)
+    if (game.joystick!.direction == JoystickDirection.idle) {
+      movement = Vector2.zero();
+      _updatePlayerState(); // This will switch to idle animation
+      return;
     }
 
-    if (game.joystick!.relativeDelta.y > 0.5) {
-      _keysPressed.add(LogicalKeyboardKey.keyS); // Down
-    } else if (game.joystick!.relativeDelta.y < -0.5) {
-      _keysPressed.add(LogicalKeyboardKey.keyW); // Up
+    // Set movement vector based on joystick direction
+    switch (game.joystick!.direction) {
+      case JoystickDirection.up:
+        movement = Vector2(0, -1);
+        playerDirection = PlayerState.walkUp;
+        current = PlayerState.walkUp;
+        break;
+      case JoystickDirection.down:
+        movement = Vector2(0, 1);
+        playerDirection = PlayerState.walkDown;
+        current = PlayerState.walkDown;
+        break;
+      case JoystickDirection.left:
+        movement = Vector2(-1, 0);
+        playerDirection = PlayerState.walkLeft;
+        current = PlayerState.walkLeft;
+        break;
+      case JoystickDirection.right:
+        movement = Vector2(1, 0);
+        playerDirection = PlayerState.walkRight;
+        current = PlayerState.walkRight;
+        break;
+      // Handle diagonal directions
+      case JoystickDirection.upLeft:
+        movement = Vector2(-1, -1);
+        playerDirection = PlayerState.walkLeft;
+        current = PlayerState.walkLeft;
+        break;
+      case JoystickDirection.upRight:
+        movement = Vector2(1, -1);
+        playerDirection = PlayerState.walkRight;
+        current = PlayerState.walkRight;
+        break;
+      case JoystickDirection.downLeft:
+        movement = Vector2(-1, 1);
+        playerDirection = PlayerState.walkLeft;
+        current = PlayerState.walkLeft;
+        break;
+      case JoystickDirection.downRight:
+        movement = Vector2(1, 1);
+        playerDirection = PlayerState.walkRight;
+        current = PlayerState.walkRight;
+        break;
+      default:
+        movement = Vector2.zero();
+        _updatePlayerState();
+        break;
     }
 
-    // Apply movement based on simulated key presses
-    movement = Vector2.zero();
-
-    if (_keysPressed.contains(LogicalKeyboardKey.keyW)) {
-      movement.y = -1;
-      playerDirection = PlayerState.walkUp;
-      current = PlayerState.walkUp;
-    }
-    if (_keysPressed.contains(LogicalKeyboardKey.keyS)) {
-      movement.y = 1;
-      playerDirection = PlayerState.walkDown;
-      current = PlayerState.walkDown;
-    }
-    if (_keysPressed.contains(LogicalKeyboardKey.keyA)) {
-      movement.x = -1;
-      playerDirection = PlayerState.walkLeft;
-      current = PlayerState.walkLeft;
-    }
-    if (_keysPressed.contains(LogicalKeyboardKey.keyD)) {
-      movement.x = 1;
-      playerDirection = PlayerState.walkRight;
-      current = PlayerState.walkRight;
-    }
-
+    // Normalize the movement to maintain consistent speed in all directions
     if (movement.length > 0) {
       movement = movement.normalized();
     }

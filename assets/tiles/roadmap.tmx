@@ -134,7 +134,7 @@
   <object id="41" name="Wall" type="obstacle" x="128" y="96" width="32" height="1024"/>
   <object id="42" name="Wall" type="obstacle" x="320" y="96" width="32" height="1024"/>
   <object id="43" name="Wall" type="obstacle" x="160" y="96" width="160" height="32"/>
-  <object id="44" name="Fence" type="obstacle" x="160" y="967.208" width="160" height="24.7919"/>
+  <object id="44" name="Fence" type="obstacle" x="160" y="960" width="160" height="32"/>
   <object id="45" name="Level" type="level_block" x="224" y="224" width="32" height="32">
    <properties>
     <property name="level_number" type="int" value="1"/>
@@ -196,7 +196,6 @@
   <object id="68" name="Sink" type="obstacle" x="292.011" y="383.879" width="25.2139" height="32"/>
   <object id="72" name="Sink" type="obstacle" x="163.165" y="639.705" width="25.2139" height="32"/>
   <object id="74" name="Sink" type="obstacle" x="290.893" y="832" width="25.2139" height="32"/>
-  <object id="77" x="416" y="352"/>
  </objectgroup>
  <objectgroup id="4" name="Spawnpoint">
   <object id="61" name="Spawnpoint" type="spawnpoint" x="224" y="160" width="32" height="32"/>

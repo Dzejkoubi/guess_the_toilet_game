@@ -162,11 +162,11 @@
                 3,
                 2
             ],
-            "scale": 1,
+            "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 107.5,
-                "y": 559.5
+                "x": 297.66666666666663,
+                "y": 380.3333333333333
             }
         },
         "lvl_9.tmx": {
@@ -220,11 +220,11 @@
                 3,
                 4
             ],
-            "scale": 1.4325,
-            "selectedLayer": 3,
+            "scale": 1.879,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 248.8656195462478,
-                "y": 949.738219895288
+                "x": 220.59606173496542,
+                "y": 213.14529004789782
             }
         },
         "roadmap.tmx#roadmap_background": {

@@ -38,6 +38,9 @@ class GameLevel extends World with HasGameRef<GuessTheToilet> {
       // Load the level with error handling
       level = await TiledComponent.load(mapPath, Vector2.all(32));
 
+      // Set a very low priority for the map so other elements render on top
+      level.priority = 0;
+
       // Add the level to the game
       await add(level);
 

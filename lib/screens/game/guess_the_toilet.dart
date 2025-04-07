@@ -65,11 +65,7 @@ class GuessTheToilet extends FlameGame
       // Clear all overlays and play engine
       resumeEngine();
       overlays.clear();
-      // Load all images
-      await images.loadAll([
-        'HUD/Joystick.png',
-        'HUD/Knob.png',
-      ]);
+
       await images.loadAllImages();
 
       // Initialize class fields directly
@@ -336,21 +332,20 @@ class GuessTheToilet extends FlameGame
       joystick = JoystickComponent(
         knob: SpriteComponent(
           sprite: Sprite(images.fromCache('HUD/Knob.png')),
-          size: Vector2.all(160),
+          size: Vector2.all(200),
         ),
         background: SpriteComponent(
           sprite: Sprite(images.fromCache('HUD/Joystick.png')),
-          size: Vector2.all(320),
+          size: Vector2.all(400),
         ),
         margin: const EdgeInsets.only(left: 80, bottom: 80),
-        priority: 10,
+        priority:
+            1, // Extremely high priority to ensure it appears above all map elements
       );
 
       add(joystick!);
     } catch (e) {
-      if (debugMode) {
-        print('Error loading joystick: $e');
-      }
+      print('Error loading joystick: $e');
     }
   }
 
