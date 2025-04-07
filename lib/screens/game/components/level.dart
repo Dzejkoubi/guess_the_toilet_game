@@ -50,8 +50,17 @@ class GameLevel extends World with HasGameRef<GuessTheToilet> {
       return super.onLoad();
     } catch (e) {
       print('Error loading map: $e');
-      // Handle the error, e.g., show a message to the user
-      game.returnToRoadmap;
+
+      // For non-roadmap levels, return to roadmap immediately
+      if (levelName != 'roadmap') {
+        game.returnToRoadmap();
+      } else {
+        // If the roadmap itself fails to load, we have a serious problem
+        print('CRITICAL: Failed to load roadmap!');
+      }
+
+      // Important: still return to prevent any additional processing
+      return;
     }
   }
 

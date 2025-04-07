@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_camera_tools/flame_camera_tools.dart';
@@ -7,25 +8,28 @@ import 'package:flutter/services.dart';
 import 'package:guess_the_toilet/screens/game/components/level.dart';
 import 'package:guess_the_toilet/screens/game/components/player.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/e_action_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/time_indicator.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
-import 'package:guess_the_toilet/services/auth/auth_service.dart';
 import 'package:guess_the_toilet/services/providers/user_provider.dart';
 
 class GuessTheToilet extends FlameGame
-    with KeyboardEvents, HasCollisionDetection {
+    with KeyboardEvents, HasCollisionDetection, DragCallbacks {
   // Declare class fields
   late Player player;
   late CameraComponent cam;
   late GameLevel level;
 
+  // Add joystick field
+  JoystickComponent? joystick;
+
   @override
   Color backgroundColor() => Colors.white;
 
   // Services
-  UserProvider _userProvider = UserProvider();
+  final UserProvider _userProvider = UserProvider();
 
   // **Level switching variables**
 
@@ -45,6 +49,7 @@ class GuessTheToilet extends FlameGame
   final wrongOverlayIdentifier = WrongAnswerMenu.wrongAnswerId;
   final timeIsUpOverlayIdentifier =
       WrongAnswerMenu.timeIsUpId; // Time is up overlay
+  final eabOverlayIdentifier = EActionButton.id;
 
   // Getter to if the game is paused
   bool get isGamePaused => overlays.isActive(pauseOverlayIdentifier);
@@ -52,13 +57,19 @@ class GuessTheToilet extends FlameGame
   @override
   Future<void> onLoad() async {
     await _userProvider.getCurrentLevelNumber();
-    print('Current level number: ${_userProvider.currentLevel}');
+    if (debugMode) {
+      print('Current level number: ${_userProvider.currentLevel}');
+    }
 
     try {
       // Clear all overlays and play engine
       resumeEngine();
       overlays.clear();
       // Load all images
+      await images.loadAll([
+        'HUD/Joystick.png',
+        'HUD/Knob.png',
+      ]);
       await images.loadAllImages();
 
       // Initialize class fields directly
@@ -93,7 +104,12 @@ class GuessTheToilet extends FlameGame
       print('Error in onLoad: $e');
       rethrow;
     }
-    debugMode = true;
+    debugMode = false;
+
+    // Add the E button to the level
+    overlays.add(eabOverlayIdentifier);
+
+    addJoystick();
 
     return super.onLoad();
   }
@@ -107,7 +123,9 @@ class GuessTheToilet extends FlameGame
   }) async {
     // Get the maximum level number from the user provider
     await _userProvider.getCurrentLevelNumber();
-    print('Current level number: ${_userProvider.currentLevel}');
+    if (debugMode) {
+      print('Current level number: ${_userProvider.currentLevel}');
+    }
 
     try {
       // Clear all overlays and play engine
@@ -163,6 +181,9 @@ class GuessTheToilet extends FlameGame
       if (!isRoadmap) {
         overlays.add(PauseButton.id);
       }
+
+      // Always add the E action button regardless of level type
+      overlays.add(eabOverlayIdentifier);
     } catch (e) {
       if (debugMode) {
         print('Error loading level "$levelName": $e');
@@ -170,7 +191,7 @@ class GuessTheToilet extends FlameGame
     }
   }
 
-  // Simplif
+  // Simplify the openLevel method
   void openLevel({int levelNumber = 0}) async {
     if (debugMode) {
       print('Opening level $levelNumber');
@@ -305,6 +326,30 @@ class GuessTheToilet extends FlameGame
       if (overlays.isActive(TimeIndicator.id)) {
         overlays.remove(TimeIndicator.id);
         overlays.add(TimeIndicator.id);
+      }
+    }
+  }
+
+  // Joystick controls
+  void addJoystick() {
+    try {
+      joystick = JoystickComponent(
+        knob: SpriteComponent(
+          sprite: Sprite(images.fromCache('HUD/Knob.png')),
+          size: Vector2.all(160),
+        ),
+        background: SpriteComponent(
+          sprite: Sprite(images.fromCache('HUD/Joystick.png')),
+          size: Vector2.all(320),
+        ),
+        margin: const EdgeInsets.only(left: 80, bottom: 80),
+        priority: 10,
+      );
+
+      add(joystick!);
+    } catch (e) {
+      if (debugMode) {
+        print('Error loading joystick: $e');
       }
     }
   }

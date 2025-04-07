@@ -97,11 +97,11 @@ class _TimeIndicatorState extends State<TimeIndicator>
                     child: Text(
                       '${widget.timeRemaining.ceil()} s',
                       style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        shadows: [Shadow(color: Colors.black, blurRadius: 2)],
-                      ),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          shadows: [Shadow(color: Colors.black, blurRadius: 2)],
+                          fontFamily: 'dpcomic'),
                     ),
                   ),
                 ],

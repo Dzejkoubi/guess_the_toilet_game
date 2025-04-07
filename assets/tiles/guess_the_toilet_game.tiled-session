@@ -66,6 +66,17 @@
             "scaleInDock": 1.5,
             "scaleInEditor": 1
         },
+        "lvl_10.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 495.5,
+                "y": 578.5
+            }
+        },
         "lvl_2.tmx": {
             "expandedObjectLayers": [
                 6,
@@ -86,7 +97,7 @@
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 188.25,
+                "x": 240.75,
                 "y": 287.25
             }
         },
@@ -127,11 +138,47 @@
                 6,
                 2
             ],
-            "scale": 1.5,
+            "scale": 1.5157,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 313.05667348419865,
+                "y": 329.5507026456423
+            }
+        },
+        "lvl_7.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.3092,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 305,
-                "y": 286.3333333333333
+                "x": 224.94653223342502,
+                "y": 389.9327833791629
+            }
+        },
+        "lvl_8.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 107.5,
+                "y": 559.5
+            }
+        },
+        "lvl_9.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5647,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 252.12500798875183,
+                "y": 508.4041669329584
             }
         },
         "menu_assets.tsx": {
@@ -170,13 +217,14 @@
         },
         "roadmap.tmx": {
             "expandedObjectLayers": [
-                3
+                3,
+                4
             ],
-            "scale": 2.11,
+            "scale": 1.4325,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 156.39810426540285,
-                "y": 292.41706161137444
+                "x": 248.8656195462478,
+                "y": 949.738219895288
             }
         },
         "roadmap.tmx#roadmap_background": {
@@ -203,9 +251,9 @@
     "last.externalTilesetPath": "/Users/jakubkraus/development/guess_the_toilet/assets/tiles",
     "last.imagePath": "/Users/jakubkraus/development/guess_the_toilet/assets/images/Menu",
     "map.fixedSize": true,
-    "map.height": 22,
+    "map.height": 24,
     "map.lastUsedFormat": "tmx",
-    "map.width": 18,
+    "map.width": 20,
     "openFiles": [
         "lvl_1.tmx",
         "lvl_2.tmx",
@@ -218,6 +266,8 @@
     "project": "guess_the_toilet_game.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "lvl_10.tmx",
+        "lvl_9.tmx",
         "lvl_5 copy.tmx",
         "lvl_1.tmx",
         "lvl_2.tmx",
@@ -227,9 +277,7 @@
         "roadmap_assets.tsx",
         "lvl_5.tmx",
         "lvl_6.tmx",
-        "lvl_0.tmx",
-        "roadmap copy.tmx",
-        "menu_assets.tsx"
+        "lvl_0.tmx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

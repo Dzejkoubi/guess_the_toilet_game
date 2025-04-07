@@ -154,14 +154,6 @@ class Player extends SpriteAnimationGroupComponent
           }
         }
       }
-
-      // Space for stoping the game
-      if (event.logicalKey == LogicalKeyboardKey.space) {
-        // Check if player is in level
-        if (!game.isPlayerOnRoadmap) {
-          PauseButton.toggleGamePause(game);
-        }
-      }
     }
 
     // Resets movement direction vector and pressed keys so they can be set again
@@ -362,8 +354,10 @@ class Player extends SpriteAnimationGroupComponent
         }
       }
       other.select();
-      print(
-          'Player collided with level block at  ${other.position.x},\n Y: ${other.position.y}');
+      if (game.debugMode) {
+        print(
+            'Player collided with level block at  ${other.position.x},\n Y: ${other.position.y}');
+      }
     }
     super.onCollisionStart(intersectionPoints, other);
   }
@@ -427,9 +421,76 @@ class Player extends SpriteAnimationGroupComponent
     });
   }
 
+  // Handle joystick input
+  void handleJoystickInput() {
+    if (game.joystick == null ||
+        game.joystick!.direction == JoystickDirection.idle) {
+      // Clear any joystick-simulated keys when joystick is idle
+      _keysPressed.removeAll([
+        LogicalKeyboardKey.keyW,
+        LogicalKeyboardKey.keyA,
+        LogicalKeyboardKey.keyS,
+        LogicalKeyboardKey.keyD,
+      ]);
+      return;
+    }
+
+    // First remove any previously simulated keys
+    _keysPressed.removeAll([
+      LogicalKeyboardKey.keyW,
+      LogicalKeyboardKey.keyA,
+      LogicalKeyboardKey.keyS,
+      LogicalKeyboardKey.keyD,
+    ]);
+
+    // Add keys based on joystick direction
+    if (game.joystick!.relativeDelta.x > 0.5) {
+      _keysPressed.add(LogicalKeyboardKey.keyD); // Right
+    } else if (game.joystick!.relativeDelta.x < -0.5) {
+      _keysPressed.add(LogicalKeyboardKey.keyA); // Left
+    }
+
+    if (game.joystick!.relativeDelta.y > 0.5) {
+      _keysPressed.add(LogicalKeyboardKey.keyS); // Down
+    } else if (game.joystick!.relativeDelta.y < -0.5) {
+      _keysPressed.add(LogicalKeyboardKey.keyW); // Up
+    }
+
+    // Apply movement based on simulated key presses
+    movement = Vector2.zero();
+
+    if (_keysPressed.contains(LogicalKeyboardKey.keyW)) {
+      movement.y = -1;
+      playerDirection = PlayerState.walkUp;
+      current = PlayerState.walkUp;
+    }
+    if (_keysPressed.contains(LogicalKeyboardKey.keyS)) {
+      movement.y = 1;
+      playerDirection = PlayerState.walkDown;
+      current = PlayerState.walkDown;
+    }
+    if (_keysPressed.contains(LogicalKeyboardKey.keyA)) {
+      movement.x = -1;
+      playerDirection = PlayerState.walkLeft;
+      current = PlayerState.walkLeft;
+    }
+    if (_keysPressed.contains(LogicalKeyboardKey.keyD)) {
+      movement.x = 1;
+      playerDirection = PlayerState.walkRight;
+      current = PlayerState.walkRight;
+    }
+
+    if (movement.length > 0) {
+      movement = movement.normalized();
+    }
+  }
+
   // Update function
   @override
   void update(double dt) {
+    // Handle joystick input if available
+    handleJoystickInput();
+
     // When player moves correct the movement with these functions
     if (movement.length > 0) {
       // Try horizontal movement first

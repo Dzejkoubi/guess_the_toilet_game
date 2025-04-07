@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flame/game.dart' show GameWidget;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:guess_the_toilet/app/constants/game_constants.dart';
@@ -8,6 +7,7 @@ import 'package:guess_the_toilet/app/constants/style_constants.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
+import 'package:guess_the_toilet/screens/game_screen/overlays/e_action_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/time_indicator.dart';
@@ -115,6 +115,8 @@ class _GameWidgetWrapState extends State<GameWidgetWrap> {
               timeRemaining: gameRef.time,
               gameRef: gameRef,
             ),
+        EActionButton.id: (BuildContext context, GuessTheToilet gameRef) =>
+            EActionButton(game: gameRef),
       },
     );
   }

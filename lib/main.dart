@@ -20,8 +20,8 @@ Future<void> main() async {
   );
 
   // Flame setup
-  Flame.device.fullScreen();
-  Flame.device.setPortrait();
+  await Flame.device.fullScreen();
+  await Flame.device.setPortrait();
   runApp(MyApp());
 }
 
