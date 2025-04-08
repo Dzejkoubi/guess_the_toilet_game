@@ -393,7 +393,7 @@ abstract class S {
   ///
   /// In en, this message translates to:
   /// **'Level: {level}'**
-  String profile__current_level(String level);
+  String profile__current_level(int level);
 
   /// No description provided for @leaderboard__refresh_button.
   ///

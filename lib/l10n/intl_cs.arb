@@ -112,7 +112,7 @@
   "@profile__current_level": {
     "placeholders": {
       "level": {
-        "type": "String"
+        "type": "int"
       }
     }
   },

@@ -297,7 +297,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: <Widget>[
                         Text(
                           S.of(context).profile__current_level(
-                              userProvider.currentLevel.toString()),
+                              userProvider.currentLevel),
                           style: Theme.of(context).textTheme.bodyLarge,
                         )
                       ],

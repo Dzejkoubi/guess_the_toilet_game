@@ -160,7 +160,7 @@ class SEn extends S {
   }
 
   @override
-  String profile__current_level(String level) {
+  String profile__current_level(int level) {
     return 'Level: $level';
   }
 

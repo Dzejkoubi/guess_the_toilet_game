@@ -94,7 +94,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                   title:
                       Text(user['username'] ?? S.of(context).leader__unknown),
                   subtitle: Text(
-                      '${S.of(context).profile__current_level}: ${user['current_level'] ?? 0}'),
+                    S
+                        .of(context)
+                        .profile__current_level(user['current_level'] ?? 0),
+                  ),
                 );
               },
             );
