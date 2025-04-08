@@ -47,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (context, userProvider, child) {
         if (userProvider.isLoading) {
           return Scaffold(
-            appBar: AppBar(title: Text("Profile")),
+            appBar: AppBar(title: Text(S.of(context).profile__profile)),
             body: Center(child: CircularProgressIndicator()),
           );
         }
@@ -59,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           //   print(text.toString());
           // }),
           appBar: AppBar(
-            title: Text("Profile"),
+            title: Text(S.of(context).profile__profile),
             leading: IconButton(
               onPressed: () {
                 AutoRouter.of(context).navigate(
@@ -77,31 +77,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text(
-                          "Confirm Logout",
+                          S.of(context).profile__confirm_logout,
                         ),
-                        content: Text("Do you really want to log out?"),
+                        content: Text(S.of(context).profile__confirm_logout),
                         actions: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog
-                                },
-                                child: Text("Cancel"),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  logout();
-                                  Navigator.of(context)
-                                      .pop(); // Close the dialog
-                                  AutoRouter.of(context).navigate(AuthGate());
-                                },
-                                child: Text("Logout"),
-                              ),
-                            ],
-                          ),
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                  child: Text(
+                                    S.of(context).profile__cancel_logout,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    logout();
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                    AutoRouter.of(context).navigate(AuthGate());
+                                  },
+                                  child: Text(
+                                    S.of(context).profile__logout,
+                                  ),
+                                ),
+                              ]),
                         ],
                       );
                     },
@@ -121,7 +124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: <Widget>[
                     // Display the user email from provider
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           userProvider.email,
@@ -133,7 +136,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text("Change Email"),
+                                  title: Text(
+                                    S.of(context).profile__change_email,
+                                  ),
                                   content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
@@ -141,7 +146,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         controller: _changeEmailController
                                           ..text = userProvider.email,
                                         decoration: InputDecoration(
-                                          hintText: "Enter new email",
+                                          hintText: S
+                                              .of(context)
+                                              .profile__enter_new_email,
                                         ),
                                       ),
                                       SizedBox(height: 16),
@@ -171,7 +178,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           }
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text("Change"),
+                                        child: Text(
+                                          S.of(context).profile__change_email,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -180,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text("Close"),
+                                      child: Text(S.of(context).profile__close),
                                     ),
                                   ],
                                 );
@@ -194,10 +203,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 16),
                     // Display the username from provider
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          "Username: ${userProvider.username}",
+                          S
+                              .of(context)
+                              .profile__username(userProvider.username),
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         IconButton(
@@ -206,7 +217,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
-                                      title: Text("Change username"),
+                                      title: Text(
+                                        S.of(context).profile__change_username,
+                                      ),
                                       content: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
@@ -220,7 +233,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 .bodyLarge,
                                             autofocus: true,
                                             decoration: InputDecoration(
-                                              hintText: "Input new username",
+                                              hintText: S
+                                                  .of(context)
+                                                  .profile__input_new_username,
                                             ),
                                           ),
                                           TextButton(
@@ -252,7 +267,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               }
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text("Change"),
+                                            child: Text(
+                                              S
+                                                  .of(context)
+                                                  .profile__change_username,
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -261,7 +280,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: Text("Close"),
+                                          child: Text(
+                                              S.of(context).profile__close),
                                         ),
                                       ],
                                     );
@@ -276,7 +296,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Text(
-                          "Level: ${userProvider.currentLevel}",
+                          S.of(context).profile__current_level(
+                              userProvider.currentLevel.toString()),
                           style: Theme.of(context).textTheme.bodyLarge,
                         )
                       ],

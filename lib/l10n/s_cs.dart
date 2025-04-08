@@ -107,11 +107,74 @@ class SCs extends S {
   String get notification_changed_username_successfully => 'Jméno úspěšně změněno';
 
   @override
-  String get game__wrong_toilet => 'Wrong Toilet';
+  String get game__wrong_toilet => 'Špatná toaleta';
 
   @override
-  String get game__time_s_up => 'Time\\\'s up!';
+  String get game__time_s_up => 'Čas vypršel!';
 
   @override
-  String get leader__leaderboard => 'Leaderboard';
+  String get leaderboard__title => 'Nejlepší záchoďáci';
+
+  @override
+  String get roadmap_title => 'Levely';
+
+  @override
+  String get game_wrong_toilet => 'Nesprávný záchod';
+
+  @override
+  String get profile__profile => 'Profil';
+
+  @override
+  String get profile__confirm_logout => 'Potvrdit odhlášení';
+
+  @override
+  String get profile__logout_confirmation => 'Jste si jistý?';
+
+  @override
+  String get profile__cancel_logout => 'Zrušit';
+
+  @override
+  String get profile__logout => 'Odhlásit se';
+
+  @override
+  String get profile__change_email => 'Změnit email';
+
+  @override
+  String get profile__change => 'Změnit';
+
+  @override
+  String get profile__close => 'Zavřít';
+
+  @override
+  String get profile__enter_new_email => 'Nová emailová adresa';
+
+  @override
+  String get profile__change_username => 'Změnit uživatelské jméno';
+
+  @override
+  String get profile__input_new_username => 'Nové uživatelské jméno';
+
+  @override
+  String profile__username(String username) {
+    return 'Uživatelské jméno: $username';
+  }
+
+  @override
+  String profile__current_level(String level) {
+    return 'Level: $level';
+  }
+
+  @override
+  String get leaderboard__refresh_button => 'Try Again';
+
+  @override
+  String get leader__no_data_available => 'No leaderboard data available';
+
+  @override
+  String get leader__unknown => 'Unknown';
+
+  @override
+  String game__time_indicator(Object remaining_time) {
+    return '$remaining_time s';
+  }
 }

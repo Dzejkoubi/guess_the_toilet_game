@@ -383,6 +383,7 @@ class Player extends SpriteAnimationGroupComponent
       // If player finishes his highest level, update the current level
       if (_userProvider.currentLevel == game.currentLevelIndex) {
         _userProvider.updateCurrentLevelNumber(_userProvider.currentLevel + 1);
+        _userProvider.getCurrentLevelNumber();
       }
     } else {
       game.timerActive = false; // Stop timer

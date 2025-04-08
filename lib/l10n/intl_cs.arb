@@ -44,16 +44,104 @@
   "@notification_changed_username_successfully": {
     "type": "text"
   },
-  "game__wrong_toilet": "Wrong Toilet",
+  "game__wrong_toilet": "Špatná toaleta",
   "@game__wrong_toilet": {
     "type": "text"
   },
-  "game__time_s_up": "Time\\'s up!",
+  "game__time_s_up": "Čas vypršel!",
   "@game__time_s_up": {
     "type": "text"
   },
-  "leader__leaderboard": "Leaderboard",
-  "@leader__leaderboard": {
+  "leaderboard__title": "Nejlepší záchoďáci",
+  "@leaderboard__title": {
     "type": "text"
+  },
+  "roadmap_title": "Levely",
+  "@roadmap_title": {
+    "type": "text"
+  },
+  "game_wrong_toilet": "Nesprávný záchod",
+  "@game_wrong_toilet": {
+    "type": "text"
+  },
+  "profile__profile": "Profil",
+  "@profile__profile": {
+    "type": "text"
+  },
+  "profile__confirm_logout": "Potvrdit odhlášení",
+  "@profile__confirm_logout": {
+    "type": "text"
+  },
+  "profile__logout_confirmation": "Jste si jistý?",
+  "@profile__logout_confirmation": {
+    "type": "text"
+  },
+  "profile__cancel_logout": "Zrušit",
+  "@profile__cancel_logout": {
+    "type": "text"
+  },
+  "profile__logout": "Odhlásit se",
+  "@profile__logout": {
+    "type": "text"
+  },
+  "profile__change_email": "Změnit email",
+  "@profile__change_email": {
+    "type": "text"
+  },
+  "profile__change": "Změnit",
+  "@profile__change": {
+    "type": "text"
+  },
+  "profile__close": "Zavřít",
+  "@profile__close": {
+    "type": "text"
+  },
+  "profile__enter_new_email": "Nová emailová adresa",
+  "@profile__enter_new_email": {
+    "type": "text"
+  },
+  "profile__change_username": "Změnit uživatelské jméno",
+  "@profile__change_username": {
+    "type": "text"
+  },
+  "profile__input_new_username": "Nové uživatelské jméno",
+  "@profile__input_new_username": {
+    "type": "text"
+  },
+  "profile__current_level": "Level: {level}",
+  "@profile__current_level": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "profile__username": "Uživatelské jméno: {username}",
+  "@profile__username": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "leaderboard__refresh_button": "Try Again",
+  "@leaderboard__refresh_button": {
+    "type": "text"
+  },
+  "leader__no_data_available": "No leaderboard data available",
+  "@leader__no_data_available": {
+    "type": "text"
+  },
+  "leader__unknown": "Unknown",
+  "@leader__unknown": {
+    "type": "text"
+  },
+  "game__time_indicator": "{remaining_time} s",
+  "@game__time_indicator": {
+    "remaining_time": {
+      "level": {
+        "type": "String"
+      }
+    }
   }
 }

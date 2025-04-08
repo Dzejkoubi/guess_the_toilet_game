@@ -113,5 +113,68 @@ class SEn extends S {
   String get game__time_s_up => 'Time\\\'s up!';
 
   @override
-  String get leader__leaderboard => 'Leaderboard';
+  String get leaderboard__title => 'Leaderboard';
+
+  @override
+  String get roadmap_title => 'Roadmap';
+
+  @override
+  String get game_wrong_toilet => 'Wrong Toilet';
+
+  @override
+  String get profile__profile => 'Profile';
+
+  @override
+  String get profile__confirm_logout => 'confirm logout';
+
+  @override
+  String get profile__logout_confirmation => 'Do you really want to log out?';
+
+  @override
+  String get profile__cancel_logout => 'Cancel';
+
+  @override
+  String get profile__logout => 'Logout';
+
+  @override
+  String get profile__change_email => 'Change Email';
+
+  @override
+  String get profile__change => 'Change';
+
+  @override
+  String get profile__close => 'Close';
+
+  @override
+  String get profile__enter_new_email => 'Enter new email';
+
+  @override
+  String get profile__change_username => 'Change username';
+
+  @override
+  String get profile__input_new_username => 'Input new username';
+
+  @override
+  String profile__username(String username) {
+    return 'Username: $username';
+  }
+
+  @override
+  String profile__current_level(String level) {
+    return 'Level: $level';
+  }
+
+  @override
+  String get leaderboard__refresh_button => 'Try Again';
+
+  @override
+  String get leader__no_data_available => 'No leaderboard data available';
+
+  @override
+  String get leader__unknown => 'Unknown';
+
+  @override
+  String game__time_indicator(Object remaining_time) {
+    return '$remaining_time s';
+  }
 }

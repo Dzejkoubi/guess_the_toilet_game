@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:guess_the_toilet/l10n/s.dart';
 
 @RoutePage()
 class LeaderBoardScreen extends StatefulWidget {
@@ -55,7 +56,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('l10n.leader__leaderboard'),
+        title: Text(S.of(context).leaderboard__title),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _data,
@@ -68,7 +69,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Error: ${snapshot.error}'),
+                  Text(S.of(context).caught_error(snapshot.error.toString())),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
@@ -76,7 +77,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                         _data = getData();
                       });
                     },
-                    child: const Text('Try Again'),
+                    child: Text(S.of(context).leaderboard__refresh_button),
                   ),
                 ],
               ),
@@ -90,8 +91,10 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                 final user = data[index];
                 return ListTile(
                   leading: CircleAvatar(child: Text('${index + 1}')),
-                  title: Text(user['username'] ?? 'Unknown'),
-                  subtitle: Text('Level: ${user['current_level'] ?? 0}'),
+                  title:
+                      Text(user['username'] ?? S.of(context).leader__unknown),
+                  subtitle: Text(
+                      '${S.of(context).profile__current_level}: ${user['current_level'] ?? 0}'),
                 );
               },
             );
@@ -100,7 +103,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('No leaderboard data available'),
+                Text(S.of(context).leader__no_data_available),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
@@ -108,7 +111,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                       _data = getData();
                     });
                   },
-                  child: const Text('Refresh'),
+                  child: Text(S.of(context).leaderboard__refresh_button),
                 ),
               ],
             ),

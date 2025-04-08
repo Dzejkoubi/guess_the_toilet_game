@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:guess_the_toilet/app/constants/game_constants.dart';
 import 'package:guess_the_toilet/app/constants/style_constants.dart';
 import 'package:guess_the_toilet/app/router/router.gr.dart';
+import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/correct_answer_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/e_action_button.dart';
@@ -12,17 +13,20 @@ import 'package:guess_the_toilet/screens/game_screen/overlays/pause_button.dart'
 import 'package:guess_the_toilet/screens/game_screen/overlays/pause_menu.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/time_indicator.dart';
 import 'package:guess_the_toilet/screens/game_screen/overlays/wrong_answer_menu.dart';
+import 'package:guess_the_toilet/services/providers/user_provider.dart';
 
 @RoutePage()
 class GameScreen extends StatelessWidget {
-  const GameScreen({super.key});
+  GameScreen({super.key});
+
+  UserProvider _userProvider = UserProvider();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppConstants.backgroundColor,
       appBar: AppBar(
-        title: const Text('Roadmap'),
+        title: Text(S.of(context).roadmap_title),
         leading: IconButton(
             onPressed: () {
               AutoRouter.of(context).push(LeaderBoardRoute());
@@ -38,6 +42,8 @@ class GameScreen extends StatelessWidget {
             child: IconButton(
                 onPressed: () {
                   AutoRouter.of(context).push(ProfileRoute());
+                  ;
+                  _userProvider.loadUserData();
                 },
                 icon: SvgPicture.asset(
                   'assets/icons/user_account_icon.svg',

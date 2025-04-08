@@ -299,11 +299,125 @@ abstract class S {
   /// **'Time\\\'s up!'**
   String get game__time_s_up;
 
-  /// No description provided for @leader__leaderboard.
+  /// No description provided for @leaderboard__title.
   ///
   /// In en, this message translates to:
   /// **'Leaderboard'**
-  String get leader__leaderboard;
+  String get leaderboard__title;
+
+  /// No description provided for @roadmap_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Roadmap'**
+  String get roadmap_title;
+
+  /// No description provided for @game_wrong_toilet.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong Toilet'**
+  String get game_wrong_toilet;
+
+  /// No description provided for @profile__profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile__profile;
+
+  /// No description provided for @profile__confirm_logout.
+  ///
+  /// In en, this message translates to:
+  /// **'confirm logout'**
+  String get profile__confirm_logout;
+
+  /// No description provided for @profile__logout_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you really want to log out?'**
+  String get profile__logout_confirmation;
+
+  /// No description provided for @profile__cancel_logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profile__cancel_logout;
+
+  /// No description provided for @profile__logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get profile__logout;
+
+  /// No description provided for @profile__change_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Email'**
+  String get profile__change_email;
+
+  /// No description provided for @profile__change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get profile__change;
+
+  /// No description provided for @profile__close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get profile__close;
+
+  /// No description provided for @profile__enter_new_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new email'**
+  String get profile__enter_new_email;
+
+  /// No description provided for @profile__change_username.
+  ///
+  /// In en, this message translates to:
+  /// **'Change username'**
+  String get profile__change_username;
+
+  /// No description provided for @profile__input_new_username.
+  ///
+  /// In en, this message translates to:
+  /// **'Input new username'**
+  String get profile__input_new_username;
+
+  /// No description provided for @profile__username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username: {username}'**
+  String profile__username(String username);
+
+  /// No description provided for @profile__current_level.
+  ///
+  /// In en, this message translates to:
+  /// **'Level: {level}'**
+  String profile__current_level(String level);
+
+  /// No description provided for @leaderboard__refresh_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get leaderboard__refresh_button;
+
+  /// No description provided for @leader__no_data_available.
+  ///
+  /// In en, this message translates to:
+  /// **'No leaderboard data available'**
+  String get leader__no_data_available;
+
+  /// No description provided for @leader__unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get leader__unknown;
+
+  /// No description provided for @game__time_indicator.
+  ///
+  /// In en, this message translates to:
+  /// **'{remaining_time} s'**
+  String game__time_indicator(Object remaining_time);
 }
 
 class _SDelegate extends LocalizationsDelegate<S> {

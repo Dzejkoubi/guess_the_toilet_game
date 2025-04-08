@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 import 'package:guess_the_toilet/screens/game_screen/game_screen.dart' as _i2;
 import 'package:guess_the_toilet/screens/leaderboard/leader_board_screen.dart'
     as _i3;
@@ -38,18 +39,36 @@ class AuthGate extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.GameScreen]
-class GameRoute extends _i7.PageRouteInfo<void> {
-  const GameRoute({List<_i7.PageRouteInfo>? children})
-    : super(GameRoute.name, initialChildren: children);
+class GameRoute extends _i7.PageRouteInfo<GameRouteArgs> {
+  GameRoute({_i8.Key? key, List<_i7.PageRouteInfo>? children})
+    : super(
+        GameRoute.name,
+        args: GameRouteArgs(key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'GameRoute';
 
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i2.GameScreen();
+      final args = data.argsAs<GameRouteArgs>(
+        orElse: () => const GameRouteArgs(),
+      );
+      return _i2.GameScreen(key: args.key);
     },
   );
+}
+
+class GameRouteArgs {
+  const GameRouteArgs({this.key});
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'GameRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

@@ -37,7 +37,7 @@ class AuthGate extends StatelessWidget {
         // If the user is authenticated, show the profile page
         // Otherwise, show the register page
         if (session != null) {
-          return const GameScreen();
+          return GameScreen();
         } else {
           return const RegisterScreen();
         }

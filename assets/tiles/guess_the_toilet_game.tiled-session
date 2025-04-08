@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "lvl_5.tmx",
+    "activeFile": "roadmap.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -19,7 +19,7 @@
             "scaleInEditor": 1
         },
         "brown_npc.tsx": {
-            "scaleInDock": 4,
+            "scaleInDock": 3.769,
             "scaleInEditor": 1
         },
         "businessman_npc.tsx": {
@@ -52,14 +52,14 @@
         },
         "lvl_1.tmx": {
             "expandedObjectLayers": [
-                6,
-                5
+                5,
+                6
             ],
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 152.25,
-                "y": 239.75
+                "x": 176,
+                "y": 221
             }
         },
         "lvl_1.tmx#outer": {
@@ -73,44 +73,44 @@
             "scale": 1,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 495.5,
-                "y": 578.5
+                "x": 400,
+                "y": 416
             }
         },
         "lvl_2.tmx": {
             "expandedObjectLayers": [
-                6,
-                5
+                5,
+                6
             ],
             "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 190.75,
-                "y": 312.75
+                "x": 224,
+                "y": 288
             }
         },
         "lvl_3.tmx": {
             "expandedObjectLayers": [
-                6,
-                5
+                5,
+                6
             ],
             "scale": 2,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 240.75,
-                "y": 287.25
+                "x": 224,
+                "y": 288
             }
         },
         "lvl_4.tmx": {
             "expandedObjectLayers": [
-                6,
-                5
+                5,
+                6
             ],
             "scale": 1,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 219.5,
-                "y": 442.5
+                "x": 256,
+                "y": 320
             }
         },
         "lvl_5 copy.tmx": {
@@ -123,26 +123,26 @@
         },
         "lvl_5.tmx": {
             "expandedObjectLayers": [
-                6,
-                5
+                5,
+                6
             ],
             "scale": 1.5,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 215.66666666666666,
-                "y": 343.66666666666663
+                "x": 256,
+                "y": 319.99999999999994
             }
         },
         "lvl_6.tmx": {
             "expandedObjectLayers": [
-                6,
-                2
+                2,
+                6
             ],
             "scale": 1.5157,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 313.05667348419865,
-                "y": 329.5507026456423
+                "x": 288.31562974203337,
+                "y": 352.3124628884344
             }
         },
         "lvl_7.tmx": {
@@ -153,8 +153,8 @@
             "scale": 1.3092,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 224.94653223342502,
-                "y": 389.9327833791629
+                "x": 320.04277421326003,
+                "y": 384.2040941032692
             }
         },
         "lvl_8.tmx": {
@@ -165,8 +165,8 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 297.66666666666663,
-                "y": 380.3333333333333
+                "x": 336,
+                "y": 383.99999999999994
             }
         },
         "lvl_9.tmx": {
@@ -177,8 +177,8 @@
             "scale": 1.5647,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 252.12500798875183,
-                "y": 508.4041669329584
+                "x": 336.16667731833576,
+                "y": 384.0991883428133
             }
         },
         "menu_assets.tsx": {
@@ -194,11 +194,11 @@
             "scaleInEditor": 1
         },
         "outer.tsx": {
-            "scaleInDock": 1.5595,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "restroom_assets.tsx": {
-            "scaleInDock": 4,
+            "scaleInDock": 3,
             "scaleInEditor": 1
         },
         "roadmap copy.tmx": {
@@ -220,11 +220,11 @@
                 3,
                 4
             ],
-            "scale": 1.879,
-            "selectedLayer": 4,
+            "scale": 1.1028,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 220.59606173496542,
-                "y": 213.14529004789782
+                "x": 250.7254261878854,
+                "y": 489.20928545520496
             }
         },
         "roadmap.tmx#roadmap_background": {
@@ -232,7 +232,7 @@
             "scaleInEditor": 1
         },
         "roadmap_assets.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1
         },
         "roadmap_background.tsx": {
@@ -257,27 +257,33 @@
     "openFiles": [
         "lvl_1.tmx",
         "lvl_2.tmx",
+        "lvl_3.tmx",
+        "lvl_4.tmx",
         "lvl_5.tmx",
+        "lvl_6.tmx",
+        "lvl_7.tmx",
+        "lvl_8.tmx",
+        "lvl_9.tmx",
+        "lvl_10.tmx",
         "roadmap_assets.tsx",
         "roadmap_background.tsx",
-        "lvl_3.tmx",
         "roadmap.tmx"
     ],
     "project": "guess_the_toilet_game.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "lvl_10.tmx",
-        "lvl_9.tmx",
-        "lvl_5 copy.tmx",
         "lvl_1.tmx",
         "lvl_2.tmx",
-        "roadmap.tmx",
         "lvl_3.tmx",
-        "roadmap_background.tsx",
-        "roadmap_assets.tsx",
+        "lvl_4.tmx",
         "lvl_5.tmx",
         "lvl_6.tmx",
-        "lvl_0.tmx"
+        "lvl_7.tmx",
+        "lvl_8.tmx",
+        "lvl_9.tmx",
+        "lvl_10.tmx",
+        "roadmap_assets.tsx",
+        "roadmap_background.tsx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

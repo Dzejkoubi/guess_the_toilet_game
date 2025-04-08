@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guess_the_toilet/l10n/s.dart';
 import 'package:guess_the_toilet/screens/game/guess_the_toilet.dart';
 
 class TimeIndicator extends StatefulWidget {
@@ -95,7 +96,9 @@ class _TimeIndicatorState extends State<TimeIndicator>
                   // Time text overlay
                   Center(
                     child: Text(
-                      '${widget.timeRemaining.ceil()} s',
+                      S
+                          .of(context)
+                          .game__time_indicator(widget.timeRemaining.ceil()),
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
